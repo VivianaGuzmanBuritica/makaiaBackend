@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: gray;
+  }
+
+nav{
+    height: 10vh;
+    display: flex;
+    flex-wrap:wrap ;    
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    background-color: gainsboro;
+
+    
+  }
+
+  h1, h2{
+    padding: auto;
+   
+  }
+
+.pokebola{
+    width: 30px;
+    margin:5px;
+    margin-left: 10px;
+}
+
+main{
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+}
+
+.nombre{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: gainsboro;
+    border-radius: 8px;
+    margin:8px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nombre h2{
+    text-align: center;
+    padding: 2px;
+}
+
+.pokemon{
+    width: 250px;
+    padding: 5px;
+    margin:5px;
+    
+}
+
+
+.caracteristicas{
+    display: flex;
+    flex-wrap: wrap;
+    margin:15px;
+    background-color: gainsboro;
+    border-radius: 6%; 
+    align-items: center;
+
+}
+
+.caracteristicas div{
+    margin:30px;
+    align-items: center;
+  }
+
+  footer{
+    display: flex;
+    flex: wrap;
+    justify-content:space-around;
+    align-items: center;
+    background-color:gainsboro;
+  }
+   footer .pokemones{
+    display: flex;
+    flex-wrap: wrap;
+   }
+
+footer img{
+    width: 100px;
+    height: 100px;
+    margin:20px;
+    padding: 10px;
+    border: 3px white solid;
+    border-radius: 8px;
+    background-color: gray;
+       
+}
