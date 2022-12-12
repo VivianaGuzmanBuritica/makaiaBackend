@@ -104,5 +104,12 @@ footer img{
     border: 3px white solid;
     border-radius: 8px;
     background-color: gray;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
        
+}
+
+footer img:hover{
+    border: 3px black solid;
+    background-color: white;
+    cursor: pointer;
 }
