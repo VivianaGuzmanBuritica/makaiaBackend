@@ -2,48 +2,41 @@ const prompt= require("prompt-sync")();
 
 let lista =[];
 let respuesta = "";
-// let bienvenida = prompt("Bienvenido a tu cajero automatico elige[INGRESAR o REGISTRARSE]: ").toLocaleUpperCase();
-    
-// if(bienvenida == "REGISTARSE"){
-//     // CREAR USUARIO
-//     do {
-//     respuesta = (prompt("Desea Registarse[SI/NO]: ")).toUpperCase();
-//        if(respuesta == "SI"){
-//             let nuevoUsuario =
-//                 {
-//                     nombre: prompt("Digita tu nombre: "),
-//                     documento: parseInt(prompt("Diligencia tu numero de documento: ")),
-//                     contrasenia: prompt("Digita tu contraseña: "),
-//                     tipoUsuario: parseInt(prompt("Digita 1 para Administrador y 2 para Cliente: "))
-//                 };
-    
-//            lista.push(nuevoUsuario);
-//            console.log(lista);
-//         }else{
-//             console.log("Nos vemos a la proxima");
-            
-//         }
 
-      
-//     }while (respuesta == "SI"); 
+    
+do{
+respuesta = (prompt("elige[INGRESAR o REGISTRARSE o CERRAR]: ")).toUpperCase();
+if(respuesta == "REGISTARSE"){
+    // CREAR USUARIO
    
+            let nuevoUsuario =
+                {
+                    nombre: prompt("Digita tu nombre: "),
+                    documento: parseInt(prompt("Diligencia tu numero de documento: ")),
+                    contrasenia: prompt("Digita tu contraseña: "),
+                    tipoUsuario: parseInt(prompt("Digita 1 para Administrador y 2 para Cliente: "))
+                };
     
-// }else if(bienvenida == "INGRESAR"){
-//     //LOGIN
-//     let documento = parseInt(prompt("Ingrese su numero de documento: "));
-//     let contrasenia = prompt("Ingrese su contrasenia: ");
+           lista.push(nuevoUsuario);
+           console.log(lista);
 
-    //    verificacionUsuario(documento, contrasenia); 
+    
+}else if(respuesta == "INGRESAR"){
+    //LOGIN
+    let documento = parseInt(prompt("Ingrese su numero de documento: "));
+    let contrasenia = prompt("Ingrese su contrasenia: ");
 
-    //    if(verificacionUsuario == true)
+       verificacionUsuario(documento, contrasenia); 
+
+       if(verificacionUsuario == true){
+        console.log("acceso permitido");
+       }
 
    
-// }
+}
+}while(respuesta != "CERRAR")
     
-// lista = [
-//     { nombre: 'vIVI', documento: 1234, contrasenia: 'SDFG', tipoUsuario: 1 },
-//     { nombre: 'dANI', documento: 4567, contrasenia: 'HGGJ', tipoUsuario: 2 }
-//   ];
+
 
 function verificacionUsuario(documento, contrasenia) {
     let encontrado = [];
