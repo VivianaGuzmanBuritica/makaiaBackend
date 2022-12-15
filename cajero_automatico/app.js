@@ -1,66 +1,75 @@
 const prompt= require("prompt-sync")();
 
-// let lista =[];
-// let respuesta = "";
+let lista =[];
+let respuesta = "";
 let depositosCajero = [];
 
     
-// do{
-// respuesta = (prompt("elige[INGRESAR o REGISTRARSE o CERRAR]: ")).toUpperCase();
-// if(respuesta == "REGISTARSE"){
-//     // CREAR USUARIO
-   
-//             let nuevoUsuario =
-//                 {
-//                     nombre: prompt("Digita tu nombre: "),
-//                     documento: prompt("Diligencia tu numero de documento: "),
-//                     contrasenia: prompt("Digita tu contraseña: "),
-//                     tipoUsuario: parseInt(prompt("Digita 1 para Administrador y 2 para Cliente: "))
-//                 };
+do{
+respuesta = (prompt("elige[INGRESAR o REGISTRARSE o CERRAR]: ")).toUpperCase();
+if(respuesta == "REGISTRARSE"){
+    // CREAR USUARIO
+               let nuevoUsuario =
+                {
+                    nombre: prompt("Digita tu nombre: "),
+                    documento: prompt("Diligencia tu numero de documento: "),
+                    contrasenia: prompt("Digita tu contraseña: "),
+                    tipoUsuario: parseInt(prompt("Digita 1 para Administrador y 2 para Cliente: "))
+                };
     
-//            lista.push(nuevoUsuario);
-//            console.log(lista);
+           lista.push(nuevoUsuario);
+           console.log(lista);
 
     
-// }else if(respuesta == "INGRESAR"){
-//     //LOGIN
-//     let documento = prompt("Ingrese su numero de documento: ");
-//     let contrasenia = prompt("Ingrese su contrasenia: ");
+}else if(respuesta == "INGRESAR"){
+    //LOGIN
+    let documento = prompt("Ingrese su numero de documento: ");
+    let contrasenia = prompt("Ingrese su contrasenia: ");
 
-//       let verificacion = verificacionUsuario(documento, contrasenia); 
+      let verificacion = verificacionUsuario(documento, contrasenia); 
       
 
-//        if(verificacion == true){
-//         console.log("acceso permitido");
-//        }else{
-//         console.log("acceso denegado");
-//        }
+       if(verificacion != 0){
+        
+        console.log("acceso permitido");       
+                                
+            accionesTipoUsuario(verificacion);
+            
+       }else{
+        console.log("acceso denegado");
+       }
 
    
-// }
-// }while(respuesta != "CERRAR");
+}
+}while(respuesta != "CERRAR");
     
 
 
-// function verificacionUsuario(documento, contrasenia) {
-//     let encontrado = [];
-//     lista.forEach(
-//         function(objeto){
-//             if(objeto.documento === documento && objeto.contrasenia ===contrasenia){
-//                 encontrado.push(documento);
-//                 encontrado.push(contrasenia)}
-//             });
+function verificacionUsuario(documento, contrasenia) {
+    let encontrado = [];
+    let tipoUsuario = 0;
+    lista.forEach(
+        function(objeto){
+            if(objeto.documento === documento && objeto.contrasenia ===contrasenia){
+                encontrado.push(documento);
+                encontrado.push(contrasenia);
+                tipoUsuario = objeto.tipoUsuario;
+            }
+            });
    
-//      if(encontrado.length > 0){
-//         return true;
-//      }
-//      return false;
-// };     
+     if(tipoUsuario > 0){
+      
+        return tipoUsuario;
+     }
+     return 0;
+};     
+
+
 
 function accionesTipoUsuario(tipoUsuario){
 
         if(tipoUsuario == 1){
-        console.log(" eres administrador");
+        console.log("Perfil de administrador");
 
         let nuevoDeposito = {
             billeteCinco:parseInt(prompt("Digite el numero de billete de 5.000  que ingresa: ")),
@@ -80,14 +89,8 @@ function accionesTipoUsuario(tipoUsuario){
         }else{
             console.log("cliente o administrador errado,");
         }
-}
-
-
-
-console.log(accionesTipoUsuario(1));
-console.log(accionesTipoUsuario(1));
-    
-   
+};
+  
 
 function sumarPorDenominacion() {
     
@@ -106,11 +109,17 @@ let sumaBilletesCien= 0;
 
     });
 
+    let totalDepositado = sumaBilletesCinco+sumaBilletesDiez+sumaBilletesVeinte+sumaBilletesCincuenta+sumaBilletesCien;
+
     console.log("Total en Billetes de $5.000: $" + (sumaBilletesCinco = sumaBilletesCien * 5000));
     console.log("Total en Billetes de $10.000: $" +(sumaBilletesDiez = sumaBilletesDiez *10000));
     console.log("Total en Billetes de $20.000: $" +(sumaBilletesVeinte = sumaBilletesVeinte *20000));
     console.log("Total en Billetes de $50.000: $" +(sumaBilletesCincuenta = sumaBilletesCincuenta * 50000));
     console.log("Total en Billetes de $100.000: $" +(sumaBilletesCien = sumaBilletesCien * 100000));
+    console.log("/----------------------------------------------------------------------");
+    console.log("TOTAL DEPOSITADO: "+ totalDepositado);
+
+    
 
 
 
@@ -120,7 +129,7 @@ let sumaBilletesCien= 0;
 
 console.table(depositosCajero); 
 
-console.log("suma5 "+sumarPorDenominacion());
+
 
 
 
