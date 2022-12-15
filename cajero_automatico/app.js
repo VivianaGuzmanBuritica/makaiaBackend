@@ -86,6 +86,8 @@ function accionesTipoUsuario(tipoUsuario){
 
         }else if(tipoUsuario == 2){
             console.log("eres cliente");
+
+            
         }else{
             console.log("cliente o administrador errado,");
         }
@@ -109,13 +111,14 @@ let sumaBilletesCien= 0;
 
     });
 
-    let totalDepositado = sumaBilletesCinco+sumaBilletesDiez+sumaBilletesVeinte+sumaBilletesCincuenta+sumaBilletesCien;
-
+    
+    console.log("/----------------------------------------------------------------------");
     console.log("Total en Billetes de $5.000: $" + (sumaBilletesCinco = sumaBilletesCien * 5000));
     console.log("Total en Billetes de $10.000: $" +(sumaBilletesDiez = sumaBilletesDiez *10000));
     console.log("Total en Billetes de $20.000: $" +(sumaBilletesVeinte = sumaBilletesVeinte *20000));
     console.log("Total en Billetes de $50.000: $" +(sumaBilletesCincuenta = sumaBilletesCincuenta * 50000));
     console.log("Total en Billetes de $100.000: $" +(sumaBilletesCien = sumaBilletesCien * 100000));
+    let totalDepositado = sumaBilletesCinco+sumaBilletesDiez+sumaBilletesVeinte+sumaBilletesCincuenta+sumaBilletesCien;
     console.log("/----------------------------------------------------------------------");
     console.log("TOTAL DEPOSITADO: "+ totalDepositado);
 
