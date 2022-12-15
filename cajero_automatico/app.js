@@ -3,6 +3,8 @@ const prompt= require("prompt-sync")();
 let lista =[];
 let respuesta = "";
 let depositosCajero = [];
+let saldoPorDenominacion = [];
+let saldoCajero = 0;
 
     
 do{
@@ -86,6 +88,10 @@ function accionesTipoUsuario(tipoUsuario){
 
         }else if(tipoUsuario == 2){
             console.log("eres cliente");
+            const nuevoRetiro = parseInt(prompt("Digite el valor que desea retirar: "));
+           rertirarDinero(nuevoRetiro);
+
+
 
             
         }else{
@@ -111,26 +117,106 @@ let sumaBilletesCien= 0;
 
     });
 
-    
-    console.log("/----------------------------------------------------------------------");
-    console.log("Total en Billetes de $5.000: $" + (sumaBilletesCinco = sumaBilletesCien * 5000));
-    console.log("Total en Billetes de $10.000: $" +(sumaBilletesDiez = sumaBilletesDiez *10000));
-    console.log("Total en Billetes de $20.000: $" +(sumaBilletesVeinte = sumaBilletesVeinte *20000));
-    console.log("Total en Billetes de $50.000: $" +(sumaBilletesCincuenta = sumaBilletesCincuenta * 50000));
-    console.log("Total en Billetes de $100.000: $" +(sumaBilletesCien = sumaBilletesCien * 100000));
-    let totalDepositado = sumaBilletesCinco+sumaBilletesDiez+sumaBilletesVeinte+sumaBilletesCincuenta+sumaBilletesCien;
-    console.log("/----------------------------------------------------------------------");
-    console.log("TOTAL DEPOSITADO: "+ totalDepositado);
-
+  
+    sumaBilletesCinco = sumaBilletesCien * 5000;
+    sumaBilletesDiez = sumaBilletesDiez *10000;
+    sumaBilletesVeinte = sumaBilletesVeinte *20000;
+    sumaBilletesCincuenta = sumaBilletesCincuenta * 50000;
+    sumaBilletesCien = sumaBilletesCien * 100000;
     
 
+    saldoPorDenominacion.push(sumaBilletesCinco);
+    saldoPorDenominacion.push(sumaBilletesDiez); 
+    saldoPorDenominacion.push(sumaBilletesVeinte);
+    saldoPorDenominacion.push(sumaBilletesCincuenta);
+    saldoPorDenominacion.push(sumaBilletesCien);
+    
+    
+    console.log("/----------------------------------------------------------------------");
+    console.log("Total en Billetes de $5.000: $" + (sumaBilletesCinco));
+    console.log("Total en Billetes de $10.000: $" +(sumaBilletesDiez));
+    console.log("Total en Billetes de $20.000: $" +(sumaBilletesVeinte));
+    console.log("Total en Billetes de $50.000: $" +(sumaBilletesCincuenta));
+    console.log("Total en Billetes de $100.000: $" +(sumaBilletesCien));
 
-
+    saldoCajero = sumaBilletesCinco+sumaBilletesDiez+sumaBilletesVeinte+sumaBilletesCincuenta+sumaBilletesCien;
+    console.log("/----------------------------------------------------------------------");
+    console.log("TOTAL DEPOSITADO: "+ saldoCajero);
 }
 
- 
+function rertirarDinero(nuevoRetiro){
+    
+    if(saldoCajero > 0 ){
 
-console.table(depositosCajero); 
+      saldoPorDenominacion.reverse();
+      console.log(saldoPorDenominacion);
+
+        if(saldoPorDenominacion[0] > nuevoRetiro){
+
+           let saldoDisponibles = saldoPorDenominacion[0];
+           let cantBilletesNecesito;
+          
+           cantBilletesNecesito = nuevoRetiro % 100000;
+           console.log("Billetes de $100.000: "+ cantBilletesNecesito );
+           
+           saldoDisponibles -= (cantBilletesNecesito*100000);
+           
+           nuevoRetiro -= saldoDisponibles;
+        }
+        // if(saldoPorDenominacion[1] > nuevoRetiro){
+
+        //     let saldoDisponibles = saldoPorDenominacion[1];
+        //     let cantBilletesNecesito;
+           
+        //     cantBilletesNecesito = nuevoRetiro % 50000;
+        //     console.log("Billetes de $50.000: "+ cantBilletesNecesito );
+            
+        //     saldoDisponibles -= (cantBilletesNecesito*50000);
+            
+        //    nuevoRetiro -=saldoDisponibles;
+         
+        // }if(saldoPorDenominacion[2] > nuevoRetiro){
+
+        //     let saldoDisponibles = saldoPorDenominacion[2];
+        //     let cantBilletesNecesito;
+           
+        //     cantBilletesNecesito = nuevoRetiro % 20000;
+        //     console.log("Billetes de $20.000: "+ cantBilletesNecesito );
+            
+        //     saldoDisponibles -= (cantBilletesNecesito*20000);
+            
+        //    nuevoRetiro -=saldoDisponibles;
+         
+        // }if(saldoPorDenominacion[3] > nuevoRetiro){
+
+        //     let saldoDisponibles = saldoPorDenominacion[3];
+        //     let cantBilletesNecesito;
+           
+        //     cantBilletesNecesito = nuevoRetiro % 10000;
+        //     console.log("Billetes de $10.000: "+ cantBilletesNecesito );
+            
+        //     saldoDisponibles -= (cantBilletesNecesito*10000);
+            
+        //    nuevoRetiro -=saldoDisponibles;
+         
+        // }if(saldoPorDenominacion[4] > nuevoRetiro){
+
+        //     let saldoDisponibles = saldoPorDenominacion[4];
+        //     let cantBilletesNecesito;
+           
+        //     cantBilletesNecesito = nuevoRetiro % 5000;
+        //     console.log("Billetes de $5.000: "+ cantBilletesNecesito );
+            
+        //     saldoDisponibles -= (cantBilletesNecesito*5000);
+            
+        //    nuevoRetiro -=saldoDisponibles;
+         
+        // }
+       
+    } else{
+        console.log("Cajero en mantenimiento, vuelva pronto");
+    }
+}
 
 
 
