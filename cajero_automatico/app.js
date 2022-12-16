@@ -5,7 +5,7 @@ let respuesta = "";
 let depositosCajero = [];
 let saldoPorDenominacion = [];
 let saldoCajero = 0;
-
+let nuevoArraySaldoDenominacion = [];
     
 do{
 respuesta = (prompt("elige[INGRESO o REGISTRO o CERRAR]: ")).toUpperCase();
@@ -122,12 +122,15 @@ let sumaBilletesCien= 0;
     sumaBilletesCincuenta = sumaBilletesCincuenta * 50000;
     sumaBilletesCien = sumaBilletesCien * 100000;
     
-
-    saldoPorDenominacion.push(sumaBilletesCinco);
-    saldoPorDenominacion.push(sumaBilletesDiez); 
-    saldoPorDenominacion.push(sumaBilletesVeinte);
-    saldoPorDenominacion.push(sumaBilletesCincuenta);
     saldoPorDenominacion.push(sumaBilletesCien);
+    saldoPorDenominacion.push(sumaBilletesCincuenta);
+    saldoPorDenominacion.push(sumaBilletesVeinte);
+    saldoPorDenominacion.push(sumaBilletesDiez); 
+    saldoPorDenominacion.push(sumaBilletesCinco);
+    
+
+  
+    
     
     
     console.log("/----------------------------------------------------------------------");
@@ -146,21 +149,20 @@ function rertirarDinero(nuevoRetiro){
     
     if(nuevoRetiro <= saldoCajero ){
 
-      saldoPorDenominacion.reverse();
+        console.log("inicial"+saldoPorDenominacion);
+     
       let denominacion = [100000, 50000, 20000, 10000, 5000];
           
          for (let index = 0; index < denominacion.length; index++) {
             
-            let saldoDisponible = saldoPorDenominacion[index];
             let cantBilletesNecesito;  
             let billitesAdescontar;
             let valorADescontarEnPesos;
                              
             cantBilletesNecesito = Math.floor(nuevoRetiro/denominacion[index]);
             
-            console.log("Billetes de $"+ denominacion[index]+" que necesito "+ cantBilletesNecesito);
-
-            let billestesDisponibles = saldoDisponible/denominacion[index];
+            
+            let billestesDisponibles = saldoPorDenominacion[index]/denominacion[index];
 
             if(billestesDisponibles>= cantBilletesNecesito){    
                billitesAdescontar=cantBilletesNecesito;
@@ -169,15 +171,21 @@ function rertirarDinero(nuevoRetiro){
             }
 
             valorADescontarEnPesos = billitesAdescontar * denominacion[index];
-            saldoDisponible -= valorADescontarEnPesos;
+            saldoPorDenominacion[index] -= valorADescontarEnPesos;
             nuevoRetiro -= valorADescontarEnPesos;
+
+            console.log("---------------------------------------------------------------------------------");
             console.log("Billetes de $"+ denominacion[index]+" que entrega "+ billitesAdescontar);
-            sumarPorDenominacion();
+            console.log("Dinero restante cajero  por denominacion  $"+ denominacion[index]+" es igual a:  $"+saldoPorDenominacion[index]);
+            console.log("---------------------------------------------------------------------------------");
     }
        
     } else{
         console.log("Saldo insuficiente, vuelva a intentar");
     }
+
+   
+    console.log("Array saldo por denominacion: "+saldoPorDenominacion);
 }
 
 
