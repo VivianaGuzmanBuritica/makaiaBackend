@@ -8,7 +8,7 @@ let saldoCajero = 0;
 
     
 do{
-respuesta = (prompt("Elige[INGRESO o REGISTRO o CERRAR]: ")).toUpperCase();
+respuesta = (prompt("Elige una opcion [INGRESO o REGISTRO o CERRAR]: ")).toUpperCase();
 if(respuesta === "REGISTRO"){
     // CREAR USUARIO
                let nuevoUsuario =
