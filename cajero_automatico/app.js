@@ -5,11 +5,11 @@ let respuesta = "";
 let depositosCajero = [];
 let saldoPorDenominacion = [];
 let saldoCajero = 0;
-let nuevoArraySaldoDenominacion = [];
+
     
 do{
 respuesta = (prompt("elige[INGRESO o REGISTRO o CERRAR]: ")).toUpperCase();
-if(respuesta == "REGISTRO"){
+if(respuesta === "REGISTRO"){
     // CREAR USUARIO
                let nuevoUsuario =
                 {
@@ -23,14 +23,13 @@ if(respuesta == "REGISTRO"){
            console.log(lista);
 
     
-}else if(respuesta == "INGRESO"){
+}else if(respuesta === "INGRESO"){
     //LOGIN
     let documento = prompt("Ingrese su numero de documento: ");
     let contrasenia = prompt("Ingrese su contrasenia: ");
 
       let verificacion = verificacionUsuario(documento, contrasenia); 
       
-
        if(verificacion != 0){
         
         console.log("acceso permitido");       
@@ -70,7 +69,7 @@ function verificacionUsuario(documento, contrasenia) {
 
 function accionesTipoUsuario(tipoUsuario){
 
-        if(tipoUsuario == 1){
+        if(tipoUsuario === 1){
         console.log("Perfil de administrador");
 
         let nuevoDeposito = {
@@ -86,7 +85,7 @@ function accionesTipoUsuario(tipoUsuario){
         sumarPorDenominacion();
 
 
-        }else if(tipoUsuario == 2){
+        }else if(tipoUsuario === 2){
             console.log("eres cliente");
             const nuevoRetiro = parseInt(prompt("Digite el valor que desea retirar: "));
             rertirarDinero(nuevoRetiro);
@@ -115,7 +114,6 @@ let sumaBilletesCien= 0;
 
     });
 
-  
     sumaBilletesCinco = sumaBilletesCien * 5000;
     sumaBilletesDiez = sumaBilletesDiez *10000;
     sumaBilletesVeinte = sumaBilletesVeinte *20000;
@@ -127,11 +125,6 @@ let sumaBilletesCien= 0;
     saldoPorDenominacion.push(sumaBilletesVeinte);
     saldoPorDenominacion.push(sumaBilletesDiez); 
     saldoPorDenominacion.push(sumaBilletesCinco);
-    
-
-  
-    
-    
     
     console.log("/----------------------------------------------------------------------");
     console.log("Total en Billetes de $5.000: $" + (sumaBilletesCinco));
@@ -172,7 +165,10 @@ function rertirarDinero(nuevoRetiro){
 
             valorADescontarEnPesos = billitesAdescontar * denominacion[index];
             saldoPorDenominacion[index] -= valorADescontarEnPesos;
+            saldoCajero -=valorADescontarEnPesos;
             nuevoRetiro -= valorADescontarEnPesos;
+
+            
 
             console.log("---------------------------------------------------------------------------------");
             console.log("Billetes de $"+ denominacion[index]+" que entrega "+ billitesAdescontar);
@@ -183,7 +179,6 @@ function rertirarDinero(nuevoRetiro){
     } else{
         console.log("Saldo insuficiente, vuelva a intentar");
     }
-
    
     console.log("Array saldo por denominacion: "+saldoPorDenominacion);
 }
