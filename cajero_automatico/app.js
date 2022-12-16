@@ -8,7 +8,7 @@ let saldoCajero = 0;
 
     
 do{
-respuesta = (prompt("elige[INGRESO o REGISTRO o CERRAR]: ")).toUpperCase();
+respuesta = (prompt("Elige[INGRESO o REGISTRO o CERRAR]: ")).toUpperCase();
 if(respuesta === "REGISTRO"){
     // CREAR USUARIO
                let nuevoUsuario =
@@ -32,12 +32,12 @@ if(respuesta === "REGISTRO"){
       
        if(verificacion != 0){
         
-        console.log("acceso permitido");       
+        console.log("------------ACCESO PERMITIDO---------------");       
                                 
             accionesTipoUsuario(verificacion);
             
        }else{
-        console.log("acceso denegado");
+        console.log("------------ACCESO DENEGADO---------------");
        }
 
    
@@ -70,7 +70,7 @@ function verificacionUsuario(documento, contrasenia) {
 function accionesTipoUsuario(tipoUsuario){
 
         if(tipoUsuario === 1){
-        console.log("Perfil de administrador");
+        console.log("***Perfil de administrador***");
 
         let nuevoDeposito = {
             billeteCinco:parseInt(prompt("Digite el numero de billete de 5.000  que ingresa: ")),
@@ -86,7 +86,7 @@ function accionesTipoUsuario(tipoUsuario){
 
 
         }else if(tipoUsuario === 2){
-            console.log("eres cliente");
+            console.log("***Perfil de cliente***");
             const nuevoRetiro = parseInt(prompt("Digite el valor que desea retirar: "));
             rertirarDinero(nuevoRetiro);
            
@@ -135,7 +135,7 @@ let sumaBilletesCien= 0;
 
     saldoCajero = sumaBilletesCinco+sumaBilletesDiez+sumaBilletesVeinte+sumaBilletesCincuenta+sumaBilletesCien;
     console.log("/----------------------------------------------------------------------");
-    console.log("TOTAL DEPOSITADO: "+ saldoCajero);
+    console.log("TOTAL DEPOSITADO: $"+ saldoCajero);
 }
 
 function rertirarDinero(nuevoRetiro){
