@@ -1,6 +1,6 @@
 const prompt= require("prompt-sync")();
 
-let lista =[];
+let listaUsuarios =[];
 let respuesta = "";
 let depositosCajero = [];
 let saldoPorDenominacion = [];
@@ -19,8 +19,8 @@ if(respuesta === "REGISTRO"){
                     tipoUsuario: parseInt(prompt("Digita 1 para Administrador y 2 para Cliente: "))
                 };
     
-           lista.push(nuevoUsuario);
-           console.log(lista);
+           listaUsuarios.push(nuevoUsuario);
+           console.log(listaUsuarios);
 
     
 }else if(respuesta === "INGRESO"){
@@ -34,7 +34,7 @@ if(respuesta === "REGISTRO"){
         
         console.log("------------ACCESO PERMITIDO---------------");       
                                 
-            accionesTipoUsuario(verificacion);
+        accionesTipoUsuario(verificacion);
             
        }else{
         console.log("------------ACCESO DENEGADO---------------");
@@ -49,7 +49,8 @@ if(respuesta === "REGISTRO"){
 function verificacionUsuario(documento, contrasenia) {
     let encontrado = [];
     let tipoUsuario = 0;
-    lista.forEach(
+
+    listaUsuarios.forEach(
         function(objeto){
             if(objeto.documento === documento && objeto.contrasenia ===contrasenia){
                 encontrado.push(documento);
@@ -58,7 +59,7 @@ function verificacionUsuario(documento, contrasenia) {
             }
             });
    
-     if(tipoUsuario > 0){
+    if(tipoUsuario > 0){
       
         return tipoUsuario;
      }
@@ -87,7 +88,9 @@ function accionesTipoUsuario(tipoUsuario){
 
         }else if(tipoUsuario === 2){
             console.log("***Perfil de cliente***");
+
             const nuevoRetiro = parseInt(prompt("Digite el valor que desea retirar: "));
+            
             rertirarDinero(nuevoRetiro);
            
    
@@ -142,8 +145,7 @@ function rertirarDinero(nuevoRetiro){
     
     if(nuevoRetiro <= saldoCajero ){
 
-        console.log("inicial"+saldoPorDenominacion);
-     
+       
       let denominacion = [100000, 50000, 20000, 10000, 5000];
           
          for (let index = 0; index < denominacion.length; index++) {
