@@ -45,6 +45,7 @@ header form button img{
 }
 .botones{
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .botones input{
@@ -59,4 +60,40 @@ header form button img{
     background-color: white;
     color: rgba(24, 24, 24, 1);
     cursor: pointer;
+}
+
+.videos{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}
+
+.vbideos article figure{
+    display:block;
+}
+.videos article figure .miniatura{
+    width: 200px;
+    display: block;
+}
+ .videos .descripcion{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    
+ }
+
+ .videos .descripcion figure img{
+    width: 30px;
+    border-radius: 100px;
+    padding-right: 8px;
+ }
+
+.videos article h4{
+    color: #ffff;
+    font-weight: 200;
+}
+
+.videos article p{
+    font-size: 12px;
+    color: rgba(111, 111, 111, 1);
 }
