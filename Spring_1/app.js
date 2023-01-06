@@ -67,7 +67,6 @@ function verificacionUsuario(documento, contrasenia) {
 };     
 
 
-
 function accionesTipoUsuario(tipoUsuario){
 
         if(tipoUsuario === 1){
