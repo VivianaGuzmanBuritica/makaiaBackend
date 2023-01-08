@@ -48,7 +48,7 @@ header form button img{
     margin-bottom: 20px;
 }
 
-.botones input{
+.botones button{
     padding: 8px 16px;
     border: 2px solid #959595;
     background-color: rgba(111, 111, 111, 1);
@@ -56,7 +56,7 @@ header form button img{
     border-radius:100px;
 }
 
-.botones input:hover{
+.botones button:hover{
     background-color: white;
     color: rgba(24, 24, 24, 1);
     cursor: pointer;
@@ -105,3 +105,15 @@ header form button img{
     font-size: 8px;
     color: rgba(111, 111, 111, 1);
 }
+
+.reproduccion{
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid rgb(176, 22, 22);
+}
+
+/* .reproduccion iframe{
+    width:840px ;
+    height: 472px;
+    margin-left: 20px;
+} */
