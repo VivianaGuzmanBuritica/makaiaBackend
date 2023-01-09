@@ -15,10 +15,14 @@ header{
 }
 
 
-header figure{
+header .logo{
     display: flex;
     align-items: center;
     padding-right: 40px;
+}
+
+header .logo:hover{
+    cursor: pointer;
 }
 
 header form input{
@@ -112,8 +116,8 @@ header form button img{
     border: 1px solid rgb(176, 22, 22);
 }
 
-/* .reproduccion iframe{
+.reproduccion iframe{
     width:840px ;
     height: 472px;
     margin-left: 20px;
-} */
+}
