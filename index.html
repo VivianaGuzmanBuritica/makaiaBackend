@@ -4,73 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Pokedex</title>
+    <link rel="stylesheet" href="./Spring_2/style.css">
+    <script src="https://kit.fontawesome.com/5206456c26.js" crossorigin="anonymous"></script>
+    <title>VideoTube</title>
 </head>
 <body>
     <header>
-        <title>Pokedex</title>
-        <nav>
-            <img src="img/pokebola.png" class="pokebola">
-            <h1>Pokedex</h1>
-        </nav>
-        </header>
-    <main>
-       <section class = "imagen_pokemon">
-        <div class="nombre">
-            <img src="img/logo.png" class="pokebola">
-            <h2>Cinderace</h2>
-        </div>
-             <img src ="img/cinderace.png" class="pokemon">
-       </section>
-       <section class="caracteristicas">
-        <div>  
-            <div>
-                <h3>No.</h3>
-                <p>345</p>
-            </div>
-            <div>
-                <h3>Level</h3>
-                <p>60</p>
-            </div>
-            <div>
-                <h3>Tipo</h3>
-                <p>Fuego</p>
-            </div>
-            <div>
-                <h3>Habilidad</h3>
-                <p>Mar llamas</p>
-            </div>
-            
-        </div>
-        <div> 
-            <div>
-                <h3>Altura</h3>
-                <p>1.4 mts</p>
-            </div>
-            <div>
-                <h3>Peso</h3>
-                <p>33 kg</p>
-            </div>
-            <div>
-                <h3>Evolucion</h3>
-                <p>1:Scorbunny</p>
-                <p>2:Raboot</p>
-            </div>
-            
-        </div>
+        <figure class="logo">
+            <img src="./Spring_2/img/logo.png">
+            <img src="./Spring_2/img/logoNombre.png">
+        </figure>
+        <form>
+            <input type="search" value="Buscar video">             
+            <button type="submit">
+                <img src="./Spring_2/img/magnifying-glass-solid.svg" alt="">
+            </button>
+        </form>
+    </header>
+   <main class="main">    
+   <section class="botones">
+    <button id="todos">Todos</button>
+    <button id="musica">Música</button>
+    <button id="programacion">Programación</button>
+    <button id="diseñoUX">Diseño UX</button>
+    <a href="./Spring_2/formulario.html">Agregar nuevo video</a>
+   </section>
+   <section class="reproduccion">
+        <section class="playVideo">
 
-       </section> 
-    </main>
-    <footer>
-        <h2>Otros</h2>
-    <section class="pokemones">
-        <img src="img/pikachu.png">
-        <img src="img/eve.png">
-        <img src="img/locario.png">
-        <img src="img/Oshawott.png">
+        </section>
+
+        <section class="videos">
+        </section>
     </section>
+</main>
     
-    </footer>
+    <script  src="./Spring_2/app.js"></script>
 </body>
 </html>
