@@ -165,7 +165,6 @@ const printVideos = (listaVideos, contenedor) =>{
 }
 
 const contenedorCards = document.querySelector(".videos");
-console.log(contenedorCards);
 
 printVideos(listaVideos, contenedorCards);
 
@@ -197,8 +196,6 @@ printVideos(listaVideos, contenedorCards);
 // Play video
 const playVideo = document.querySelector(".playVideo");
 const clickArticle = document.querySelectorAll("article");
-console.log(clickArticle);
-
 
 
 clickArticle.forEach(articulo =>{
@@ -223,6 +220,7 @@ logo.addEventListener("click", _ => {
 
 // acceder al localStorage
 videos = JSON.parse(sessionStorage.getItem("videos"));
+console.log("sessionStorage");
     console.log(videos);
 //actualizar array
 videos.forEach(video =>{
