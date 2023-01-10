@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="agregar.css">
+    <script src="https://kit.fontawesome.com/5206456c26.js" crossorigin="anonymous"></script>
+    <title>VideoTube</title>
+</head>
+<body>
+    <header>
+        <figure class="logo">
+            <img src="./img/logo.png">
+            <img src="./img/logoNombre.png">
+        </figure>
+        <form>
+            <input type="search" value="Buscar video">             
+            <button type="submit">
+                <img src="./img/magnifying-glass-solid.svg" alt="">
+            </button>
+        </form>
+    </header>
+   <main class="main">    
+    <form class="form">
+        <label for="img_miniatura">URL Imagen del video</label>
+        <input  id="img_miniatura" type="text" value="" required>
+        <label for="img_canal">URL Imagen logo del canal</label>
+        <input id="img_canal" type="text" value = "" required>
+        <label for="titulo">Titulo del video</label>
+        <input id="titulo" type="text" value = "" required> 
+        <label for="canal">Nombre del canal</label>
+        <input id="canal" type="text" value = "" required>
+        <label for="visitas">Diligenicia el número de  visitas</label>
+        <input  id="visitas" type="number" value = "" required>
+        <label for="link">Diligenicia el link del video (embed)</label>
+        <input id="link" type="text" value = "" required>
+        <label for="categoria">Elije una categoria</label>
+        <select id="categoria" required>
+            <option value = "">Elije una categoria</option>
+            <option value = "musica">Música</option>
+            <option value = "programacion">Pprogramación</option>
+            <option value = "diseñoUX">Diseño UX</option>
+        </select>
+       
+
+        <button type="submit" class="enviar">Enviar</button>
+
+    </form>
+</main>
+    <script src="agregar.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

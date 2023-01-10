@@ -1,4 +1,4 @@
-  const listaVideos = [
+const listaVideos = [
     {   
         img_miniatura: "https://i.ytimg.com/vi/tfUPbO_vGzM/hq720_live.jpg?sqp=CLDf4Z0G-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBdqeEmW4I9eYseVtI3JXfXRTMNYg",
         img_canal:"https://yt3.ggpht.com/sOGEMFunCRFtb8DLyBVXJbV-jsoxpJNtsqi3VD-DCdeBjnhsC5_49ITmCXvQRniKZyJesgHYjA=s88-c-k-c0x00ffffff-no-rj",
@@ -18,7 +18,7 @@
         categoria: "programacion"
     },
     {   
-        img_miniatura: "https://i.ytimg.com/vi/Pwf3NMhRa1k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDqYDMLHfy2WJ698CDkvV2PRYojBg",
+        img_miniatura: "https://i.ytimg.com/an_webp/Esmo784E99w/mqdefault_6s.webp?du=3000&sqp=CODd8Z0G&rs=AOn4CLA5zuqz6P1NP38HbYp7Nc6L_ybiAg",
         img_canal:"https://yt3.ggpht.com/ytc/AMLnZu_quXm761MnU-u945BHG7PgaNIQfri5j8id4rWakw=s48-c-k-c0x00ffffff-no-rj",
         titulo:"Las leyes de UX que debes dejar de ignorar aunque no diseñes",
         canal:"Platzi",
@@ -90,7 +90,7 @@
         categoria: "programacion"
     }, 
     {   
-        img_miniatura: "https://i.ytimg.com/vi/Pwf3NMhRa1k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDqYDMLHfy2WJ698CDkvV2PRYojBg",
+        img_miniatura: "https://i.ytimg.com/an_webp/Esmo784E99w/mqdefault_6s.webp?du=3000&sqp=CODd8Z0G&rs=AOn4CLA5zuqz6P1NP38HbYp7Nc6L_ybiAg",
         img_canal:"https://yt3.ggpht.com/ytc/AMLnZu_quXm761MnU-u945BHG7PgaNIQfri5j8id4rWakw=s48-c-k-c0x00ffffff-no-rj",
         titulo:"Las leyes de UX que debes dejar de ignorar aunque no diseñes",
         canal:"Platzi",
@@ -126,7 +126,7 @@
         categoria: "musica"
     },
     {   
-        img_miniatura: "https://i.ytimg.com/vi/Pwf3NMhRa1k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDqYDMLHfy2WJ698CDkvV2PRYojBg",
+        img_miniatura: "https://i.ytimg.com/an_webp/Esmo784E99w/mqdefault_6s.webp?du=3000&sqp=CODd8Z0G&rs=AOn4CLA5zuqz6P1NP38HbYp7Nc6L_ybiAg",
         img_canal:"https://yt3.ggpht.com/ytc/AMLnZu_quXm761MnU-u945BHG7PgaNIQfri5j8id4rWakw=s48-c-k-c0x00ffffff-no-rj",
         titulo:"Las leyes de UX que debes dejar de ignorar aunque no diseñes",
         canal:"Platzi",
@@ -137,100 +137,55 @@
 
 ];
 
-//recorrer el arreglo y renderizar cada una de las tarjetas
-const printVideos = (listaVideos, contenedor) =>{
-   contenedor.innerHTML= "";
+const form = document.querySelector(".form");
 
-    listaVideos.forEach(video => {
-        const article = document.createElement("article");
-        article.setAttribute("video_link", video.link);
-        article.innerHTML = `
+function agregar(form) {
+    
+form.addEventListener("submit", (event)=>{
+    event.preventDefault();
 
-            <figure>
-                <img src=${video.img_miniatura} class="miniatura">
-           </figure>
-            <div class="descripcion">
-                <figure>
-                    <img src=${video.img_canal} class="canal">
-                </figure>
-                <div class="texto">
-                    <h4>${video.titulo}</h4>
-                    <p>${video.canal}</p>
-                    <p>${video.vistas}</p>
-                </div>
-            </div>
-        `;
-        contenedor.appendChild(article);
-    });
+    const valuesForm = Object.values(form);
+    console.log(valuesForm);
+
+    const valoresInputs = valuesForm.map(valoresInputs =>({
+        [valoresInputs.id]: valoresInputs.value
+    }));
+
+    const formInfo = {};
+    valuesForm.forEach(valoresInputs =>{
+        formInfo[valoresInputs.id] = valoresInputs.value
+    })
+
+    console.log(formInfo);
+    console.log(valoresInputs);
+
+   listaVideos.push(formInfo);
+   console.log(listaVideos);
+
+})
 }
 
-const contenedorCards = document.querySelector(".videos");
-console.log(contenedorCards);
+agregar(form);
 
-printVideos(listaVideos, contenedorCards);
+let videos = sessionStorage.getItem("videos")
+  ? JSON.parse(sessionStorage.getItem("videos"))
+  : [];
 
-    //  filtrado por botones
-    
-   const botonTodos = document.getElementById("todos");
-   const botonMusica = document.getElementById("musica");
-   const botonProgramacion = document.getElementById("programacion");
-   const botonUx = document.getElementById("diseñoUX");
+console.log(videos);
 
-   const filtrarBotones = [botonTodos, botonMusica, botonProgramacion, botonUx];
-
-   filtrarBotones.forEach(boton => {
-
-    boton.addEventListener("click", (event)=>{
-        let videosFiltrados = [];
-
-        if(boton.id === "todos"){
-            videosFiltrados = listaVideos;
-        }else{
-            videosFiltrados = listaVideos.filter((video)=>
-            video.categoria === boton.id);
-        }
-    printVideos(videosFiltrados, contenedorCards);
-    })
-   });
-
-
-// Play video
-const playVideo = document.querySelector(".playVideo");
-const clickArticle = document.querySelectorAll("article");
-console.log(clickArticle);
-
-
-
-clickArticle.forEach(articulo =>{
-
-    const link = articulo.getAttribute("video_link");
-    
-    articulo.addEventListener("click", (event)=>{
-   
-        playVideo.innerHTML = `
-        <iframe class="iframe" width="560" height="315" src= ${link} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      `;
-    }
-)})
-
-// Volver a la home
-
-const logo = document.querySelector(".logo");
-
-logo.addEventListener("click", _ => {
-    location.reload();
-})
-
-// acceder al localStorage
-videos = JSON.parse(sessionStorage.getItem("videos"));
+//Escuchamos al evento DOMContentLoaded (Cuando la página recarga o se renderiza) y cuando este evento ocurre se ejecuta el callback (función que es pasada como parámetro a la función o método .addEventListener('nombreDelEvento', callback)).
+document.addEventListener("DOMContentLoaded", () => {
+  if (videos.length === 0) {
+    //Guadar el array videos a sessionStorage con el método setItem(). este método recibe dos parámetros: 1. es la Key (el nombre de la propiedad donde vamos almacenar los datos) 2. Los datos queremos almacenar. Estos datos deben guardarse en el storage como formato JSON.
+    sessionStorage.setItem("videos", JSON.stringify(listaVideos));
+    videos = JSON.parse(sessionStorage.getItem("videos"));
     console.log(videos);
-//actualizar array
-videos.forEach(video =>{
-    listaVideos.push(video);
-})
+  }})
 
-console.log(listaVideos);
+// const enviar = document.querySelector(".enviar");
 
-// print cards actualizadas
+// enviar.addEventListener("click", _ => {
+//     window.location.href = "index.html";
+// })
 
-printVideos(listaVideos, contenedorCards);
+// export {agregar};
