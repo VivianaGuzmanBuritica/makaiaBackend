@@ -90,12 +90,13 @@ const contenedorPropiedades = document.getElementById("contenedorCards");
             <p> Área: ${propiedad.area}m2</p>
             <p> Número de habitaciones: ${propiedad.num_habitaciones}</p>
             <p id="lugar"> Ubicación: ${propiedad.lugar}</p>
-            <p id="categoria"> Tipo de vivienda: ${propiedad.categoria}</p>
+            <p id="categoria"> Tipo vivienda: ${propiedad.categoria}</p>
         </div>
+        <div class="botones">
                 <button class="card__delete" name='${propiedad.id}'>❌</button>
                 <button class="card__edit" name='${propiedad.id}'>✏</button>
                 <button class="card__favorite" name='${propiedad.id}'>❤</button>
-                
+        </div>        
         `;
 
         contenedor.appendChild(article);

@@ -9,36 +9,41 @@
 </head>
 <body>
     <header>
-        <section>
-            
+              
             <figure>
                 <img src="./images/Fill 3.png" alt="logo">
                 <img src="./images/casaRoyal.png" alt="letras">
             </figure>
             <h3><a href="./pages/form.html">Agregar nueva Propiedad</a></h3>
-        </section>
-        <nav>
-            <form>
-                <h3><a href="./pages/favoritos.html">Favotitos</a></h3>
-                <button id="btn_fav">Favoritos</button>
-                <input id="search_lugar" type="search">
-                <button id="casa">Casa</button>
-                <button id="apartamento">Apartamento</button>
-                <button id="local">Local</button>
-                <button id="lote">Lote</button>
-                <button id="finca">Finca</button>
-                <!-- <select id="tipo">
-                    <option>Selecciona una opción</option>
-                    <option>Apartamento</option>
-                    <option>Casa</option>                    
-                </select> -->
-            </form>
-        </nav>
+              
     </header>
-    <main>
-        <figure class="banner">
-            <img src="./images/banner.png">
-        </figure>
+    <main> 
+        <div class="menu_banner">
+            <nav>
+                <form>
+                    <div class="buscador">
+                        <h3>Buscar: </h3>
+                        <input id="search_lugar" type="search">
+                    </div>
+                    <div class="botones">
+                        <button id="btn_fav">Favoritos</button>
+                        <button id="casa">Casa</button>
+                        <button id="apartamento">Apartamento</button>
+                        <button id="local">Local</button>
+                        <button id="lote">Lote</button>
+                        <button id="finca">Finca</button>
+                    </div>
+                    <!-- <select id="tipo">
+                        <option>Selecciona una opción</option>
+                        <option>Apartamento</option>
+                        <option>Casa</option>                    
+                    </select> -->
+                </form>
+            </nav>
+            <figure class="banner">
+                <img src="./images/banner.png">
+            </figure>
+        </div>
         <h1>Propiedades destacadas</h1>
         <section id="contenedorCards">
         </section>
