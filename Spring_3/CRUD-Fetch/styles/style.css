@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Rubik';
 }
 
 body{
@@ -29,6 +30,7 @@ header nav form input{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     cursor: pointer;
+    color: black;
 }
 
 header nav form button{
@@ -38,6 +40,7 @@ header nav form button{
     border-bottom-left-radius: 8px;
     color: #ffff;
     cursor: pointer;
+    color: black;
 }
 
 header nav form select{
@@ -46,32 +49,40 @@ header nav form select{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     cursor: pointer;
+    color: black;
+
 }
 
-.banner{
-  width: 90%;  
-  border: 2px solid gray;
+.banner img{
+  width: 100%;  
+  border: 2px solid rgb(224, 203, 203);
 }
 
-.contenedorCards{
+#contenedorCards{
     display: flex;
     flex-wrap: wrap;
+ 
 }
 
-.contenedorCards article{
+
+#contenedorCards .main__card{
+  
     margin-right: 15px;
     margin-bottom: 20px;
+   
 }
 
-.contenedorCards article figure .miniatura{
+#contenedorCards article figure img {
     width: 200px;
-    display: block;
+    
+    
 }
 
 .contenedorCards .descripcion{
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
+    border: 2px solid red;
 }
 
 
