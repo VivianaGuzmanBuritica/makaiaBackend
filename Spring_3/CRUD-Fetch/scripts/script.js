@@ -93,9 +93,10 @@ const contenedorPropiedades = document.getElementById("contenedorCards");
             <p id="categoria"> Tipo vivienda: ${propiedad.categoria}</p>
         </div>
         <div class="botones">
+                <button class="card__favorite" name='${propiedad.id}'>❤</button>
                 <button class="card__delete" name='${propiedad.id}'>❌</button>
                 <button class="card__edit" name='${propiedad.id}'>✏</button>
-                <button class="card__favorite" name='${propiedad.id}'>❤</button>
+                
         </div>        
         `;
 
@@ -107,6 +108,17 @@ const contenedorPropiedades = document.getElementById("contenedorCards");
 
   // BOTONES DE FILTRADO
 
+  //------Capturar el primer conjunto de botones-----
+const botonAll = document.getElementById("all");
+const casa = document.getElementById("casa");
+const apartamento = document.getElementById("apartamento");
+const local = document.getElementById("local");
+const lote = document.getElementById("lote");
+const finca = document.getElementById("finca");
+
+//Colocamos todos estos botones en un array
+const arrayBotones = [botonAll, casa, apartamento, local, lote, finca];
+
 const btnCategoryFilters = (arrayBtns, arrayPropiedad, contenedor) => {
     arrayBtns.forEach((boton) => {
       boton.addEventListener("click", () => {
@@ -115,14 +127,14 @@ const btnCategoryFilters = (arrayBtns, arrayPropiedad, contenedor) => {
         );
           const filteredPropiedades = boton.id === "all" ? arrayPropiedad : filtro;
           console.log(filteredPropiedades);
-          printCards(contenedor, filteredPropiedades);
+        printCards(filteredPropiedades, contenedor);
       });
     });
   };
   
 const btnCategoryFilters2 = (categoryList, arrayPropiedad, contenedor) => {
     categoryList.forEach((category) => {
-      const categoryBtn = document.getElementById(categoria);
+      const categoryBtn = document.getElementById(category);
       categoryBtn.addEventListener("click", () => {
         const categoria = categoryBtn.id.slice(0, -1);
         console.log(categoria);
@@ -161,20 +173,30 @@ const search = document.getElementById("search");
 
 //-----Botones de filtrado--------
 
-//------Capturar el primer conjunto de botones-----
-const botonAll = document.getElementById("all");
-const casa = document.getElementById("casa");
-const apartamento = document.getElementById("apartamento");
-const local = document.getElementById("local");
-const lote = document.getElementById("lote");
-const finca = document.getElementById("finca");
 
-//Colocamos todos estos botones en un array
-const arrayBotones = [botonAll, casa, apartamento, local, lote, finca];
 
 document.addEventListener("DOMContentLoaded", async () => {
+  try{
     propiedades = await getDataFetch(urlPropiedades);
     console.log(propiedades);
     printCards(propiedades, contenedorPropiedades);
 
+    btnCategoryFilters(arrayBotones, propiedades, contenedorPropiedades);
+
+    // const parcialCategories = getCategoryFilter(propiedades);
+    // const categories = ["all2", ...parcialCategories];
+    // console.log(categories);
+    // btnCategoryFilters2(categories, propiedades, contenedorPropiedades);
+  
+  }
+  catch (error){
+    console.log(error);
+    alert(error);
+  }
 });
+
+
+    
+
+
+  

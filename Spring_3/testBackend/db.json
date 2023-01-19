@@ -44,7 +44,52 @@
       "categoria":"lote",
       "lugar":"Bogota",
       "num_habitaciones": "4"
-    }  
+    },
+    {
+      "id": 6,
+      "name": "Casa Marroquin",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad1.png",
+      "categoria":"casa",
+      "lugar":"Bogota",
+      "num_habitaciones": "4"
+    },
+    { 
+      "id": 7,
+      "name": "aparmanetos marinero",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad2.png",
+      "categoria":"apartamento",
+      "lugar":"Bogota",
+      "num_habitaciones": "4"
+     },
+    { 
+      "id": 8,
+      "name": "finca la Isabela",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad3.png",
+      "categoria":"finca",
+      "lugar":"Bogota",
+      "num_habitaciones": "4"
+    }, 
+    { 
+      "id": 9,
+      "name": "local comercial la 32",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad4.png",
+      "categoria":"local",
+      "lugar":"Bogota",
+      "num_habitaciones": "4"
+    },
+    { 
+      "id": 10,
+      "name": "Vereda Paquita",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad5.png",
+      "categoria":"lote",
+      "lugar":"Bogota",
+      "num_habitaciones": "4"
+    }    
   ],
   "favoritos":[] 
 
