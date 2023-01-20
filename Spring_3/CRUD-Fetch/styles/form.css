@@ -1,0 +1,51 @@
+body{
+    margin: auto;
+}
+
+main form{
+    padding-left: 20px;
+    padding-top: 40px;
+    width: 400px;
+    position: relative;
+}
+
+
+ main form input{
+    margin-bottom: 10px;
+    align-content:center ;
+    justify-content: center;
+    display: block;
+    width: 400px;
+    color: #959595;
+    padding: 8px 16px;
+    border: 2px solid #959595;
+    border-radius: 8px;
+    
+  }
+
+
+  form select{
+    display: block;
+    margin-bottom: 10px;
+    width: 400px;
+    color: #959595;
+    padding: 8px 16px;
+    border: 2px solid #959595;
+    border-radius: 8px;
+    
+  }
+
+.enviar{
+    justify-content: center;
+    width: 200px;
+    padding: 8px 16px;
+    border: 2px solid #959595;
+    background-color: rgba(111, 111, 111, 1);
+    color:#ffff;
+    border-radius:100px;
+    position:absolute;
+    left: 30%;
+}
+label{
+    color:gray;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/form.css">
+    <script src="https://kit.fontawesome.com/5206456c26.js" crossorigin="anonymous"></script>
+    <title>VideoTube</title>
+</head>
+<body>
+    <header>
+              
+        <figure>
+            <img src="../images/Fill 3.png" alt="logo">
+            <img src="../images/casaRoyal.png" alt="letras">
+        </figure>
+       
+          
+</header>
+   <main class="main">    
+    <form class="form">
+        <label for="id">id</label>
+        <input  id="id" type="text" value="" required>
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" value = "" required> 
+        <label for="area">Area:</label>
+        <input id="area" type="text" value = "" required>
+        <label for="imagen">URL imagen</label>
+        <input  id="imagen" type="text" value = "" required>
+        <label for="categoria">Elije una categoria</label>
+        <select id="categoria" required>
+            <option value = "">Casa</option>
+            <option value = "musica">Apartamento</option>
+            <option value = "programacion">Lote</option>
+            <option value = "diseñoUX">Finca</option>
+            
+        </select>
+       
+
+        <button type="submit" class="enviar">Enviar</button>
+
+    </form>
+</main>
+    <script src="../scripts/form.js"></script>
+   
+</html>
