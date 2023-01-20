@@ -163,6 +163,8 @@ form{
 
 .main__card:hover .card__delete, .main__card:hover .card__edit, .main__card:hover .card__favorite{
     display: block;
+    
+
 }
 
 .card__edit{
@@ -176,7 +178,7 @@ form{
 }
 
 .card__favorite{
-    top: 400px;
-    left: 250px;
+    left: 30px;
+    
     color: red;
 }

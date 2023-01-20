@@ -131,6 +131,8 @@ const btnCategoryFilters = (arrayBtns, arrayPropiedad, contenedor) => {
       });
     });
   };
+
+
   
 const btnCategoryFilters2 = (categoryList, arrayPropiedad, contenedor) => {
     categoryList.forEach((category) => {
@@ -141,7 +143,7 @@ const btnCategoryFilters2 = (categoryList, arrayPropiedad, contenedor) => {
         const filtro = arrayPropiedad.filter((propiedad) => propiedad.categoria === categoria);
         const filteredPropiedades = categoria === "all" ? arrayPerson : filtro;
         console.log(filteredPropiedades);
-        printCardsPersonajes(contenedor, filteredPropiedades);
+        printCardsPersonajes(filteredPropiedades, contenedor);
       });
     });
   };
@@ -182,10 +184,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     printCards(propiedades, contenedorPropiedades);
 
     btnCategoryFilters(arrayBotones, propiedades, contenedorPropiedades);
-
-    // const parcialCategories = getCategoryFilter(propiedades);
-    // const categories = ["all2", ...parcialCategories];
-    // console.log(categories);
+   
+    const parcialCategories = getCategoryFilter(propiedades);
+    const categories = ["all2", ...parcialCategories];
+    console.log(categories);
     // btnCategoryFilters2(categories, propiedades, contenedorPropiedades);
   
   }
@@ -195,8 +197,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+document.addEventListener("click", async ({ target }) => {
+  if (target.classList.contains("card__img")) {
+    sessionStorage.setItem("personajeDetails", JSON.stringify(target.id));
+    location.href = "./pages/personajeDetails.html";
+  }
+  //Para agregar a favoritos
+  if (target.classList.contains("card__favorite")) {
+    const idFavorito = target.name;
+    const urlPersonajeFavorito = `${urlFavoritos}?id=${idFavorito}`;
 
-    
-
-
-  
+    const favorito = await getDataFetch(urlPersonajeFavorito);
+    //Obtenemos el objeto
+    const favoritePersonaje = await getDataFetch(
+      `${urlPersonajes}/${idFavorito}`
+    );
+    if (favorito.length === 0 && Object.entries(favoritePersonaje).length) {
+      await postDataFetch(urlFavoritos, favoritePersonaje);
+      const data = await getDataFetch(urlFavoritos);
+      console.log(data);
+    }
+  }
+})
