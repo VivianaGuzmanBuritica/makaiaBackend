@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik';
+    
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+
+ .main__filtros{
+    
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+
+    
+}
+
+
+h1{
+   text-align:  center;
+   padding-top: 20px;
+   padding-bottom: 20px;
+}
+header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 20px;
+   
+}
+.buscador h3{
+    font-size: 14px;
+    color: gray;
+}
+
+header h3{
+    margin-top: 15px;
+}
+header h3 a{
+text-decoration: none;
+text-align: right;
+
+
+}
+  input{
+    width: 300px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    cursor: pointer;
+ 
+    margin-left: 5px;
+    
+}
+
+nav{
+    
+    top: 40%;
+    left: 25%;
+}
+.main__filtros button{
+    background-color: blue;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 100px;
+    border-radius: 8px;
+    color: #ffff;
+    cursor: pointer;
+    border-color: none;
+   
+}
+
+.main__filtros{
+    margin-top:8px ;
+
+}
+
+
+.main__filtros button{
+    border: none;
+    margin-right: 4px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#select{
+    width: 100px;
+    border: 2px solid gray;
+       cursor: pointer;
+    
+
+}
+
+nav{
+    background-color: white;
+    margin: 10px 10px;
+
+}
+
+.main__filtros{
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    display: block;
+    margin: 10px 10px;
+    background-color: #ffff;
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+
+.main__filtros h3{
+    padding-bottom: 8px;
+}
+.buscador{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.banner{
+    position: relative;
+}
+.banner img{
+ 
+  width: 100%;  
+  border: 2px solid rgb(224, 203, 203);
+}
+
+#contenedorCards{
+    display: flex;
+    flex-wrap: wrap;
+ 
+}
+
+
+#contenedorCards .main__card{
+  
+    margin-right: 15px;
+    margin-bottom: 20px;
+   
+}
+
+#contenedorCards article figure img {
+    width: 200px;
+    
+    
+}
+
+.main__card {
+    position: relative;
+}
+
+
+.card__delete, .card__edit, .card__favorite{
+    font-size: 25px;
+    position: absolute;
+    top: 0%;
+    background-color: transparent;
+    border: none;
+    display: none;
+    padding: 5px;
+}
+
+.card__delete:hover, .card__edit:hover, .card__favorite:hover{
+    transform: scale(0.8);
+    cursor: pointer;
+}
+
+.main__card:hover .card__delete, .main__card:hover .card__edit, .main__card:hover .card__favorite{
+    display: block;
+    
+
+}
+
+.card__edit{
+    top: 35px;
+    transform: rotate(45deg);
+    color: blue;
+}
+
+.card__edit:hover{
+    transform: rotate(45deg) scale(0.8);
+}
+
+.card__favorite{
+    left: 30px;
+    
+    color: red;
+}
