@@ -1,0 +1,11 @@
+.card__image img {
+    display: none;
+}
+
+.card__image{
+    padding: 20px 40px;
+}
+
+#contenedor{
+    margin-left: 100px;
+}

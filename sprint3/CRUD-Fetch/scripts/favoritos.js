@@ -8,4 +8,6 @@ const contenedor = document.getElementById("contenedor");
 document.addEventListener('DOMContentLoaded', async() => {
     const favoritos = await getDataFetch(urlFavoritos);
     printCardsPersonajes(contenedor, favoritos);
+   
+
 })

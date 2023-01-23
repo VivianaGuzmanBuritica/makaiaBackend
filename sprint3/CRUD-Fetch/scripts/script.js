@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //   printCardsPersonajes(contenedorPersonajes, filtros2);
   } catch (error) {
     console.log(error);
-    alert(error);
+
   }
 });
 

@@ -71,21 +71,34 @@
       "num_habitaciones": "4"
     },
     {
-      "id": 10,
-      "name": "Vereda Paquita",
+      "id": 7,
+      "name": "aparmanetos marinero",
       "area": "120 m2",
-      "image": "../CRUD-Fetch/images/propiedad5.png",
-      "img_detalle": "../images/propiedad5.png",
-      "categoria": "lote",
+      "image": "../CRUD-Fetch/images/propiedad2.png",
+      "img_detalle": "../images/propiedad2.png",
+      "categoria": "apartamento",
       "lugar": "Bogota",
       "num_habitaciones": "4"
     },
     {
-      "id": "13",
-      "nombre": "Daniel",
-      "area": "2000 metros",
-      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoGBxMTExYUExMYFhYZGBoaGRkYGhsZGhocHBkaGhsbGhofICsiGhwoIRkaIzQjKCwuMTEzGiE3PDkwOyswMS4BCwsLDw4PHRERHTIpIigwMjAwMDAwOTM8MDAwLjAwMC4wMDI5MjAwMDA7MDAwMDAwMDkwMDAwMDAwMDAwMDAwMP/AABEIALcBEwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAAECAwUGB//EAEMQAAIBAgQEBAQDBQQKAgMAAAECEQADBBIhMQUiQVEGE2FxMoGRoSNCsRRSYsHwM0Ny0QckgpKissLS4fEVFlNjc//EABoBAAIDAQEAAAAAAAAAAAAAAAIDAAEEBQb/xAAyEQACAgECBAQFAwMFAAAAAAAAAQIRAxIhBDFBURMiYXEFFIGRoTJC0RVSwSOCsfDx/9oADAMBAAIRAxEAPwDlSKYipEUor1R5iyEUoqUUoqi7IRTxU4pRVkshFKKnFKKslkIp4qUUoqUVZGKUVKKUVVEsjFPFPFPFSiWNFICninipRVjAU8U4FPFXQNjAVICkBUgKlFNjCpCnApRUBscCpgVFRVgNQiHVamBTJVgFCNjQlFWAUkUnYVK3ftJcRXdczOqhdzLMAJ7amkZM8ILdmjFgnN+VCAqaitXxLw7y7iuBCXUV1jaWAzj66+zCswCixzU4qS6knBwk4scVNaZRUgKMEktTFRAqYFQhKlT0qgJyRFNFWRSAoxNkMtPlqxRRNuwD0oXKg4Rc9kBRSiu0x3g+xYdrd/E5JCm24QkAnNIuDtoNQazcd4Nvoue3lxFv9+yc/wBVGo+lZ4cbhlLSpbmifCZox1NbehzkUoq57ZBgjWoZa1mQhFPFTy0oqyWQilFTilFQqyEU8VKKeKhLIRTxUopRUKsaKeKlFICoVY0U4FSikBUKsQFKKkBTgVChgKsAqy3hiROy9WYwPrUcH",
-      "categoria": "musica"
+      "id": 8,
+      "name": "finca la Isabela",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad3.png",
+      "img_detalle": "../images/propiedad3.png",
+      "categoria": "finca",
+      "lugar": "Bogota",
+      "num_habitaciones": "4"
+    },
+    {
+      "id": 9,
+      "name": "local comercial la 32",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad4.png",
+      "img_detalle": "../images/propiedad4.png",
+      "categoria": "local",
+      "lugar": "Bogota",
+      "num_habitaciones": "4"
     }
   ],
   "favoritos": [

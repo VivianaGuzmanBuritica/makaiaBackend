@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Unbounded&display=swap");
+
 
 * {
   margin: 0;
@@ -15,8 +15,7 @@ body {
   background-image: url("../images/wallpapersden.com_death-star-hd-star-wars_2560x1440.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: "Unbounded", cursive;
-  color: yellow;
+  color: gray;
 }
 
 .title,
@@ -32,6 +31,10 @@ body {
   align-items: center;
   gap: 10px;
 }
+
+header h3{
+  padding-left: 300px;}
+
 
 .form input,
 .form select,
@@ -49,17 +52,15 @@ body {
 .form button{
     padding: 5px 10px;
     font-size: 18px;
-    font-family: 'Unbounded', cursive;
-    border: 2px solid black;
-    background-color: yellow;
+    border: none;
+    background-color: blue;
+    color: #ffff;
     border-radius: 5px;
     margin-top: 10px;
 }
 
 .form button:hover{
-    color: yellow;
-    border: 2px solid yellow;
-    background-color: black;
+    
     cursor: pointer;
 }
 
