@@ -197,28 +197,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-document.addEventListener("click", async ({ target }) => {
-  if (target.classList.contains("card__img")) {
-    sessionStorage.setItem("personajeDetails", JSON.stringify(target.id));
-    location.href = "./pages/personajeDetails.html";
-  }
-  //Para agregar a favoritos
-  if (target.classList.contains("card__favorite")) {
-    const idFavorito = target.name;
-    const urlPersonajeFavorito = `${urlFavoritos}?id=${idFavorito}`;
+// document.addEventListener("click", async ({ target }) => {
+//   if (target.classList.contains("card__img")) {
+//     sessionStorage.setItem("personajeDetails", JSON.stringify(target.id));
+//     location.href = "./pages/personajeDetails.html";
+//   }
+//   //Para agregar a favoritos
+//   if (target.classList.contains("card__favorite")) {
+//     const idFavorito = target.name;
+//     const urlPersonajeFavorito = `${urlFavoritos}?id=${idFavorito}`;
 
-    const favorito = await getDataFetch(urlPersonajeFavorito);
-    //Obtenemos el objeto
-    const favoritePersonaje = await getDataFetch(
-      `${urlPersonajes}/${idFavorito}`
-    );
-    if (favorito.length === 0 && Object.entries(favoritePersonaje).length) {
-      await postDataFetch(urlFavoritos, favoritePersonaje);
-      const data = await getDataFetch(urlFavoritos);
-      console.log(data);
-    }
-  }
-})
+//     const favorito = await getDataFetch(urlPersonajeFavorito);
+//     //Obtenemos el objeto
+//     const favoritePersonaje = await getDataFetch(
+//       `${urlPersonajes}/${idFavorito}`
+//     );
+//     if (favorito.length === 0 && Object.entries(favoritePersonaje).length) {
+//       await postDataFetch(urlFavoritos, favoritePersonaje);
+//       const data = await getDataFetch(urlFavoritos);
+//       console.log(data);
+//     }
+//   }
+// })
 
 // // FORMULARIO
 

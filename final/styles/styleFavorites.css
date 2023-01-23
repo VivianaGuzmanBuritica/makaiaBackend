@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #FAFAFA;
+    font-family: 'Rubik', sans-serif
+}
+
+.navInfo{
+    background-color: #0053ed;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    font-family: 'Rubik', sans-serif;
+    padding-left: 60px;
+    align-items: center;
+    font-size: 13px;
+    color: #fff; 
+}
+
+.navInfo:hover{
+    cursor: pointer;
+}
+
+#login{
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    margin-left:52%;
+    font-weight: 400;
+    text-align: center;
+
+}
+#login:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+nav{
+    width: 100%;
+    height: 4vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 2px solid #848484;
+}
+
+.listNav{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin:65px;
+    width: 60%;
+    gap:30px;
+}
+a{
+    text-decoration: none;
+    color: rgba(80, 78, 78, 0.762);
+}
+a:hover{
+    cursor: pointer;
+    color: #0053ed;
+    transition: 0.6s;
+}
+#compare{
+    margin-left: 130px;
+}
+#favorites{
+    margin-left: 45px;
+}
+#submitButton{
+    width: 180px;
+    height: 70px;
+    margin-left: 220px;
+    background-color: rgb(255, 68, 0);
+    border:none;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+.text{
+    text-align: center;
+    color: #8C8C8C;
+    margin-top: 80px;
+}
+.textMayus{
+    text-align: center;
+    color: #8C8C8C;
+    margin-top: 20px;
+    font-size: 50px;
+    font-weight: 600;
+    color: #151515;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    columns: 3;
+    margin: 3vw;
+    padding: 3vw;
+    margin-top: 4vw;
+    gap: 35px;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #FAFAFA;
+
+}
+
+.containerCards{
+    width: 410px;
+    height: 520px;
+    background-color: #ffffff; 
+    border-radius: 12px;
+
+}
+.containerCards .apto{
+    width: 410px;
+    height: 285px;
+    border-radius: 5px;
+
+}
+.type{
+    position: relative;
+    width:115px;
+    bottom: 283px;
+    text-align: center;
+    background-color: blue;
+    padding: 7px 10px;
+    color: #fff;
+    border-radius: 7px;
+    left: 25px;
+}
+.status{
+    position: relative;
+    bottom: 316px;
+    left: 152px;
+    width: 90px;
+    padding: 7px;
+    text-align: center;
+    background-color: orangered;
+    color: #fff;
+    border-radius: 7px;
+}
+
+
+.favorite{
+    position: relative;
+    width: 30px;
+    left: 360px;
+    bottom: 350px;  
+    background-color: transparent;
+    border: none;
+    font-size: 22px;
+}
+.favorite:hover{
+    transform: scale(1.3);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.price{
+    position: relative;
+    text-align: center;
+    bottom: 140px;
+    justify-content: center;
+    font-size: 1.1rem;
+    background-color: #fff;
+    padding: 5px;
+    width: 120px;
+    color:#2A42E8;
+    margin-left: 12px;
+    border-radius: 7px;
+  
+}
+
+.infoCards{
+    display: flex;
+    flex-direction: column;
+    margin-top: -115px;
+
+
+}
+.location{
+    color: #848484;
+    margin-left: 35px;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+.direction{
+    font-size: 22px;
+    color: #151515;
+    margin-left: 20px;
+}
+
+.name{
+    color: #2A41E8;
+    margin-left: 20px;
+}
+.name img{
+    border-radius: 7px;
+    margin-right: 7px;
+}
+.date{
+    color: #848484;
+    font-size: 14px;
+    margin-right: 20px;
+}
+.containerOwner{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.containerInfoHouse{
+    border-top: 2px solid #F4F4F4;
+    width: 350px;  
+    margin-left: 35px;
+
+}
+.area{
+    position: relative;
+    top: 50px;
+    margin-left: 20px;
+}
+.area img{
+    margin-right: 7px;
+}
+.parking{
+    position: relative;
+    left: 60%;
+    top: 31px;
+    margin-left: 20px;
+
+}
+.bathroom{
+    position: relative;
+    left: 73%; 
+    top: 12px;
+    margin-left: 20px;
+
+
+}
+.bedroom{
+    position: relative;
+    left: 85%;
+    bottom: 8px;
+    margin-left: 20px;
+
+}

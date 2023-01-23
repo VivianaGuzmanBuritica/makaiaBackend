@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #FAFAFA;
+    font-family: 'Rubik', sans-serif
+}
+
+.navInfo{
+    background-color: #0053ed;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    font-family: 'Rubik', sans-serif;
+    padding-left: 60px;
+    align-items: center;
+    font-size: 13px;
+    color: #fff; 
+}
+
+.navInfo:hover{
+    cursor: pointer;
+}
+
+#login{
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    margin-left:52%;
+    font-weight: 400;
+    text-align: center;
+
+}
+#login:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+nav{
+    width: 100%;
+    height: 4vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 2px solid #848484;
+}
+
+.listNav{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin:65px;
+    width: 60%;
+    gap:30px;
+}
+a{
+    text-decoration: none;
+    color: rgba(80, 78, 78, 0.762);
+}
+a:hover{
+    cursor: pointer;
+    color: #0053ed;
+    transition: 0.6s;
+}
+#compare{
+    margin-left: 130px;
+}
+#favorites{
+    margin-left: 45px;
+}
+#submitButton{
+    width: 180px;
+    height: 70px;
+    margin-left: 220px;
+    background-color: rgb(255, 68, 0);
+    border:none;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+
+.text{
+    text-align: center;
+    color: #8C8C8C;
+    margin-top: 80px;
+}
+.textMayus{
+    text-align: center;
+    color: #8C8C8C;
+    margin-top: 20px;
+    font-size: 50px;
+    font-weight: 600;
+    color: #151515;
+}
+
+.picSite{
+    display: flex;  
+    justify-content: center;
+
+}
+.picSite img{
+    width: 1000px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+.infoPlacement{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 5px outset #9eb1fbe7;
+    width: 850px;
+    text-align: center;
+    margin-left:26vw;
+    margin-top: 25px;
+}
+
+
+.city{
+    font-size: 28px;
+    font-weight: 600;
+}
+.direction, .area, .parking, .bathroom, .bedroom, .ownerName, .description, .price{
+    font-size: 20px;
+    margin-top: 15px;
+    width: 600px;
+}
+.description{
+    margin-bottom: 15px;
+}
+.price{
+
+    width: 125px;
+    border: 5px solid #2a71f5;
+    background-color: #2a71f5;
+    text-align: center;
+}
