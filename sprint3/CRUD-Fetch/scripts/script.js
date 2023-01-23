@@ -5,18 +5,18 @@ import {
   btnCategoryFilters2,
 } from "../modules/btnCategoryFilters.js";
 import { getCategoryFilter } from "../modules/getCategoryFilter.js";
-import { printCardsPersonajes } from "../modules/printPersonajes.js";
+import { printCardsPropiedad } from "../modules/printPropiedad.js";
 import postDataFetch from "../helpers/postData.js";
 
 // const dataJson = JSON.stringify(incorrectDataJSON);
 // console.log(dataJson);
 // console.log(typeof dataJson);
 
-const urlPersonajes = "http://localhost:3000/propiedad";
+const urlPropiedad = "http://localhost:3000/propiedad";
 const urlFavoritos = "http://localhost:3000/favoritos";
-let personajes = [];
+let propiedad = [];
 
-const contenedorPersonajes = document.getElementById("contenedorCards");
+const contenedorPropiedad = document.getElementById("contenedorCards");
 
 //-----Capturando el input de búsqueda
 const search = document.getElementById("search");
@@ -38,20 +38,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   sessionStorage.removeItem("editPersonaje");
   sessionStorage.removeItem("personajeDetails");
   try {
-    personajes = await getDataFetch(urlPersonajes);
-    console.log(personajes);
+    propiedad = await getDataFetch(urlPropiedad);
+    console.log(propiedad);
 
-    printCardsPersonajes(contenedorPersonajes, personajes);
+    printCardsPropiedad(contenedorPropiedad, propiedad);
     //Ejecutamos la función que nos permite filtrar x categoría
-    btnCategoryFilters(arrayBotones, personajes, contenedorPersonajes);
-    //   printCardsPersonajes(contenedorPersonajes, filtros);
+    btnCategoryFilters(arrayBotones, propiedad, contenedorPropiedad);
+    //   printCardsPropiedad(contenedorPropiedad, filtros);
 
     //----Funcionalidad al segundo conjunto de botones
-    const parcialCategories = getCategoryFilter(personajes);
+    const parcialCategories = getCategoryFilter(propiedad);
     const categories = ["all2", ...parcialCategories];
     console.log("categorias  script "+categories);
-    btnCategoryFilters2(categories, personajes, contenedorPersonajes);
-    //   printCardsPersonajes(contenedorPersonajes, filtros2);
+    btnCategoryFilters2(categories, propiedad, contenedorPropiedad);
+    //   printCardsPropiedad(contenedorPropiedad, filtros2);
   } catch (error) {
     console.log(error);
 
@@ -62,7 +62,7 @@ document.addEventListener("click", async ({ target }) => {
   //Funcionalidad de ir a detalles del personaje
   if (target.classList.contains("card__img")) {
     sessionStorage.setItem("personajeDetails", JSON.stringify(target.id));
-    location.href = "./pages/personajeDetails.html";
+    location.href = "./pages/propiedadDetails.html";
   }
   //Funcionalidad de eliminar un personaje
   if (target.classList.contains("card__delete")) {
@@ -77,13 +77,13 @@ document.addEventListener("click", async ({ target }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        const idPersonajeDelete = parseInt(target.name);
-        const urlDelete = `${urlPersonajes}/${idPersonajeDelete}`;
+        const idPropiedadDelete = parseInt(target.name);
+        const urlDelete = `${urlPropiedad}/${idPropiedadDelete}`;
 
         try {
           await deleteDataFetch(urlDelete);
-          personajes = await getDataFetch(urlPersonajes);
-          printCardsPersonajes(contenedorPersonajes, personajes);
+          propiedad = await getDataFetch(urlPropiedad);
+          printCardsPropiedad(contenedorPropiedad, propiedad);
         } catch (error) {
           console.log("No se pudo eliminar hay un error" + error);
         }
@@ -96,21 +96,21 @@ document.addEventListener("click", async ({ target }) => {
   if (target.classList.contains("card__edit")) {
     console.log(target.name);
     sessionStorage.setItem("editPersonaje", JSON.stringify(target.name));
-    location.href = "./pages/formPersonaje.html";
+    location.href = "./pages/formPropiedad.html";
   }
 
   //Para agregar a favoritos
   if (target.classList.contains("card__favorite")) {
     const idFavorito = target.name;
-    const urlPersonajeFavorito = `${urlFavoritos}?id=${idFavorito}`;
+    const urlPropiedadFavorito = `${urlFavoritos}?id=${idFavorito}`;
 
-    const favorito = await getDataFetch(urlPersonajeFavorito);
+    const favorito = await getDataFetch(urlPropiedadFavorito);
     //Obtenemos el objeto
-    const favoritePersonaje = await getDataFetch(
-      `${urlPersonajes}/${idFavorito}`
+    const favoritePropiedad = await getDataFetch(
+      `${urlPropiedad}/${idFavorito}`
     );
-    if (favorito.length === 0 && Object.entries(favoritePersonaje).length) {
-      await postDataFetch(urlFavoritos, favoritePersonaje);
+    if (favorito.length === 0 && Object.entries(favoritePropiedad).length) {
+      await postDataFetch(urlFavoritos, favoritePropiedad);
       const data = await getDataFetch(urlFavoritos);
       console.log(data);
     }
@@ -122,14 +122,14 @@ search.addEventListener("search", async () => {
   const searchTerm = search.value;
   try {
     if (searchTerm) {
-      const datosPersonajes = await getDataFetch(urlPersonajes);
-      const resultadoBusqueda = datosPersonajes.filter((person) =>
-        person.name.toLowerCase().includes(searchTerm.toLowerCase())
+      const datosPropiedad = await getDataFetch(urlPropiedad);
+      const resultadoBusqueda = datosPropiedad.filter((propiedad) =>
+        propiedad.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      printCardsPersonajes(contenedorPersonajes, resultadoBusqueda);
+      printCardsPropiedad(contenedorPropiedad, resultadoBusqueda);
     } else {
-      const datosPersonajes = await getDataFetch(urlPersonajes);
-      printCardsPersonajes(contenedorPersonajes, datosPersonajes);
+      const datosPropiedad = await getDataFetch(urlPropiedad);
+      printCardsPropiedad(contenedorPropiedad, datosPropiedad);
     }
   } catch (error) {
     console.log(error);

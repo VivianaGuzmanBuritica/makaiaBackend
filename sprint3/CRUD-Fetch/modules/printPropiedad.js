@@ -1,4 +1,4 @@
-export const printCardsPersonajes = (contenedor, arrayPersonajes) => {
+export const printCardsPropiedad = (contenedor, arrayPersonajes) => {
     contenedor.innerHTML = "";
 
     arrayPersonajes.forEach(propiedad => {

@@ -1,4 +1,4 @@
-import { printCardsPersonajes } from "./printPersonajes.js";
+import { printCardsPropiedad } from "./printPropiedad.js";
 
 export const btnCategoryFilters = (arrayBtns, arrayPerson, contenedor) => {
   arrayBtns.forEach((boton) => {
@@ -8,7 +8,7 @@ export const btnCategoryFilters = (arrayBtns, arrayPerson, contenedor) => {
       );
         const filteredPersonajes = boton.id === "all" ? arrayPerson : filtro;
         console.log(filteredPersonajes);
-        printCardsPersonajes(contenedor, filteredPersonajes);
+        printCardsPropiedad(contenedor, filteredPersonajes);
     });
   });
 };
@@ -22,7 +22,7 @@ export const btnCategoryFilters2 = (categoryList, arrayPerson, contenedor) => {
       const filtro = arrayPerson.filter((propiedad) => propiedad.categoria === categoria);
       const filteredPersonajes = categoria === "all" ? arrayPerson : filtro;
       console.log(filteredPersonajes);
-      printCardsPersonajes(contenedor, filteredPersonajes);
+      printCardsPropiedad(contenedor, filteredPersonajes);
     });
   });
 };
