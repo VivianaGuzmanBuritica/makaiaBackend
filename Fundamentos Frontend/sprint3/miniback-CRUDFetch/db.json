@@ -71,16 +71,6 @@
       "num_habitaciones": "4"
     },
     {
-      "id": 8,
-      "name": "finca la Isabela",
-      "area": "120 m2",
-      "image": "../CRUD-Fetch/images/propiedad3.png",
-      "img_detalle": "../images/propiedad3.png",
-      "categoria": "finca",
-      "lugar": "Bogota",
-      "num_habitaciones": "4"
-    },
-    {
       "id": 9,
       "name": "local comercial la 32",
       "area": "120 m2",
@@ -129,6 +119,16 @@
       "image": "../CRUD-Fetch/images/propiedad4.png",
       "img_detalle": "../images/propiedad4.png",
       "categoria": "local",
+      "lugar": "Bogota",
+      "num_habitaciones": "4"
+    },
+    {
+      "id": 5,
+      "name": "Vereda Paquita",
+      "area": "120 m2",
+      "image": "../CRUD-Fetch/images/propiedad5.png",
+      "img_detalle": "../images/propiedad5.png",
+      "categoria": "lote",
       "lugar": "Bogota",
       "num_habitaciones": "4"
     }

@@ -135,3 +135,7 @@ search.addEventListener("search", async () => {
     console.log(error);
   }
 });
+
+//.then consumir pormesas, metodos del objeto promesas
+// try funciones asingcronas para controlar errores, manejador de errores
+
