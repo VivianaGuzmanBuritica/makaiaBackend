@@ -10,10 +10,10 @@ public class Main {
         System.out.println("precio: "+velero1.calcularPrecio());
         System.out.println("El velero1 es "+velero1.tamanio());
 
-        Yate yate2 = new Yate(capitan1, 100000.0, 20000.0, 2023, 170.5, 6);
+        Yate yate2 = new Yate(capitan1, 90000.0, 20000.0, 2023, 170.5, 6);
         System.out.println("precio: "+yate2.calcularPrecio());
-        System.out.println("El Yate1 es "+yate2.comparar());
-        Velero velero2 = new Velero(capitan2, 80000.0,20000.0, 2019, 100.5, 3);
+        System.out.println("El Yate2 es "+yate2.comparar());
+        Velero velero2 = new Velero(capitan2, 180000.0,20000.0, 2019, 100.5, 3);
         System.out.println("precio: "+velero2.calcularPrecio());
         System.out.println("El velero2 es "+velero2.tamanio());
 
