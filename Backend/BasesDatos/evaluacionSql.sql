@@ -83,10 +83,10 @@ WHERE id NOT IN (
 
 -- 15) Devuelve un listado de los comerciales que no han realizado ningún pedido. (Utilizando IN o NOT IN).
 SELECT id, nombre, apellido1, apellido2
-FROM comercial
+FROM ventas.comercial
 WHERE id NOT IN (
   SELECT DISTINCT id_comercial
-  FROM pedido
+  FROM ventas.pedido
 );
 
 
