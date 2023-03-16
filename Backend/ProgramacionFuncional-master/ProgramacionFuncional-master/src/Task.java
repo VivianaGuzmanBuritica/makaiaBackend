@@ -20,7 +20,7 @@ public class Task {
                 .filter(number -> (number%2 == 0))
                 .collect(Collectors.toList())
                 .forEach(number -> System.out.println(number));
-
+|
         //Despues ordenarlos de menor a mayor.
         System.out.println("ordenar de menor a mayor");
         numbers.stream()
