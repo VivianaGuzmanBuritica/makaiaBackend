@@ -1,7 +1,7 @@
 package service;
 
-import model.Archivo;
-import model.Persona;
+import com.reader.readerFiles.Archivo;
+import com.reader.readerFiles.Persona;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package model;
+package com.reader.readerFiles;
 
 public class Archivo {
     private String ruta;

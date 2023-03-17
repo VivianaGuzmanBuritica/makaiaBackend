@@ -1,22 +1,23 @@
 package com.reader.readerFiles;
 
-import model.Archivo;
-import model.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.LectorArchivos;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/procesador")
 public class procesadorController {
+
+    private LectorArchivoCsv lectorArchivos;
     @Autowired
-    private LectorArchivos lectorArchivos;
+    public procesadorController(LectorArchivoCsv lectorArchivos) {
+        this.lectorArchivos = lectorArchivos;
+    }
 
     @GetMapping("/prueba")
     public String prueba(){
-        return "conectado";
+     return "conectar";
     }
 
     @PostMapping("/leer")
