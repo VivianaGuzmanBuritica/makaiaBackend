@@ -2,29 +2,24 @@ package com.reader.readerFiles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/procesador")
+@RequestMapping("/api/v1")
 public class procesadorController {
+    private procesadorService service;
 
-    private LectorArchivoCsv lectorArchivos;
     @Autowired
-    public procesadorController(LectorArchivoCsv lectorArchivos) {
-        this.lectorArchivos = lectorArchivos;
+    public procesadorController(procesadorService service) {
+        this.service = service;
+    }
+    @PostMapping("/procesar")
+    public RespuestaArchivo procesar(@RequestBody Archivo archivo){
+        return this.service.procesa(archivo);
     }
 
-    @GetMapping("/prueba")
-    public String prueba(){
-     return "conectar";
-    }
-
-    @PostMapping("/leer")
-    public List<Persona> leer(@RequestBody Archivo archivo){
-        System.out.println("ENCONTRADO");
-        return  this.lectorArchivos.leer(archivo);
-    }
 
 
 }
