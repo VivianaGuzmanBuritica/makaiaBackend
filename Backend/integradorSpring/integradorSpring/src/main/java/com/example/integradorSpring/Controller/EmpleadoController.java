@@ -19,7 +19,7 @@ public class EmpleadoController {
         this.service = service;
     }
 
-    @PostMapping("/empleados/nuevo")
+    @PostMapping("/empleados")
     public Empleado crear(@RequestBody Empleado empleado){
         return service.crear(empleado);
     }

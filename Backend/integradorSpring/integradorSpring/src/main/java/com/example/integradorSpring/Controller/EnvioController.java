@@ -19,7 +19,7 @@ public class EnvioController {
         this.service = service;
     }
 
-    @PostMapping("/envio/nuevo")
+    @PostMapping("/envio")
     public Envio crear(@RequestBody Envio envio){
         return service.crear(envio);
     }
