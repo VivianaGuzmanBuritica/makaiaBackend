@@ -36,7 +36,7 @@ public class ValidadorService {
                     .parse(startDate);
             Date end = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
                     .parse(endDate);
-//
+
             if (matcher.matches() && patronJob.contains(job) && start.compareTo(end) > 0) {
                 System.out.println("Es válido");
                 return true;
@@ -44,14 +44,7 @@ public class ValidadorService {
                 System.out.println("Es inválido");
                 return false;
             }
-//            System.out.println(start);
-//            System.out.println(end);
-//
-//            if (start.compareTo(end) > 0) {
-//                System.out.println("start is after end");
-//            }else {
-//                System.out.println("Something weird happened...");
-//            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
