@@ -13,4 +13,6 @@ public class EnvioService {
     public Envio crear(Envio envio){
         return null;
     }
+
+    public List<Envio> filtar(String estado){ return null;}
 }
