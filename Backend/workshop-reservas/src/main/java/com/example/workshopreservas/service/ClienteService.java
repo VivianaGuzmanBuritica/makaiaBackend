@@ -11,13 +11,13 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     @Autowired
-
     public ClienteService(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
     public Cliente crear(Cliente cliente){
-        return clienteRepository.save(cliente);
+        clienteRepository.save(cliente);
+        return cliente;
     }
 
 }

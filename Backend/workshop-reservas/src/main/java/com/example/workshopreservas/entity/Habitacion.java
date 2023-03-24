@@ -18,12 +18,12 @@ public class Habitacion {
     public String tipo;
 
     @Column(name = "precioBase")
-    public Integer precioBase;
+    public Double precioBase;
 
     public Habitacion() {
     }
 
-    public Habitacion(Integer numero, String tipo, Integer precioBase) {
+    public Habitacion(Integer numero, String tipo, Double precioBase) {
         this.numero = numero;
         this.tipo = tipo;
         this.precioBase = precioBase;
@@ -45,11 +45,11 @@ public class Habitacion {
         this.tipo = tipo;
     }
 
-    public Integer getPrecioBase() {
+    public Double getPrecioBase() {
         return precioBase;
     }
 
-    public void setPrecioBase(Integer precioBase) {
+    public void setPrecioBase(Double precioBase) {
         this.precioBase = precioBase;
     }
 }

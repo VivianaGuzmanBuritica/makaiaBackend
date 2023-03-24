@@ -26,8 +26,9 @@ public class Cliente {
     @Column(name="email")
     private String email;
 
-    @OneToOne(mappedBy = "cedula", cascade = CascadeType.ALL)
-    private List<Reserva> reservas;
+
+//    @OneToMany(mappedBy = "cedula", cascade = CascadeType.ALL)
+  //  private List<Reserva> reserva;
 
     public Cliente() {
     }
