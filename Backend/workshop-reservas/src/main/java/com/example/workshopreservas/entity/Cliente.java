@@ -1,47 +1,37 @@
 package com.example.workshopreservas.entity;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name= "cliente")
 public class Cliente {
-
-    @Column(name="nombre")
-    private String nombre;
-
-    @Column(name="apellido")
-    private String apellido;
-
     @Id
     @Column(name = "cedula")
     private Integer cedula;
-
+    @Column(name="nombre")
+    private String nombre;
+    @Column(name="apellido")
+    private String apellido;
     @Column(name="direccion")
     private String direccion;
-
     @Column(name="edad")
     private Integer edad;
-
     @Column(name="email")
     private String email;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Reserva> reserva;
 
-//    @OneToMany(mappedBy = "cedula", cascade = CascadeType.ALL)
-  //  private List<Reserva> reserva;
-
-    public Cliente() {
-    }
-
-    public Cliente(String nombre, String apellido, Integer cedula, String direccion, Integer edad, String email) {
+    public Cliente(Integer cedula, String nombre, String apellido,  String direccion, Integer edad, String email) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.cedula = cedula;
         this.direccion = direccion;
         this.edad = edad;
         this.email = email;
     }
-
+    public Cliente() {
+    }
     public String getNombre() {
         return nombre;
     }
