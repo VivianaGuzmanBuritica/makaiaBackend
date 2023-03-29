@@ -39,18 +39,16 @@ public class ReservaService {
              Date fecha = sdf.parse(fechaString);
              System.out.println("Fecha parseada: " + fecha);
 
-             if(cliente.isPresent() && habitacion.get().tipo.equals("premium")){
+             if(cliente.isPresent() && habitacion.get().tipo.equals("premium") && disponibilidad(fecha, numero)){
 
                  Double precioBase = habitacion.get().precioBase.doubleValue();
-                 Double total = precioBase+(precioBase * 0.05);
+                 Double total = precioBase-(precioBase * 0.05);
 
                  Reserva reserva = new Reserva(fecha, total, cliente.get(), habitacion.get());
                  return this.reservaRepository.save(reserva);
-             }else if (cliente.isPresent() && habitacion.get().tipo.equals("estandar") && disponibilidad(fecha)){
+             }else if (cliente.isPresent() && habitacion.get().tipo.equals("estandar") && disponibilidad(fecha, numero)){
                  Reserva reserva = new Reserva(fecha, habitacion.get().precioBase , cliente.get(), habitacion.get());
                  return this.reservaRepository.save(reserva);
-             }else{
-                 return null;
              }
          } catch (ParseException e) {
              e.printStackTrace();
@@ -59,35 +57,17 @@ public class ReservaService {
 
      }
 
-    public Boolean disponibilidad(Date fecha){
+    public Boolean disponibilidad(Date fecha, Integer numero){
 
-    //boolean disponibles = this.reservaRepository.disponibilidad(fecha);
+        Integer resultado = this.reservaRepository.disponibilidadQuery(numero, fecha);
 
+        Date fechaActual = new Date();
 
-       Date fechaActual = new Date();
-      //"compareTo : Este método devuelve un valor negativo si la fecha actual es anterior a la fecha proporcionada -------La fecha es posterior a la fechaActual devuelve ----- "
-        if(  fecha.compareTo(fechaActual)  > 0) {
-           return true;
+        if(  fecha.compareTo(fechaActual) > 0 && resultado == 0) {
+             return true;
        }
        return false;
 
     }
 
-
 }
-
-
-
-//    public List<Room> roomsByDate(LocalDate date){
-//        List<Reservation> reservations = research();
-//        List<Room> roomList = new ArrayList<>();
-//
-//        List<Reservation> reservationBasic = reservations.stream()
-//                .filter(reservation -> reservation.getRoom() != null && reservation.getReserveDate().equals(date))
-//                .collect(Collectors.toList());
-//        reservationBasic.stream().forEach(reservation -> {
-//            Optional<Room> auxRoom = roomService.researchById(reservation.getRoom().getNumberRoom());
-//            roomList.add(auxRoom.get());
-//        });
-//        return roomList;
-//    }
