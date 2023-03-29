@@ -14,7 +14,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservaService {
@@ -70,4 +72,16 @@ public class ReservaService {
 
     }
 
+    public List<Habitacion> consultar(Integer cedula, String tipo) {
+
+        Optional<Cliente> cliente = this.clienteRepository.findById(cedula);
+
+        if (cliente.isPresent()) {
+
+            List<Habitacion> disponibilidadPorTipo = this.reservaRepository.disponibilidadPorTipo(tipo);
+
+        return disponibilidadPorTipo.stream().collect(Collectors.toList());
+        }
+        return null;
+    }
 }
