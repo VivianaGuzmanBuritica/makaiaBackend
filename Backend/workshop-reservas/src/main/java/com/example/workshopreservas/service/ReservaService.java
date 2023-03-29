@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -72,16 +73,13 @@ public class ReservaService {
 
     }
 
-    public List<Habitacion> consultar(Integer cedula, String tipo) {
+    public List<Object> consultar(Integer cedula, String tipo) {
 
-        Optional<Cliente> cliente = this.clienteRepository.findById(cedula);
+        Cliente cliente = this.clienteRepository.findById(cedula)
+                .orElseThrow(() -> new NoSuchElementException("Cliente no encontrado"));
 
-        if (cliente.isPresent()) {
+        return  this.reservaRepository.disponibilidadPorTipo(tipo).stream().collect(Collectors.toList());
 
-            List<Habitacion> disponibilidadPorTipo = this.reservaRepository.disponibilidadPorTipo(tipo);
-
-        return disponibilidadPorTipo.stream().collect(Collectors.toList());
         }
-        return null;
-    }
+
 }

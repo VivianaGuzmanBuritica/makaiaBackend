@@ -17,5 +17,5 @@ public interface ReservaRepository extends CrudRepository<Reserva, Integer> {
     public Integer disponibilidadQuery(@Param("numero") Integer numero, @Param("fecha") Date fecha);
 
     @Query(value = "select * from habitacion h left join reserva  r on h.numero_h = r.habitacion where r.habitacion is null and tipo=:tipo", nativeQuery = true)
-    public List<Habitacion> disponibilidadPorTipo(@Param("tipo") String tipo);
+    public List<Object> disponibilidadPorTipo(@Param("tipo") String tipo);
 }

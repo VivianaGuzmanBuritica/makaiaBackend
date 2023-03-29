@@ -29,7 +29,7 @@ public class ReservaController {
     }
 
     @PostMapping("/cliente/{cedula}/habitacion/{tipo}/consultar")
-    public List<Habitacion> consultar(@PathVariable("cedula") Integer cedula, @PathVariable("tipo") String tipo){
+    public List<Object> consultar(@PathVariable("cedula") Integer cedula, @PathVariable("tipo") String tipo){
         return service.consultar(cedula,tipo);
     }
 
