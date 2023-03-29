@@ -4,6 +4,7 @@ import com.example.workshopreservas.entity.Cliente;
 import com.example.workshopreservas.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente")
-    public Cliente crear(Cliente cliente){
+    public Cliente crear(@RequestBody Cliente cliente){
         return service.crear(cliente);
     }
 }

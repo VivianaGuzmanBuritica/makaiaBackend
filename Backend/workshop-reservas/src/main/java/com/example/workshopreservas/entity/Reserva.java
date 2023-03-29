@@ -1,45 +1,42 @@
 package com.example.workshopreservas.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Reserva")
 public class Reserva {
-
- @Column(name = "fecha")
- private String fecha;
-
  @Id
  @GeneratedValue(strategy = GenerationType.AUTO)
- @Column(name = "codigo")
+ //@Column(name = "codigo")
  private Integer codigo;
+ @OneToOne
+ @JoinColumn(name = "numero")
+ private Habitacion habitacion;
+ @ManyToOne
+ @JoinColumn(name = "cedula")
+ private Cliente cliente;
+  @Column(name = "fecha")
+ private Date fecha;
 
  @Column(name = "total")
  private Double total;
 
- @OneToOne
- @JoinColumn(name = "numero")
- private Habitacion habitacion;
-
- @ManyToOne
- @JoinColumn(name = "cedula")
- private Cliente cliente;
-
  public Reserva() {
  }
 
- public Reserva(String fecha, Double total, Cliente cliente, Habitacion habitacion) {
+ public Reserva(Date fecha, Double total, Cliente cliente, Habitacion habitacion) {
   this.fecha = fecha;
   this.total = total;
   this.cliente = cliente;
   this.habitacion = habitacion;
  }
 
- public String getFecha() {
+ public Date getFecha() {
   return fecha;
  }
 
- public void setFecha(String fecha) {
+ public void setFecha(Date fecha) {
   this.fecha = fecha;
  }
 
