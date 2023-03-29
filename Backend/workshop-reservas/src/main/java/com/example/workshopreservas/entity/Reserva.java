@@ -11,7 +11,7 @@ public class Reserva {
  //@Column(name = "codigo")
  private Integer codigo;
  @OneToOne
- @JoinColumn(name = "numero")
+ @JoinColumn(name = "habitacion")
  private Habitacion habitacion;
  @ManyToOne
  @JoinColumn(name = "cedula")

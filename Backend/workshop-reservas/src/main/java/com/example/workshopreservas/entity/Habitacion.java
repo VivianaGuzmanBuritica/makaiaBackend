@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Habitacion {
 
     @Id
-    @Column(name = "numero")
+    @Column(name = "numero_h")
     public Integer numero;
 
     @Column(name = "tipo")
