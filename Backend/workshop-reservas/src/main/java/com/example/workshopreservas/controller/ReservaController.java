@@ -1,5 +1,6 @@
 package com.example.workshopreservas.controller;
 
+import com.example.workshopreservas.dto.ReservaDTO;
 import com.example.workshopreservas.entity.Habitacion;
 import com.example.workshopreservas.entity.Reserva;
 import com.example.workshopreservas.service.ReservaService;
@@ -24,7 +25,7 @@ public class ReservaController {
     }
 
     @PostMapping("/cliente/{cedula}/habitacion/{numero}/fecha/{fecha}/reservar")
-    public Reserva reservar(@PathVariable("cedula") Integer cedula, @PathVariable("numero") Integer numero, @PathVariable("fecha") String fechaReserva){
+    public ReservaDTO reservar(@PathVariable("cedula") Integer cedula, @PathVariable("numero") Integer numero, @PathVariable("fecha") String fechaReserva){
         return service.reservar(cedula, numero, fechaReserva);
     }
 

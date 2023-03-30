@@ -1,5 +1,6 @@
 package com.example.workshopreservas.controller;
 
+import com.example.workshopreservas.dto.ClienteDTO;
 import com.example.workshopreservas.entity.Cliente;
 import com.example.workshopreservas.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente")
-    public Cliente crear(@RequestBody Cliente cliente){
+    public ClienteDTO crear(@RequestBody ClienteDTO cliente){
         return service.crear(cliente);
     }
 }

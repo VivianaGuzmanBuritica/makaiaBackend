@@ -1,5 +1,7 @@
 package com.example.workshopreservas.service;
 
+import com.example.workshopreservas.dto.ClienteDTO;
+import com.example.workshopreservas.dto.ReservaDTO;
 import com.example.workshopreservas.entity.Cliente;
 import com.example.workshopreservas.entity.Habitacion;
 import com.example.workshopreservas.entity.Reserva;
@@ -31,7 +33,7 @@ public class ReservaService {
         this.habitacionRepository = habitacionRepository;
         this.clienteRepository = clienteRepository;
     }
-     public Reserva reservar(Integer cedula, Integer numero, String fechaString){
+     public ReservaDTO reservar(Integer cedula, Integer numero, String fechaString){
 
         Optional<Cliente> cliente = this.clienteRepository.findById(cedula);
         Optional<Habitacion> habitacion = this.habitacionRepository.findById(numero);
@@ -45,13 +47,34 @@ public class ReservaService {
              if(cliente.isPresent() && habitacion.get().tipo.equals("premium") && disponibilidad(fecha, numero)){
 
                  Double precioBase = habitacion.get().precioBase.doubleValue();
-                 Double total = precioBase-(precioBase * 0.05);
+                 Double total = precioBase - (precioBase * 0.05);
 
                  Reserva reserva = new Reserva(fecha, total, cliente.get(), habitacion.get());
-                 return this.reservaRepository.save(reserva);
+                 this.reservaRepository.save(reserva);
+
+                  ReservaDTO reservaDTO = new ReservaDTO(
+                          reserva.getCodigo(),
+                          reserva.getHabitacion(),
+                          reserva.getFecha(),
+                          reserva.getTotal()
+                  );
+
+                  return reservaDTO;
+
+
              }else if (cliente.isPresent() && habitacion.get().tipo.equals("estandar") && disponibilidad(fecha, numero)){
                  Reserva reserva = new Reserva(fecha, habitacion.get().precioBase , cliente.get(), habitacion.get());
-                 return this.reservaRepository.save(reserva);
+
+                 this.reservaRepository.save(reserva);
+
+                 ReservaDTO reservaDTO = new ReservaDTO(
+                         reserva.getCodigo(),
+                         reserva.getHabitacion(),
+                         reserva.getFecha(),
+                         reserva.getTotal()
+                 );
+
+                 return reservaDTO;
              }
          } catch (ParseException e) {
              e.printStackTrace();
