@@ -14,10 +14,10 @@ public class SwaggerConfig {
     @EnableSwagger2
     public class ConfiguracionSwagger {
 
-        @Bean
-        Docket api(){
-            return new Docket(DocumentationType.SWAGGER_2).select()
-                    .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any()).build();
+           @Bean
+      Docket api(){
+         return new Docket(DocumentationType.SWAGGER_2).select()
+                   .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any()).build();
         }
     }
 }

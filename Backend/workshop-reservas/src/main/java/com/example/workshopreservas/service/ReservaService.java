@@ -1,6 +1,6 @@
 package com.example.workshopreservas.service;
 
-import com.example.workshopreservas.dto.ClienteDTO;
+
 import com.example.workshopreservas.dto.ReservaDTO;
 import com.example.workshopreservas.entity.Cliente;
 import com.example.workshopreservas.entity.Habitacion;
@@ -11,10 +11,9 @@ import com.example.workshopreservas.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -35,6 +34,10 @@ public class ReservaService {
     }
      public ReservaDTO reservar(Integer cedula, Integer numero, String fechaString){
 
+         if(fechaString == null || numero == null || cedula == null){
+             throw new RuntimeException("Los parametros para realizar reserva no son validos");
+         }
+
         Optional<Cliente> cliente = this.clienteRepository.findById(cedula);
         Optional<Habitacion> habitacion = this.habitacionRepository.findById(numero);
 
@@ -42,7 +45,6 @@ public class ReservaService {
 
          try {
              Date fecha = sdf.parse(fechaString);
-             System.out.println("Fecha parseada: " + fecha);
 
              if(cliente.isPresent() && habitacion.get().tipo.equals("premium") && disponibilidad(fecha, numero)){
 
@@ -85,7 +87,7 @@ public class ReservaService {
 
     public Boolean disponibilidad(Date fecha, Integer numero){
 
-        Integer resultado = this.reservaRepository.disponibilidadQuery(numero, fecha);
+       Integer resultado = this.reservaRepository.disponibilidadQuery(numero, fecha);
 
         Date fechaActual = new Date();
 
