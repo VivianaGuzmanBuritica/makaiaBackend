@@ -15,6 +15,9 @@ import com.example.workshopreservas.service.ReservaService;
 import org.junit.Before;
 import org.junit.Test;
 
+
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -41,12 +44,6 @@ public class ReservaServiceTest {
         this.reservaService = new ReservaService(reservaRepository, habitacionRepository,clienteRepository);
 
     }
-
-    //Arrange
-    //  Habitacion habitacion = new Habitacion(1, "premium", 10000.0);
-    //Cliente cliente = new Cliente(1234, "vivi", "guzman", "call-123", 31, "vivi@guzman.com");
-
-    //Act&&Assert
 
     @Test(expected = RuntimeException.class)
     public void asignarReservaConFechaNula(){
@@ -79,9 +76,18 @@ public class ReservaServiceTest {
         ReservaDTO reserva = this.reservaService.reservar(cedula, numero, fecha);
     }
 
+    @Test(expected = RuntimeException.class)
+    public void todoNulo(){
+    //Arrange
+    Integer cedula = null;
+    Integer numero = null;
+    String fecha= null;
+    //act
+    this.reservaService.reservar(cedula, numero, fecha);
+    }
 
     @Test
-    public void reservar(){
+    public void reservarEstandar(){
         //Arrange
         Integer cedula = 1234;
         Integer numero = 1;
@@ -98,17 +104,78 @@ public class ReservaServiceTest {
         assertNotNull(reserva.getFecha());
         assertTrue(reserva.getTotal().equals(habitacion.precioBase));
         assertTrue(reserva.getHabitacion().getNumero().equals(numero));
-        //assertNotNull(reserva.getCodigo());
 
-//
+    }
+    @Test
+    public void reservarPremium(){
+        //Arrange
+        Integer cedula = 1234;
+        Integer numero = 1;
+        String fecha = "2023-05-10";
+
+        Habitacion habitacion = new Habitacion(1, "premium", 10000.0);
+        when(habitacionRepository.findById(any())).thenReturn(Optional.of(habitacion));
+
+        Double precioBase = habitacion.precioBase.doubleValue();
+        Double total = precioBase - (precioBase * 0.05);
+
+        Cliente cliente = new Cliente(1234, "vivi", "guzman", "call-123", 31, "vivi@guzman.com");
+        when(clienteRepository.findById(any())).thenReturn(Optional.of(cliente));
+        //Act
+        ReservaDTO reserva= this.reservaService.reservar(cedula, numero, fecha);
+        //Assert
+        assertNotNull(reserva.getFecha());
+        assertTrue(reserva.getTotal().equals(total));
+        assertTrue(reserva.getHabitacion().getNumero().equals(numero));
+
+    }
+    @Test
+    public void sinClienteNiHabiacion(){
+        //Arrange
+        Integer cedula = 1234;
+        Integer numero = 1;
+        String fecha = "2023-05-10";
+
+       when(habitacionRepository.findById(any())).thenReturn(Optional.empty());
+       when(clienteRepository.findById(any())).thenReturn(Optional.empty());
+        //Act
+        ReservaDTO reserva= this.reservaService.reservar(cedula, numero, fecha);
+        //Assert
+        assertNull(reserva);
 
     }
 
+    @Test()
+    public void consultar(){
 
-    @Test(expected = ApiRequestException.class)
-    public void fechaDeReservaInvalida(){
+        //Arrange
+        Integer cedula = 1234;
+        String tipo = "estandar";
+        //Act
 
+        Habitacion habitacion1 = new Habitacion(1, "estandar", 10000.0);
+        when(habitacionRepository.findById(any())).thenReturn(Optional.of(habitacion1));
+        Habitacion habitacion2 = new Habitacion(2, "premium", 10000.0);
+        when(habitacionRepository.findById(any())).thenReturn(Optional.of(habitacion2));
+
+        Cliente cliente = new Cliente(1234, "vivi", "guzman", "call-123", 31, "vivi@guzman.com");
+        when(clienteRepository.findById(any())).thenReturn(Optional.of(cliente));
+
+        List<Object> disponibles = this.reservaService.consultar(cedula, tipo);
+        //Assert
+       assertNotNull(disponibles);
 
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void consultarSinCliente(){
+
+        //Arrange
+        Integer cedula = 1234;
+        String tipo = "estandar";
+        //Act&Assert
+        when(clienteRepository.findById(any())).thenReturn(Optional.empty());
+        List<Object> disponibles = this.reservaService.consultar(cedula, tipo);
+
+    }
 }
