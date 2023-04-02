@@ -1,9 +1,13 @@
 package com.example.workshopreservas.entity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name= "cliente")
+@ApiModel(description = "Entidad que reresenta un cliente")
 public class Cliente {
     @Id
     @Column(name = "cedula")
@@ -16,6 +20,7 @@ public class Cliente {
     private String direccion;
     @Column(name="edad")
     private Integer edad;
+    @ApiModelProperty(value = "Direccion de correo electronico", example = "viviana123@mail.com")
     @Column(name="email")
     private String email;
 

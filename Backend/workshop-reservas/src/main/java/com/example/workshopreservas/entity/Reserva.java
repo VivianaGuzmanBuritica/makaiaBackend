@@ -1,10 +1,14 @@
 package com.example.workshopreservas.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "Reserva")
+@ApiModel(description = "Entidad que representa una reserva")
 public class Reserva {
  @Id
  @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,9 +20,11 @@ public class Reserva {
  @ManyToOne
  @JoinColumn(name = "cedula")
  private Cliente cliente;
-  @Column(name = "fecha")
+ @ApiModelProperty(value = "Fecha en la que desea reservar", example = "2023-05-10")
+ @Column(name = "fecha")
  private Date fecha;
 
+ @ApiModelProperty(value = "Total de valor de la habitacion reservada")
  @Column(name = "total")
  private Double total;
 
