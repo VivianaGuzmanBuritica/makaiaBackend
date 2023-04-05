@@ -1,4 +1,4 @@
-#  "API REST de reservas de habitación de hotel"
+# API REST de reservas de habitación de hotel
 
 <div align= "rigth">Esta API REST de reservas de habitación de hotel es una aplicación Spring Boot que te permite gestionar reservas de habitaciones en un hotel. El proyecto esta construido con la versión de '2.7.10' de Spring Boot, un gestor de dependecias con  Gradle-Groovy compatible con Java 11, con un motor de base de datos H2 y persistencia de datos co JPA e Hibernate.
 
