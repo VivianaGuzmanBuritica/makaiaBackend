@@ -1,6 +1,14 @@
-#  "API REST de reservas de habitación de hotel"
+# API REST de reservas de habitación de hotel
 
-<div align= "rigth">Esta API REST de reservas de habitación de hotel es una aplicación Spring Boot que te permite gestionar reservas de habitaciones en un hotel.
+<div align= "rigth">Esta API REST de reservas de habitación de hotel es una aplicación Spring Boot que te permite gestionar reservas de habitaciones en un hotel. El proyecto esta construido con la versión de '2.7.10' de Spring Boot, un gestor de dependecias con  Gradle-Groovy compatible con Java 11, con un motor de base de datos H2 y persistencia de datos co JPA e Hibernate.
+
+Las principales dependencias utilizadas son:
+
+- Spring Data JPA (Persiste bases de datos SQL utilizando Java Persistence API mediante Spring Data y Hibernate.)
+- Spring Web (Construye aplicaciones web, incluyendo RESTful, utilizando Spring MVC. Utiliza Apache Tomcat como contenedor integrado predeterminado.) 
+- JUnit (Testeo de pruebas unitarias)
+
+Adicionalmente esta API se encuentra documentada con Swagger y podrá probar la funcionalidad de los Endpoints en el siguiente link [Swagger documentación](http://localhost:8080/swagger-ui/index.html#/basic-error-controller) una vez la aplicación se encuentre levantada. 
 
 ## 💻 Endpoints:
 
