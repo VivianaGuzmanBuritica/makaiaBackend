@@ -13,15 +13,15 @@ public class EmpleadoService {
     public  Empleado crear(Empleado empleado){
         return null;
     }
-    public List<Empleado> buscar(String cedula) {
+    public List<Empleado> buscar(Integer cedula) {
         return null;
     }
 
-    public List<Empleado> actualizar(String cedula) {
+    public List<Empleado> actualizar(Integer cedula) {
         return null;
     }
 
-    public boolean eliminar(String cedula) {
+    public boolean eliminar(Integer cedula) {
         return false;
     }
 }

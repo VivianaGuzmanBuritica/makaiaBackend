@@ -1,7 +1,7 @@
 package com.example.integradorSpring.Model;
 
 public class Usuario {
-    private int cedula;
+    private Integer cedula;
     private String nombre;
     private String apellido;
     private String celular;
@@ -9,7 +9,7 @@ public class Usuario {
     private String dirResidencia;
     private String ciudad;
 
-    public Usuario(int cedula, String nombre, String apellido, String celular, String email, String dirResidencia, String ciudad) {
+    public Usuario(Integer cedula, String nombre, String apellido, String celular, String email, String dirResidencia, String ciudad) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;

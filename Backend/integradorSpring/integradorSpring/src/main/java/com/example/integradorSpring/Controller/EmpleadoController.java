@@ -25,17 +25,17 @@ public class EmpleadoController {
     }
 
     @GetMapping("/empleados/{cedula}")
-    public List<Empleado> buscar(@PathVariable("cedula") String cedula){
+    public List<Empleado> buscar(@PathVariable("cedula") Integer cedula){
         return service.buscar(cedula);
     }
 
     @PutMapping("/empleados/{cedula}")
-    public List<Empleado> actualizar(@PathVariable("cedula") String cedula, @RequestBody Empleado cliente){
+    public List<Empleado> actualizar(@PathVariable("cedula") Integer cedula, @RequestBody Empleado cliente){
         return service.actualizar(cedula);
     }
 
     @DeleteMapping("/empleados/{cedula}")
-    public boolean eliminar(@PathVariable("cedula") String cedula){
+    public boolean eliminar(@PathVariable("cedula") Integer cedula){
         return service.eliminar(cedula);
     }
 }

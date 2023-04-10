@@ -1,7 +1,8 @@
 package com.example.integradorSpring.Controller;
 
-import com.example.integradorSpring.Model.Cliente;
+import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.Service.ClienteService;
+import com.example.integradorSpring.dto.ClienteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,23 +18,27 @@ public class ClienteController {
         this.service = service;
     }
 
+    @GetMapping("/cliente")
+    public String prueba(){
+        return "Hola";
+    }
     @PostMapping("/clientes")
-    public Cliente crear(@RequestBody Cliente cliente){
+    public ClienteDTO    crear(@RequestBody ClienteDTO cliente){
         return service.crear(cliente);
     }
 
     @GetMapping("/clientes/{cedula}")
-    public List<Cliente> buscar(@PathVariable("cedula") String cedula){
+    public List<Cliente> buscar(@PathVariable("cedula") Integer cedula){
         return service.buscar(cedula);
     }
 
     @PutMapping("/clientes/{cedula}")
-    public List<Cliente> actualizar(@PathVariable("cedula") String cedula, @RequestBody Cliente cliente){
+    public List<Cliente> actualizar(@PathVariable("cedula") Integer cedula, @RequestBody Cliente cliente){
         return service.actualizar(cedula);
     }
 
     @DeleteMapping("/clientes/{cedula}")
-    public boolean eliminar(@PathVariable("cedula") String cedula){
+    public boolean eliminar(@PathVariable("cedula") Integer cedula){
         return service.eliminar(cedula);
     }
 }

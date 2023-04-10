@@ -26,6 +26,7 @@ public class ClienteController {
             @ApiResponse(code = 404, message = "No existe el cliente"),
             @ApiResponse(code = 500, message = "Error de conexion")
     })
+
     @ApiOperation(value = "Crear un cliente", notes= "Crea un nuevo cliente en la base de datos con la información proporcionada en el cuerpo de la solicitud.", response = ClienteDTO.class)
     @PostMapping("/cliente")
     public ClienteDTO crear(@RequestBody ClienteDTO cliente){
