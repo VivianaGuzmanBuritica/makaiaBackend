@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name= "cliente")
-@ApiModel(description = "Entidad que reresenta un cliente")
+@ApiModel(description = "Entidad que representa un cliente")
 public class Cliente {
     @Id
     @Column(name = "cedula")

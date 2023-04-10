@@ -1,8 +1,12 @@
 package com.example.integradorSpring.entity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name= "cliente")
+@ApiModel(description = "Entidad que representa un cliente")
 public class Cliente {
     @Id
     @Column(name = "cedula")
@@ -17,6 +21,7 @@ public class Cliente {
     @Column(name="celular")
     private String celular;
 
+    @ApiModelProperty(value = "Direccion de correo electronico", example = "viviana123@mail.com")
     @Column(name="email")
     private String email;
 
