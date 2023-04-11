@@ -1,8 +1,10 @@
 package com.example.integradorSpring.Controller;
 
-import com.example.integradorSpring.Model.Empleado;
+
 import com.example.integradorSpring.Service.ClienteService;
 import com.example.integradorSpring.Service.EmpleadoService;
+import com.example.integradorSpring.dto.EmpleadoDTO;
+import com.example.integradorSpring.entity.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,7 @@ public class EmpleadoController {
     }
 
     @PostMapping("/empleados")
-    public Empleado crear(@RequestBody Empleado empleado){
+    public EmpleadoDTO crear(@RequestBody EmpleadoDTO empleado){
         return service.crear(empleado);
     }
 

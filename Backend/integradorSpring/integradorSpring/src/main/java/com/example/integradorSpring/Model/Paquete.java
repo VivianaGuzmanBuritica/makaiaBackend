@@ -1,14 +1,14 @@
 package com.example.integradorSpring.Model;
 
 public class Paquete {
-    private int id;
-    public static int generarId = 1;
+    private Integer id;
+
     private String tipo;
     private double peso;
     private double valorDeclarado;
 
-    public Paquete(String tipo, double peso, double valorDeclarado) {
-        this.id = generarId++;
+    public Paquete(Integer id, String tipo, double peso, double valorDeclarado) {
+        this.id = id;
         this.tipo = tipo;
         this.peso = peso;
         this.valorDeclarado = valorDeclarado;

@@ -1,12 +1,10 @@
 package com.example.integradorSpring.dto;
 
-import com.example.integradorSpring.Model.Cliente;
-import com.example.integradorSpring.Model.Paquete;
 
 public class EnvioDTO {
 
     private String umGuia;
-    private Cliente cliente;
+    private ClienteDTO cliente;
     private String ciudadOrigen;
     private String ciudadDestino;
     private  String dirDestino;
@@ -15,9 +13,9 @@ public class EnvioDTO {
     private String horaEntrega;
     private String estado;
     private double valorEnvio;
-    private Paquete paquete;
+    private PaqueteDTO paquete;
 
-    public EnvioDTO(String umGuia, Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
+    public EnvioDTO(String umGuia, ClienteDTO cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, PaqueteDTO paquete) {
         this.umGuia = umGuia;
         this.cliente = cliente;
         this.ciudadOrigen = ciudadOrigen;
@@ -38,7 +36,7 @@ public class EnvioDTO {
         return umGuia;
     }
 
-    public Cliente getCliente() {
+    public ClienteDTO getCliente() {
         return cliente;
     }
 
@@ -74,7 +72,7 @@ public class EnvioDTO {
         return valorEnvio;
     }
 
-    public Paquete getPaquete() {
+    public PaqueteDTO getPaquete() {
         return paquete;
     }
 }
