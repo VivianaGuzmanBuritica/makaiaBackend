@@ -9,7 +9,7 @@ import javax.persistence.*;
 @ApiModel(description = "Entidad que representa un cliente")
 public class Cliente {
     @Id
-    @Column(name = "cedula")
+//    @Column(name = "cedula")
     private Integer cedula;
 
     @Column(name="nombre")

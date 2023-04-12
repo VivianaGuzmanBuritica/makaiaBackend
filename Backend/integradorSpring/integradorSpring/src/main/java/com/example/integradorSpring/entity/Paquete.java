@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Paquete {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
      private Integer id;
 
     @Column(name="tipo")

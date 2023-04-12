@@ -12,39 +12,28 @@ import javax.persistence.*;
 @Table(name = "envio")
 @ApiModel(description = "Entidad que representa un envio")
 public class Envio {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer numGuia;
-
     @OneToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
-
     @Column(name = "ciudadOrigen")
     private String ciudadOrigen;
-
     @Column(name = "ciudadDestino")
     private String ciudadDestino;
-
     @Column(name = "dirDestino")
     private  String dirDestino;
-
     @Column(name = "nombreRecibe")
     private String nombreRecibe;
-
     @Column(name = "celularRecibe")
     private String celularRecibe;
-
     @Column(name = "horaEntrega")
     private String horaEntrega;
-
     @Column(name = "estado")
     private String estado;
-
     @Column(name = "valorEnvio")
     private double valorEnvio;
-
     @OneToOne
     @JoinColumn(name = "paquete")
     private Paquete paquete;
