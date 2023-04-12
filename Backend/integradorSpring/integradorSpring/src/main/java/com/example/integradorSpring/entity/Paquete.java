@@ -11,8 +11,7 @@ public class Paquete {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    private Integer id;
+     private Integer id;
 
     @Column(name="tipo")
     private String tipo;
@@ -46,5 +45,21 @@ public class Paquete {
 
     public double getValorDeclarado() {
         return valorDeclarado;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public void setValorDeclarado(double valorDeclarado) {
+        this.valorDeclarado = valorDeclarado;
     }
 }

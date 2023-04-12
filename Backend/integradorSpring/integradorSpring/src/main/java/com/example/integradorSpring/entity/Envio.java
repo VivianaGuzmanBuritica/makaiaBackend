@@ -1,25 +1,55 @@
-package com.example.integradorSpring.dto;
+package com.example.integradorSpring.entity;
+
+import com.example.integradorSpring.dto.ClienteDTO;
+import com.example.integradorSpring.dto.PaqueteDTO;
+import io.swagger.annotations.ApiModel;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.persistence.*;
 
 
-import com.example.integradorSpring.entity.Cliente;
-import com.example.integradorSpring.entity.Paquete;
+@Entity
+@Table(name = "envio")
+@ApiModel(description = "Entidad que representa un envio")
+public class Envio {
 
-public class EnvioDTO {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String umGuia;
+
+    @OneToOne
+    @JoinColumn(name = "cliente")
     private Cliente cliente;
+
+    @Column(name = "ciudadOrigen")
     private String ciudadOrigen;
+
+    @Column(name = "ciudadDestino")
     private String ciudadDestino;
+
+    @Column(name = "dirDestino")
     private  String dirDestino;
+
+    @Column(name = "nombreRecibe")
     private String nombreRecibe;
+
+    @Column(name = "celularRecibe")
     private String celularRecibe;
+
+    @Column(name = "horaEntrega")
     private String horaEntrega;
+
+    @Column(name = "estado")
     private String estado;
+
+    @Column(name = "valorEnvio")
     private double valorEnvio;
+
+    @OneToOne
+    @JoinColumn(name = "paquete")
     private Paquete paquete;
 
-    public EnvioDTO(String umGuia, Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
-        this.umGuia = umGuia;
+    public Envio(Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
         this.cliente = cliente;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
@@ -32,7 +62,7 @@ public class EnvioDTO {
         this.paquete = paquete;
     }
 
-    public EnvioDTO() {
+    public Envio() {
     }
 
     public String getUmGuia() {
