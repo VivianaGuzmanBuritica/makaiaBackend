@@ -15,7 +15,7 @@ public class Envio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String umGuia;
+    private Integer numGuia;
 
     @OneToOne
     @JoinColumn(name = "cliente")
@@ -65,8 +65,8 @@ public class Envio {
     public Envio() {
     }
 
-    public String getUmGuia() {
-        return umGuia;
+    public Integer getNumGuia() {
+        return numGuia;
     }
 
     public Cliente getCliente() {

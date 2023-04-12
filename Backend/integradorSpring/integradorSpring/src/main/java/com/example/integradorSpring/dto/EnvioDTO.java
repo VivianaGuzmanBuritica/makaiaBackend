@@ -6,7 +6,7 @@ import com.example.integradorSpring.entity.Paquete;
 
 public class EnvioDTO {
 
-    private String umGuia;
+    private Integer numGuia;
     private Cliente cliente;
     private String ciudadOrigen;
     private String ciudadDestino;
@@ -18,8 +18,8 @@ public class EnvioDTO {
     private double valorEnvio;
     private Paquete paquete;
 
-    public EnvioDTO(String umGuia, Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
-        this.umGuia = umGuia;
+    public EnvioDTO(Integer numGuia, Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
+        this.numGuia = numGuia;
         this.cliente = cliente;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
@@ -35,8 +35,8 @@ public class EnvioDTO {
     public EnvioDTO() {
     }
 
-    public String getUmGuia() {
-        return umGuia;
+    public Integer getNumGuia() {
+        return numGuia;
     }
 
     public Cliente getCliente() {
