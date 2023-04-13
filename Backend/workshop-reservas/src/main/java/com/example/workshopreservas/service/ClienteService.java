@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 
 
 
-@Service
 //@Slf4j
+@Service
 public class ClienteService {
 
     private ClienteRepository clienteRepository;
