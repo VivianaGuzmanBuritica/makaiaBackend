@@ -13,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.text.spi.DateFormatProvider;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -87,21 +91,25 @@ public class EnvioService {
                 envio.getValorEnvio()
         );
 
-
         Paquete paquete = new Paquete(
                tipo,
                envioDTO.getPeso(),
                envioDTO.getValorDeclarado()
         );
-        System.out.println(paquete.getTipo().toString());
+
         return respuestaDTO;
     }
 
     public String calcularHoraEntrega(){
-        LocalTime horaLocal = LocalTime.now();
-        String hora = horaLocal.toString();
-        System.out.println("la hora "+hora);
-        return hora;}
+
+        LocalDateTime horaLocal = LocalDateTime.now();
+        LocalDateTime horaEntrega =  horaLocal.plusHours(72);
+        DateTimeFormatter horaFormateada = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
+
+        String hora = horaFormateada.toString();
+        System.out.println("la hora inicial "+horaLocal + "  ENTREGA  "+ horaEntrega);
+        return hora;
+    }
 
     public String calcularEstado(){return "(RECIBIDO, EN RUTA, ENTREGADO)";}
 
