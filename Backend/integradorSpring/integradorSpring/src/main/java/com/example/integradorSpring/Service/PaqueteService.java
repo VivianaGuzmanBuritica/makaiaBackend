@@ -16,19 +16,14 @@ public class PaqueteService {
         this.paqueteRepository = paqueteRepository;
     }
 
-    public PaqueteDTO crear(PaqueteDTO paqueteDTO){
-//        if(paqueteDTO.getTipo() == null || paqueteDTO.getPeso() == 0){
-//            throw new RuntimeException("el tipo o el peso son invalidos");
-//    }
-
-        Paquete paquete = new Paquete(
-                paqueteDTO.getTipo(),
-                paqueteDTO.getPeso(),
-                paqueteDTO.getValorDeclarado()
-        );
-
-        paqueteRepository.save(paquete);
-        return paqueteDTO;
-    }
+      public String identificarTipoPaquete (Double peso){
+        if(peso < 2.0){
+            return "LIVIANO";
+        }else if( peso > 5){
+            return "GRANDE";
+        }else {
+            return "MEDIANO";
+        }
+      }
 
 }

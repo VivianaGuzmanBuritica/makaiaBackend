@@ -24,8 +24,11 @@ public class EnvioService {
     private PaqueteRepository paqueteRepository;
     private ClienteRepository clienteRepository;
 
+    private  PaqueteService paqueteService;
+
     @Autowired
-    public EnvioService(EnvioRepository envioRepository, PaqueteRepository paqueteRepository, ClienteRepository clienteRepository) {
+    public EnvioService(PaqueteService paqueteService, EnvioRepository envioRepository, PaqueteRepository paqueteRepository, ClienteRepository clienteRepository) {
+        this.paqueteService = paqueteService;
         this.envioRepository = envioRepository;
         this.paqueteRepository = paqueteRepository;
         this.clienteRepository = clienteRepository;
@@ -41,7 +44,7 @@ public class EnvioService {
                 || envioDTO.getDirDestino() == null
                 || envioDTO.getNombreRecibe() == null
                 || envioDTO.getCelularRecibe() == null
-                || envioDTO.getPeso() == null
+                || envioDTO.getPeso() == 0
                 || envioDTO.getValorDeclarado() == 0
         ){
            throw new RuntimeException("Todos los campos deben ser diligenciados y diferente de nulo o 0");
@@ -75,15 +78,17 @@ public class EnvioService {
                 envioDTO.getValorDeclarado(),
                 envioDTO.getPeso(),
                 envio.getValorEnvio()
-
         );
 
+        String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
 
+        Paquete paquete = new Paquete(
+               tipo,
+               envioDTO.getPeso(),
+               envioDTO.getValorDeclarado()
+        );
+        System.out.println(paquete.getTipo().toString());
         return respuestaDTO;
-    }
-
-    private Integer generarNumGuia() {
-        return 1244;
     }
 
     public String calcularHoraEntrega(){return "La hora";}
@@ -92,7 +97,8 @@ public class EnvioService {
     public Double calcularValorEnvio(){
         return 1.0;
     }
-    public String identificarTipoPaquete (){return "LIVIANO, MEDIANO, GRANDE";}
+
+
     public List<Envio> filtar(String estado){ return null;}
 }
 

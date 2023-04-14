@@ -8,10 +8,10 @@ public class EnvioDTO {
     private  String dirDestino;
     private String nombreRecibe;
     private String celularRecibe;
-    private Integer peso;
+    private double peso;
     private double valorDeclarado;
 
-    public EnvioDTO(Integer cedulaCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, Integer peso, double valorDeclarado) {
+    public EnvioDTO(Integer cedulaCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double peso, double valorDeclarado) {
         this.cedulaCliente = cedulaCliente;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
@@ -56,9 +56,7 @@ public class EnvioDTO {
         return celularRecibe;
     }
 
-
-
-    public Integer getPeso() {
+    public double getPeso() {
         return peso;
     }
 

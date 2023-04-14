@@ -20,5 +20,5 @@ public class PaqueteController {
     }
 
     @PostMapping("/paquete")
-    public PaqueteDTO crear(@RequestBody PaqueteDTO paquete){ return service.crear(paquete);}
+    public PaqueteDTO crear(@RequestBody PaqueteDTO paquete){ return null;}
 }

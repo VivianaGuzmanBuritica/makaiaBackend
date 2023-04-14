@@ -10,13 +10,13 @@ public class EnvioRespuestaDTO {
     private String nombreRecibe;
     private String celularRecibe;
     private double valorDeclarado;
-    private Integer peso;
-    private Double valorEnvio;
+    private double peso;
+    private double valorEnvio;
 
     public EnvioRespuestaDTO() {
     }
 
-    public EnvioRespuestaDTO(Integer  numGuia, Integer cedulaCliente, String nombreCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double valorDeclarado, Integer peso, Double valorEnvio) {
+    public EnvioRespuestaDTO(Integer  numGuia, Integer cedulaCliente, String nombreCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double valorDeclarado, double peso, double valorEnvio) {
         this.numGuia = numGuia;
         this.cedulaCliente = cedulaCliente;
         this.nombreCliente = nombreCliente;
@@ -66,11 +66,11 @@ public class EnvioRespuestaDTO {
         return valorDeclarado;
     }
 
-    public Integer getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public Double getValorEnvio() {
+    public double getValorEnvio() {
         return valorEnvio;
     }
 }
