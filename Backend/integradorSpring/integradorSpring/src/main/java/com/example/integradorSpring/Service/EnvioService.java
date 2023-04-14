@@ -2,6 +2,7 @@ package com.example.integradorSpring.Service;
 
 
 import com.example.integradorSpring.dto.EnvioDTO;
+import com.example.integradorSpring.dto.EnvioRespuestaDTO;
 import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.entity.Envio;
 import com.example.integradorSpring.entity.Paquete;
@@ -30,26 +31,68 @@ public class EnvioService {
         this.clienteRepository = clienteRepository;
     }
 
-    public EnvioDTO crear(Integer cedula, Integer id, EnvioDTO envioDTO){
+    public EnvioRespuestaDTO crear(EnvioDTO envioDTO){
 
-        Optional<Cliente> cliente = this.clienteRepository.findById(cedula);
-        Optional<Paquete> paquete = this.paqueteRepository.findById(id);
+        Optional<Cliente> cliente = this.clienteRepository.findById(envioDTO.getCedulaCliente());
+
+        if(envioDTO.getCedulaCliente() == null
+                || envioDTO.getCiudadOrigen() == null
+                || envioDTO.getCiudadDestino() == null
+                || envioDTO.getDirDestino() == null
+                || envioDTO.getNombreRecibe() == null
+                || envioDTO.getCelularRecibe() == null
+                || envioDTO.getPeso() == null
+                || envioDTO.getValorDeclarado() == 0
+        ){
+           throw new RuntimeException("Todos los campos deben ser diligenciados y diferente de nulo o 0");
+        }
+
+        else if(!cliente.isPresent()){
+            throw new RuntimeException("El cliente debe haberse creado previamente");
+        }
 
         Envio envio = new Envio(
-                cliente.get(),
                 envioDTO.getCiudadOrigen(),
                 envioDTO.getCiudadDestino(),
                 envioDTO.getDirDestino(),
                 envioDTO.getNombreRecibe(),
                 envioDTO.getCelularRecibe(),
-                envioDTO.getHoraEntrega(),
-                envioDTO.getEstado(),
-                envioDTO.getValorEnvio(),
-                paquete.get()
+                calcularHoraEntrega(),
+                calcularEstado(),
+                calcularValorEnvio()
         );
         envioRepository.save(envio);
-        return envioDTO;
+
+        EnvioRespuestaDTO respuestaDTO = new EnvioRespuestaDTO(
+                envio.getNumGuia(),
+                cliente.get().getCedula(),
+                cliente.get().getNombre(),
+                envio.getCiudadOrigen(),
+                envio.getCiudadDestino(),
+                envio.getDirDestino(),
+                envio.getNombreRecibe(),
+                envio.getCelularRecibe(),
+                envioDTO.getValorDeclarado(),
+                envioDTO.getPeso(),
+                envio.getValorEnvio()
+
+        );
+
+
+        return respuestaDTO;
     }
 
+    private Integer generarNumGuia() {
+        return 1244;
+    }
+
+    public String calcularHoraEntrega(){return "La hora";}
+    public String calcularEstado(){return "(RECIBIDO, EN RUTA, ENTREGADO)";}
+
+    public Double calcularValorEnvio(){
+        return 1.0;
+    }
+    public String identificarTipoPaquete (){return "LIVIANO, MEDIANO, GRANDE";}
     public List<Envio> filtar(String estado){ return null;}
 }
+

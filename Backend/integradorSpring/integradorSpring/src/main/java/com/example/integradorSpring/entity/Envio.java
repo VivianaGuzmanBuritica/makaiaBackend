@@ -13,11 +13,11 @@ import javax.persistence.*;
 @ApiModel(description = "Entidad que representa un envio")
 public class Envio {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column( nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer numGuia;
-    @OneToOne
-    @JoinColumn(name = "cliente")
-    private Cliente cliente;
+
+
     @Column(name = "ciudadOrigen")
     private String ciudadOrigen;
     @Column(name = "ciudadDestino")
@@ -34,12 +34,22 @@ public class Envio {
     private String estado;
     @Column(name = "valorEnvio")
     private double valorEnvio;
+
+    @OneToOne
+    @JoinColumn(name = "cliente")
+    private Cliente cliente;
+
     @OneToOne
     @JoinColumn(name = "paquete")
-    private Paquete paquete;
+    private Cliente paquete;
 
-    public Envio(Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
-        this.cliente = cliente;
+
+
+    public Envio() {
+    }
+
+    public Envio( String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio) {
+
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
         this.dirDestino = dirDestino;
@@ -48,18 +58,10 @@ public class Envio {
         this.horaEntrega = horaEntrega;
         this.estado = estado;
         this.valorEnvio = valorEnvio;
-        this.paquete = paquete;
-    }
-
-    public Envio() {
     }
 
     public Integer getNumGuia() {
         return numGuia;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
     }
 
     public String getCiudadOrigen() {
@@ -92,9 +94,5 @@ public class Envio {
 
     public double getValorEnvio() {
         return valorEnvio;
-    }
-
-    public Paquete getPaquete() {
-        return paquete;
     }
 }

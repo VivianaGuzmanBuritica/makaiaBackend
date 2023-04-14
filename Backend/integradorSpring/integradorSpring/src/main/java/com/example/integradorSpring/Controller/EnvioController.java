@@ -3,6 +3,7 @@ package com.example.integradorSpring.Controller;
 
 import com.example.integradorSpring.Service.EnvioService;
 import com.example.integradorSpring.dto.EnvioDTO;
+import com.example.integradorSpring.dto.EnvioRespuestaDTO;
 import com.example.integradorSpring.entity.Envio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,9 @@ public class EnvioController {
         this.service = service;
     }
 
-    @PostMapping("/cliente/{cedula}/paquete/{id}/envio")
-    public EnvioDTO crear( @PathVariable("cedula") Integer cedula,
-                           @PathVariable("id") Integer id,
-                           @RequestBody EnvioDTO envio){
-        return service.crear(cedula, id, envio);
+    @PostMapping("/cliente/envio")
+    public EnvioRespuestaDTO crear(@RequestBody EnvioDTO envio){
+        return service.crear(envio);
     }
 
     @GetMapping("/envio/{estado}")
