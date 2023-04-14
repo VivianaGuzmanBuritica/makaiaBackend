@@ -12,8 +12,12 @@ import com.example.integradorSpring.repository.PaqueteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Service
 public class EnvioService {
@@ -38,6 +42,7 @@ public class EnvioService {
 
         Optional<Cliente> cliente = this.clienteRepository.findById(envioDTO.getCedulaCliente());
 
+
         if(envioDTO.getCedulaCliente() == null
                 || envioDTO.getCiudadOrigen() == null
                 || envioDTO.getCiudadDestino() == null
@@ -53,6 +58,8 @@ public class EnvioService {
         else if(!cliente.isPresent()){
             throw new RuntimeException("El cliente debe haberse creado previamente");
         }
+        String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
+        double valor = calcularValorEnvio(tipo);
 
         Envio envio = new Envio(
                 envioDTO.getCiudadOrigen(),
@@ -62,7 +69,7 @@ public class EnvioService {
                 envioDTO.getCelularRecibe(),
                 calcularHoraEntrega(),
                 calcularEstado(),
-                calcularValorEnvio()
+                valor
         );
         envioRepository.save(envio);
 
@@ -80,7 +87,6 @@ public class EnvioService {
                 envio.getValorEnvio()
         );
 
-        String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
 
         Paquete paquete = new Paquete(
                tipo,
@@ -91,13 +97,26 @@ public class EnvioService {
         return respuestaDTO;
     }
 
-    public String calcularHoraEntrega(){return "La hora";}
+    public String calcularHoraEntrega(){
+        LocalTime horaLocal = LocalTime.now();
+        String hora = horaLocal.toString();
+        System.out.println("la hora "+hora);
+        return hora;}
+
     public String calcularEstado(){return "(RECIBIDO, EN RUTA, ENTREGADO)";}
 
-    public Double calcularValorEnvio(){
-        return 1.0;
-    }
+    public double calcularValorEnvio(String tipo){
+       if(tipo.equals("LIVIANO")){
+           return 30000;
+       }else if(tipo.equals("MEDIANO")){
+           return  40000;
 
+       }else if(tipo.equals("GRANDE")){
+           return 50000;
+       }else {
+           throw new RuntimeException("el valor ingresado no pertenece a un tamaño de paquete");
+       }
+    }
 
     public List<Envio> filtar(String estado){ return null;}
 }
