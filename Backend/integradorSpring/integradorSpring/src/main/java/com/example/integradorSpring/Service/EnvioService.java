@@ -138,15 +138,18 @@ public class EnvioService {
             String estadoActual = envioPorId.get().getEstado();
             System.out.println(" estado actual "+estadoActual);
 
+            // persistencia de datos.... update a la entity ....envioRepository.findById(envioCambiarEstadoDTO.getNumGuia()).stream().
             envioPorId.get().setEstado(envioEstadoDTO.cambiarEstado());
 
             System.out.println("estado actualizado ? : "+  envioPorId.get().getEstado());
-            //envioRepository.findById(envioCambiarEstadoDTO.getNumGuia()).stream().
+
 
             EnvioCreadoDTO respuestaDTO = new EnvioCreadoDTO(
                     envioPorId.get().getNumGuia(),
                     envioPorId.get().getEstado()
-            );  return respuestaDTO ;
+            );
+
+            return respuestaDTO ;
 
         }
 
