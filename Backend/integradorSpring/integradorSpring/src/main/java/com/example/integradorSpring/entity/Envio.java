@@ -92,6 +92,10 @@ public class Envio {
         return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public double getValorEnvio() {
         return valorEnvio;
     }

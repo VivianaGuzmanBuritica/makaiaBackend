@@ -2,6 +2,7 @@ package com.example.integradorSpring.Controller;
 
 
 import com.example.integradorSpring.Service.EnvioService;
+import com.example.integradorSpring.dto.EnvioCambiarEstadoDTO;
 import com.example.integradorSpring.dto.EnvioCreadoDTO;
 import com.example.integradorSpring.dto.EnvioDTO;
 import com.example.integradorSpring.dto.EnvioDetalleDTO;
@@ -22,9 +23,14 @@ public class EnvioController {
         this.service = service;
     }
 
-    @PostMapping("/cliente/envio")
+    @PostMapping("/envio")
     public EnvioCreadoDTO crear(@RequestBody EnvioDTO envio){
         return service.crear(envio);
+    }
+
+    @PostMapping("/envio/actualizar-estado")
+    public EnvioCreadoDTO cambiarEstado(@RequestBody EnvioCambiarEstadoDTO envioCambiarEstadoDTO){
+        return service.cambiarEstado(envioCambiarEstadoDTO);
     }
 
     @GetMapping("/envio/{estado}")

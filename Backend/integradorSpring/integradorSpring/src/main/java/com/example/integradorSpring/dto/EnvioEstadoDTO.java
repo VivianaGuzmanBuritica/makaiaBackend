@@ -1,6 +1,7 @@
 package com.example.integradorSpring.dto;
 
 import com.example.integradorSpring.Service.patronState.Estado;
+import com.example.integradorSpring.Service.patronState.EstadoRecibido;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class EnvioEstadoDTO {
@@ -8,16 +9,16 @@ public class EnvioEstadoDTO {
     private Estado estado;
 
     @Autowired
-    public EnvioEstadoDTO(Estado estado) {
-        this.estado = estado;
+    public EnvioEstadoDTO() {
+        this.estado = new EstadoRecibido();
     }
 
-    public EnvioEstadoDTO() {
-    }
 
     public String cambiarEstado(){
         return estado.cambiarEstado(this);
     }
+
+
     public String getEstadoInicial() {
         return ESTADO_INICIAL;
     }
