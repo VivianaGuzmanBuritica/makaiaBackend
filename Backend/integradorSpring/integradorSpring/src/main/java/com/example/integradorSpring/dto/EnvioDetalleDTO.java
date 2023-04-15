@@ -1,6 +1,6 @@
 package com.example.integradorSpring.dto;
 
-public class EnvioRespuestaDTO {
+public class EnvioDetalleDTO {
     private Integer numGuia;
     private Integer cedulaCliente;
     private String nombreCliente;
@@ -13,10 +13,10 @@ public class EnvioRespuestaDTO {
     private double peso;
     private double valorEnvio;
 
-    public EnvioRespuestaDTO() {
+    public EnvioDetalleDTO() {
     }
 
-    public EnvioRespuestaDTO(Integer  numGuia, Integer cedulaCliente, String nombreCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double valorDeclarado, double peso, double valorEnvio) {
+    public EnvioDetalleDTO(Integer  numGuia, Integer cedulaCliente, String nombreCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double valorDeclarado, double peso, double valorEnvio) {
         this.numGuia = numGuia;
         this.cedulaCliente = cedulaCliente;
         this.nombreCliente = nombreCliente;

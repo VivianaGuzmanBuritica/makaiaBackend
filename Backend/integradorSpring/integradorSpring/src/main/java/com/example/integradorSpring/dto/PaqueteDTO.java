@@ -31,4 +31,6 @@ public class PaqueteDTO {
     public double getValorDeclarado() {
         return valorDeclarado;
     }
+
+
 }

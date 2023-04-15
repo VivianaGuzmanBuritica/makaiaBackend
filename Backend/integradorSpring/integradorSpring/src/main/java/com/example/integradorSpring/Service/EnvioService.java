@@ -1,8 +1,9 @@
 package com.example.integradorSpring.Service;
 
 
+import com.example.integradorSpring.dto.EnvioCreadoDTO;
 import com.example.integradorSpring.dto.EnvioDTO;
-import com.example.integradorSpring.dto.EnvioRespuestaDTO;
+import com.example.integradorSpring.dto.EnvioDetalleDTO;
 import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.entity.Envio;
 import com.example.integradorSpring.entity.Paquete;
@@ -12,16 +13,10 @@ import com.example.integradorSpring.repository.PaqueteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
-import java.text.spi.DateFormatProvider;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.TimeZone;
 
 @Service
 public class EnvioService {
@@ -42,7 +37,7 @@ public class EnvioService {
         this.clienteRepository = clienteRepository;
     }
 
-    public EnvioRespuestaDTO crear(EnvioDTO envioDTO){
+    public EnvioCreadoDTO crear(EnvioDTO envioDTO){
 
         Optional<Cliente> cliente = this.clienteRepository.findById(envioDTO.getCedulaCliente());
 
@@ -72,24 +67,29 @@ public class EnvioService {
                 envioDTO.getNombreRecibe(),
                 envioDTO.getCelularRecibe(),
                 calcularHoraEntrega(),
-                calcularEstado(),
+                cambiarEstado(),
                 valor
         );
         envioRepository.save(envio);
 
-        EnvioRespuestaDTO respuestaDTO = new EnvioRespuestaDTO(
+        EnvioCreadoDTO respuestaDTO = new EnvioCreadoDTO(
                 envio.getNumGuia(),
-                cliente.get().getCedula(),
-                cliente.get().getNombre(),
-                envio.getCiudadOrigen(),
-                envio.getCiudadDestino(),
-                envio.getDirDestino(),
-                envio.getNombreRecibe(),
-                envio.getCelularRecibe(),
-                envioDTO.getValorDeclarado(),
-                envioDTO.getPeso(),
-                envio.getValorEnvio()
+                envio.getEstado()
         );
+
+//        EnvioDetalleDTO respuestaDTO = new EnvioDetalleDTO(
+//                envio.getNumGuia(),
+//                cliente.get().getCedula(),
+//                cliente.get().getNombre(),
+//                envio.getCiudadOrigen(),
+//                envio.getCiudadDestino(),
+//                envio.getDirDestino(),
+//                envio.getNombreRecibe(),
+//                envio.getCelularRecibe(),
+//                envioDTO.getValorDeclarado(),
+//                envioDTO.getPeso(),
+//                envio.getValorEnvio()
+//        );
 
         Paquete paquete = new Paquete(
                tipo,
@@ -111,7 +111,9 @@ public class EnvioService {
         return hora;
     }
 
-    public String calcularEstado(){return "(RECIBIDO, EN RUTA, ENTREGADO)";}
+    public String cambiarEstado(){
+
+        return "ENTREGADO";}
 
     public double calcularValorEnvio(String tipo){
        if(tipo.equals("LIVIANO")){
