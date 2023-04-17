@@ -27,7 +27,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/empleados/{cedula}")
-    public List<Empleado> buscar(@PathVariable("cedula") Integer cedula){
+    public EmpleadoDTO buscar(@PathVariable("cedula") Integer cedula){
         return service.buscar(cedula);
     }
 

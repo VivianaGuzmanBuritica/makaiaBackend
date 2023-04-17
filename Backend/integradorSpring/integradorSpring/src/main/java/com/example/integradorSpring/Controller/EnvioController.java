@@ -2,10 +2,7 @@ package com.example.integradorSpring.Controller;
 
 
 import com.example.integradorSpring.Service.EnvioService;
-import com.example.integradorSpring.dto.EnvioCambiarEstadoDTO;
-import com.example.integradorSpring.dto.EnvioCreadoDTO;
-import com.example.integradorSpring.dto.EnvioDTO;
-import com.example.integradorSpring.dto.EnvioDetalleDTO;
+import com.example.integradorSpring.dto.*;
 import com.example.integradorSpring.entity.Envio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +29,12 @@ public class EnvioController {
     public EnvioCreadoDTO cambiarEstado(@RequestBody EnvioCambiarEstadoDTO envioCambiarEstadoDTO){
         return service.cambiarEstado(envioCambiarEstadoDTO);
     }
+
+    @GetMapping("/envio/{num-gitguia}")
+    public EnvioDetalleDTO buscar(@PathVariable("num-guia") Integer numGuia){
+        return service.buscar(numGuia);
+    }
+
 
     @GetMapping("/envio/{estado}")
     public List<Envio> filtar(@PathVariable ("estado") String estado){

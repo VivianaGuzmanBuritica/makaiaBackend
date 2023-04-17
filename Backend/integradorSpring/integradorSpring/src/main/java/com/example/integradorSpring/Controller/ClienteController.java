@@ -30,7 +30,7 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes/{cedula}")
-    public List<Cliente> buscar(@PathVariable("cedula") Integer cedula){
+    public ClienteDTO buscar(@PathVariable("cedula") Integer cedula){
         return service.buscar(cedula);
     }
 

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,7 @@ public class EnvioService {
         this.envioRepository = envioRepository;
         this.paqueteRepository = paqueteRepository;
         this.clienteRepository = clienteRepository;
+        this.envios = new ArrayList<>();
     }
 
 
@@ -155,6 +157,20 @@ public class EnvioService {
 
     return null;
 
+    }
+
+    public  EnvioDetalleDTO buscar(Integer numGuia){
+
+        if(numGuia == null){
+            throw new RuntimeException("El cliente debe haberse creado previamente");}
+
+    Optional<Envio> envio = envioRepository.findById(numGuia);
+        System.out.println(envio);
+
+       EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO(
+
+       );
+        return  envioDetalleDTO;
     }
 
     public List<Envio> filtar(String estado){ return null;}

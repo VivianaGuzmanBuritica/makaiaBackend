@@ -3,10 +3,12 @@ import com.example.integradorSpring.dto.EmpleadoDTO;
 import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.entity.Empleado;
 import com.example.integradorSpring.repository.EmpleadoRepesitory;
+import net.bytebuddy.dynamic.DynamicType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmpleadoService {
@@ -41,8 +43,27 @@ public class EmpleadoService {
         return empleadoDTO;
 
     }
-    public List<Empleado> buscar(Integer cedula) {
-        return null;
+    public EmpleadoDTO buscar(Integer cedula) {
+
+        if(cedula == null){
+            throw new RuntimeException("El cliente debe haberse creado previamente");}
+
+        Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
+
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO(
+                empleado.get().getCedula(),
+                empleado.get().getNombre(),
+                empleado.get().getApellido(),
+                empleado.get().getCelular(),
+                empleado.get().getEmail(),
+                empleado.get().getDirResidencia(),
+                empleado.get().getCiudad(),
+                empleado.get().getAntigueadad(),
+                empleado.get().getRhSangre(),
+                empleado.get().getTipo()
+        );
+        return  empleadoDTO;
+
     }
 
     public List<Empleado> actualizar(Integer cedula) {
