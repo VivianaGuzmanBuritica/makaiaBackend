@@ -159,7 +159,7 @@ public class EnvioService {
 
     }
 
-    public  EnvioDetalleDTO buscar(Integer numGuia){
+  public  EnvioDetalleDTO buscar(Integer numGuia){
 
         if(numGuia == null){
             throw new RuntimeException("El cliente debe haberse creado previamente");}
@@ -167,9 +167,8 @@ public class EnvioService {
     Optional<Envio> envio = envioRepository.findById(numGuia);
         System.out.println(envio);
 
-       EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO(
+       EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO();
 
-       );
         return  envioDetalleDTO;
     }
 
