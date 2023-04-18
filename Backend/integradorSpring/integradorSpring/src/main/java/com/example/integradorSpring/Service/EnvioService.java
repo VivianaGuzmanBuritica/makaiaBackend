@@ -119,69 +119,78 @@ public class EnvioService {
         Optional<Envio> envioPorId = this.envioRepository.findById(envioCambiarEstadoDTO.getNumGuia());
         Optional<Empleado> empleadoPorId = this.empleadoRepesitory.findById(envioCambiarEstadoDTO.getCedulaEmpleado());
 
-        if(!empleadoPorId.isPresent()){
-            throw new ApiRequestException("el empleado con  cedula "+ envioCambiarEstadoDTO.getCedulaEmpleado() +" no existe en nuestra compania");
+        if(!empleadoPorId.isPresent()  || !envioPorId.isPresent()){
+            throw new ApiRequestException("el empleado con  cedula "+ envioCambiarEstadoDTO.getCedulaEmpleado() +" o el numero de guia del envio "+ envioCambiarEstadoDTO.getNumGuia() + " no son validos");
         }
 
         if(empleadoPorId.get().getTipo().equals("REPARTIDOR") || empleadoPorId.get().getTipo().equals("COORDINADOR")){
-            String estadoActual = envioPorId.get().getEstado();
+           String estadoActual = envioCambiarEstadoDTO.getEstado().toUpperCase();
 
-           Envio  envio =  envioPorId.get();
 
-            envioPorId.get().setEstado(envioEstadoDTO.cambiarEstado());
+           if(estadoActual.equals("RECIBIDO") || estadoActual.equals("EN_RUTA") || estadoActual.equals("ENTREGADO")) {
+               Envio envio = envioPorId.get();
 
-            envioRepository.save(envio);
+               envioPorId.get().setEstado(envioEstadoDTO.cambiarEstado());
 
-            EnvioCreadoDTO respuestaDTO = new EnvioCreadoDTO(
-               envioPorId.get().getNumGuia(),
-               envioPorId.get().getEstado()
-            );
+               envioRepository.save(envio);
 
-            return respuestaDTO ;
+               EnvioCreadoDTO respuestaDTO = new EnvioCreadoDTO(
+                       envioPorId.get().getNumGuia(),
+                       envioPorId.get().getEstado()
+               );
 
+               return respuestaDTO;
+           }else{
+               throw new ApiRequestException("El estado del envio no corresponde a una de las opciones habilitadas que son :(RECIBIDO, EN_RUTA, ENTREGADO) ");
+           }
+
+        }else {
+            throw  new ApiRequestException("El empleado con cedula: "+empleadoPorId+ " no esta autorizado para cambiar el estado del envio");
         }
-
-    return null;
 
     }
 
   public  EnvioDetalleDTO buscar(Integer numGuia){
 
-        if(numGuia == null){
-            throw new ApiRequestException("El cliente debe haberse creado previamente");}
+     if(numGuia == null){
+       throw new ApiRequestException("El cliente debe haberse creado previamente");}
 
     Optional<Envio> envio = envioRepository.findById(numGuia);
-        System.out.println("envio encontrado detalle"+ envio.toString());
 
-      EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO(
-            envio.get().getNumGuia(),
-            envio.get().getCiudadOrigen(),
-            envio.get().getCiudadDestino(),
-            envio.get().getDirDestino(),
-            envio.get().getNombreRecibe(),
-            envio.get().getCelularRecibe(),
-            envio.get().getValorEnvio(),
-            envio.get().getPaquete().getValorDeclarado(),
-            envio.get().getPaquete().getPeso(),
-            envio.get().getCliente().getCedula(),
-            envio.get() .getCliente().getNombre()
-      );
+        if(envio.isPresent()) {
 
-        return  envioDetalleDTO;
+            EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO(
+                    envio.get().getNumGuia(),
+                    envio.get().getCiudadOrigen(),
+                    envio.get().getCiudadDestino(),
+                    envio.get().getDirDestino(),
+                    envio.get().getNombreRecibe(),
+                    envio.get().getCelularRecibe(),
+                    envio.get().getValorEnvio(),
+                    envio.get().getPaquete().getValorDeclarado(),
+                    envio.get().getPaquete().getPeso(),
+                    envio.get().getCliente().getCedula(),
+                    envio.get().getCliente().getNombre()
+            );
+            return  envioDetalleDTO;
+        }else{
+            throw new ApiRequestException("La guia con el ID: "+ numGuia + " no es valido");
+        }
+
     }
 
     public List<Envio> filtar(String estado){
 
         String estadoToUpperCase = estado.toUpperCase();
 
-        if(estado == null){
+       if(estado == null){
             throw new ApiRequestException("el estado no debe ser nulo");}
 
        if(!estadoToUpperCase.equals("RECIBIDO") && !estadoToUpperCase.equals("EN_RUTA") && !estadoToUpperCase.equals("ENTREGADO")){
             throw new ApiRequestException("el estado que esta consultando no existe, asegurese de haber colocado alguna de las siguientes opciones(RECIBIDO - EN_RUTA, ENTREGADO)");
         }
 
-        List<Envio> resultado= envioRepository.filtrarPorEstado(estadoToUpperCase).stream().collect(Collectors.toList());
+       List<Envio> resultado= envioRepository.filtrarPorEstado(estadoToUpperCase).stream().collect(Collectors.toList());
 
         if(resultado.isEmpty()){
             throw  new ApiRequestException("No se encontraron envios con estado : "+ estadoToUpperCase);
