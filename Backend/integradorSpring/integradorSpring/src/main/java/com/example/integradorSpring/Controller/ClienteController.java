@@ -35,8 +35,8 @@ public class ClienteController {
     }
 
     @PutMapping("/clientes/{cedula}")
-    public List<Cliente> actualizar(@PathVariable("cedula") Integer cedula, @RequestBody Cliente cliente){
-        return service.actualizar(cedula);
+    public ClienteDTO actualizar(@PathVariable("cedula") Integer cedula, @RequestBody ClienteDTO cliente){
+        return service.actualizar(cedula, cliente);
     }
 
     @DeleteMapping("/clientes/{cedula}")

@@ -49,7 +49,6 @@ public class EnvioService {
 
         Optional<Cliente> cliente = this.clienteRepository.findById(envioDTO.getCedulaCliente());
         String estado =  envioEstadoDTO.getEstadoInicial();
-        System.out.println("PATRON STATE DTO "+estado);
 
         if(envioDTO.getCedulaCliente() == null
                 || envioDTO.getCiudadOrigen() == null
@@ -69,7 +68,6 @@ public class EnvioService {
 
         String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
        double valor = com.example.integradorSpring.Model.Envio.calcularValorEnvio(tipo);
-
 
         Paquete paquete = new Paquete(
                 tipo,
@@ -111,7 +109,6 @@ public class EnvioService {
         DateTimeFormatter horaFormateada = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
 
         String hora = horaFormateada.toString();
-        System.out.println("la hora inicial "+horaLocal + "  ENTREGA  "+ horaEntrega);
         return hora;
     }
 
@@ -126,17 +123,13 @@ public class EnvioService {
 
         if(empleadoPorId.get().getTipo().equals("REPARTIDOR") || empleadoPorId.get().getTipo().equals("COORDINADOR")){
             String estadoActual = envioPorId.get().getEstado();
-            System.out.println(" estado actual "+estadoActual);
 
             // persistencia de datos.... update a la entity ....envioRepository.findById(envioCambiarEstadoDTO.getNumGuia()).stream().
             envioPorId.get().setEstado(envioEstadoDTO.cambiarEstado());
 
-            System.out.println("estado actualizado ? : "+  envioPorId.get().getEstado());
-
-
             EnvioCreadoDTO respuestaDTO = new EnvioCreadoDTO(
-                    envioPorId.get().getNumGuia(),
-                    envioPorId.get().getEstado()
+               envioPorId.get().getNumGuia(),
+               envioPorId.get().getEstado()
             );
 
             return respuestaDTO ;
@@ -163,15 +156,10 @@ public class EnvioService {
             envio.get().getNombreRecibe(),
             envio.get().getCelularRecibe(),
             envio.get().getValorEnvio(),
-            envio.get().getValorDeclarado(),
-            envio.get().getPeso(),
-            envio.get().getCedulaCliente(),
-            envio.get().getNombreCliente()
-//            envio.get().getPaquete().getValorDeclarado(),
-//            envio.get().getPaquete().getPeso(),
-//            envio.get().getCliente().getCedula(),
-//            envio.get() .getCliente().getNombre()
-
+            envio.get().getPaquete().getValorDeclarado(),
+            envio.get().getPaquete().getPeso(),
+            envio.get().getCliente().getCedula(),
+            envio.get() .getCliente().getNombre()
       );
 
         return  envioDetalleDTO;

@@ -62,8 +62,34 @@ public class ClienteService {
         return clienteDTO;
     }
 
-    public List<Cliente> actualizar(Integer cedula) {
-        return null;
+    public ClienteDTO actualizar(Integer cedula, ClienteDTO clienteActualizado) {
+
+        if(cedula == null){
+            throw new RuntimeException("El cliente debe haberse creado previamente");}
+
+        Optional<Cliente> clienteActual =  clienteRepository.findById(cedula);
+
+        Cliente cliente = clienteActual.get();
+        clienteActual.get().setNombre(clienteActualizado.getNombre());
+        clienteActual.get().setApellido(clienteActualizado.getApellido());
+        clienteActual.get().setCelular(clienteActualizado.getCelular());
+        clienteActual.get().setEmail(clienteActualizado.getEmail());
+        clienteActual.get().setDirResidencia(clienteActualizado.getDirResidencia());
+        clienteActual.get().setCiudad(clienteActualizado.getCiudad());
+
+
+        clienteRepository.save(cliente);
+
+        ClienteDTO clienteDTO = new ClienteDTO(
+           clienteActual.get().getCedula(),
+           clienteActual.get().getNombre(),
+           clienteActual.get().getApellido(),
+           clienteActual.get().getCelular(),
+           clienteActual.get().getEmail(),
+           clienteActual.get().getDirResidencia(),
+           clienteActual.get().getCiudad());
+
+        return clienteDTO;
     }
 
     public boolean eliminar(Integer cedula) {

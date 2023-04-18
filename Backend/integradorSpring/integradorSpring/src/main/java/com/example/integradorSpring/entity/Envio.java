@@ -42,19 +42,6 @@ public class Envio {
     @JoinColumn(name = "paquete")
     private Paquete paquete;
 
-
-    @Transient
-    private String nombreCliente;
-
-    @Transient
-    private Integer cedulaCliente;
-
-    @Transient
-    private double valorDeclarado;
-
-    @Transient
-    private double peso;
-
     public Envio() {
     }
 
@@ -68,13 +55,8 @@ public class Envio {
         this.horaEntrega = horaEntrega;
         this.estado = estado;
         this.valorEnvio = valorEnvio;
-
         this.cliente = cliente;
-        this.nombreCliente = cliente.getNombre();
-        this.cedulaCliente = cliente.getCedula();
         this.paquete = paquete;
-        this.valorDeclarado = paquete.getValorDeclarado();
-        this.peso=paquete.getPeso();
 
     }
 
@@ -98,21 +80,7 @@ public class Envio {
         return nombreRecibe;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
 
-    public Integer getCedulaCliente() {
-        return cedulaCliente;
-    }
-
-    public double getValorDeclarado() {
-        return valorDeclarado;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
 
     public String getCelularRecibe() {
         return celularRecibe;
