@@ -93,6 +93,14 @@ public class ClienteService {
     }
 
     public boolean eliminar(Integer cedula) {
-        return false;
+
+        Optional<Cliente> cliente =  clienteRepository.findById(cedula);
+
+        if(cliente.isPresent()){
+            Cliente clienteEncontrado = cliente.get();
+            clienteRepository.delete(clienteEncontrado);
+            return true;
+        }return false;
+
     }
 }
