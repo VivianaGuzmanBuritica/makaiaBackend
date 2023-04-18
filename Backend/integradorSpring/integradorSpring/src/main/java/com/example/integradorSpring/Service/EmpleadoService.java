@@ -66,11 +66,48 @@ public class EmpleadoService {
 
     }
 
-    public List<Empleado> actualizar(Integer cedula) {
-        return null;
+    public EmpleadoDTO actualizar(Integer cedula, EmpleadoDTO empleadoActualizado)
+    {
+        Optional<Empleado> empleadoActual = empleadoRepesitory.findById(cedula);
+
+        Empleado empleado = empleadoActual.get();
+        empleadoActual.get().setAntigueadad(empleadoActualizado.getAntiguedad());
+        empleadoActual.get().setApellido(empleadoActualizado.getApellido());
+        empleadoActual.get().setCelular(empleadoActualizado.getCelular());
+        empleadoActual.get().setCiudad(empleadoActualizado.getCiudad());
+        empleadoActual.get().setEmail(empleadoActualizado.getEmail());
+        empleadoActual.get().setDirResidencia(empleadoActualizado.getDirResidencia());
+        empleadoActual.get().setNombre(empleadoActualizado.getNombre());
+        empleadoActual.get().setRhSangre(empleadoActualizado.getRhSangre());
+        empleadoActual.get().setTipo(empleadoActualizado.getTipo());
+
+        empleadoRepesitory.save(empleado);
+
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO(
+                empleadoActual.get().getCedula(),
+                empleadoActual.get().getNombre(),
+                empleadoActual.get().getApellido(),
+                empleadoActual.get().getCelular(),
+                empleadoActual.get().getEmail(),
+                empleadoActual.get().getDirResidencia(),
+                empleadoActual.get().getCiudad(),
+                empleadoActual.get().getAntigueadad(),
+                empleadoActual.get().getRhSangre(),
+                empleadoActual.get().getTipo()
+        );
+        return  empleadoDTO;
+
     }
 
     public boolean eliminar(Integer cedula) {
+
+        Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
+
+        if(empleado.isPresent()){
+        Empleado empleadoEncontrado = empleado.get();
+        empleadoRepesitory.delete(empleadoEncontrado);
+        return true;
+        }
         return false;
     }
 }

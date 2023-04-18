@@ -32,8 +32,8 @@ public class EmpleadoController {
     }
 
     @PutMapping("/empleados/{cedula}")
-    public List<Empleado> actualizar(@PathVariable("cedula") Integer cedula, @RequestBody Empleado cliente){
-        return service.actualizar(cedula);
+    public EmpleadoDTO actualizar(@PathVariable("cedula") Integer cedula, @RequestBody EmpleadoDTO empleado){
+        return service.actualizar(cedula, empleado);
     }
 
     @DeleteMapping("/empleados/{cedula}")
