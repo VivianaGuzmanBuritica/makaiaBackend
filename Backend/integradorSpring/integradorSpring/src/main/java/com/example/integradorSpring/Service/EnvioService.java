@@ -7,6 +7,7 @@ import com.example.integradorSpring.entity.Empleado;
 import com.example.integradorSpring.entity.Envio;
 
 import com.example.integradorSpring.entity.Paquete;
+import com.example.integradorSpring.exception.ApiRequestException;
 import com.example.integradorSpring.repository.ClienteRepository;
 import com.example.integradorSpring.repository.EmpleadoRepesitory;
 import com.example.integradorSpring.repository.EnvioRepository;
@@ -60,11 +61,11 @@ public class EnvioService {
                 || envioDTO.getPeso() == 0
                 || envioDTO.getValorDeclarado() == 0
         ){
-           throw new RuntimeException("Todos los campos deben ser diligenciados y diferente de nulo o 0");
+           throw new ApiRequestException("Todos los campos deben ser diligenciados y diferente de nulo o 0");
         }
 
         else if(!cliente.isPresent()){
-            throw new RuntimeException("El cliente debe haberse creado previamente");
+            throw new ApiRequestException("El cliente debe haberse creado previamente");
         }
 
         String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
@@ -119,7 +120,7 @@ public class EnvioService {
         Optional<Empleado> empleadoPorId = this.empleadoRepesitory.findById(envioCambiarEstadoDTO.getCedulaEmpleado());
 
         if(!empleadoPorId.isPresent()){
-            throw new RuntimeException("el empleado con  cedula "+ envioCambiarEstadoDTO.getCedulaEmpleado() +" no existe en nuestra compania");
+            throw new ApiRequestException("el empleado con  cedula "+ envioCambiarEstadoDTO.getCedulaEmpleado() +" no existe en nuestra compania");
         }
 
         if(empleadoPorId.get().getTipo().equals("REPARTIDOR") || empleadoPorId.get().getTipo().equals("COORDINADOR")){
@@ -147,7 +148,7 @@ public class EnvioService {
   public  EnvioDetalleDTO buscar(Integer numGuia){
 
         if(numGuia == null){
-            throw new RuntimeException("El cliente debe haberse creado previamente");}
+            throw new ApiRequestException("El cliente debe haberse creado previamente");}
 
     Optional<Envio> envio = envioRepository.findById(numGuia);
         System.out.println("envio encontrado detalle"+ envio.toString());
@@ -170,7 +171,23 @@ public class EnvioService {
     }
 
     public List<Envio> filtar(String estado){
-    return envioRepository.filtrarPorEstado(estado).stream().collect(Collectors.toList());
+
+        String estadoToUpperCase = estado.toUpperCase();
+
+        if(estado == null){
+            throw new ApiRequestException("el estado no debe ser nulo");}
+
+       if(!estadoToUpperCase.equals("RECIBIDO") && !estadoToUpperCase.equals("EN_RUTA") && !estadoToUpperCase.equals("ENTREGADO")){
+            throw new ApiRequestException("el estado que esta consultando no existe, asegurese de haber colocado alguna de las siguientes opciones(RECIBIDO - EN_RUTA, ENTREGADO)");
+        }
+
+        List<Envio> resultado= envioRepository.filtrarPorEstado(estadoToUpperCase).stream().collect(Collectors.toList());
+
+        if(resultado.isEmpty()){
+            throw  new ApiRequestException("No se encontraron envios con estado : "+ estadoToUpperCase);
+        }
+
+    return resultado;
     }
 }
 

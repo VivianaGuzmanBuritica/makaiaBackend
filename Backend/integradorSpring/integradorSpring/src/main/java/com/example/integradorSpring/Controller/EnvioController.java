@@ -4,6 +4,7 @@ package com.example.integradorSpring.Controller;
 import com.example.integradorSpring.Service.EnvioService;
 import com.example.integradorSpring.dto.*;
 import com.example.integradorSpring.entity.Envio;
+import com.example.integradorSpring.exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,8 @@ public class EnvioController {
         return service.buscar(numGuia);
     }
     @GetMapping("/envio/{estado}/filtrar")
-    public List<Envio> filtar(@PathVariable ("estado") String estado){
+    public List<Envio> filtar (@PathVariable ("estado") String estado){
+
         return service.filtar(estado);
     }
 }
