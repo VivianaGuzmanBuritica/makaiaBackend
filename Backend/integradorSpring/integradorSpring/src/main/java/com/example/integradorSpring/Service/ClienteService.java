@@ -26,8 +26,12 @@ public class ClienteService {
 
 
     public ClienteDTO crear(ClienteDTO clienteDTO){
+
+        if(clienteDTO == null){
+            throw new ApiRequestException("El cliente no puede ser nulo ");
+        }
         if(clienteDTO.getCedula() == null || clienteDTO.getApellido() == null || clienteDTO.getNombre() == null){
-            throw new RuntimeException("la cedula, el apellido o el nombre son invalidos");
+            throw new ApiRequestException("la cedula, el apellido o el nombre son invalidos");
         }
 
         Cliente cliente = new Cliente(
@@ -47,7 +51,7 @@ public class ClienteService {
     public ClienteDTO buscar(Integer cedula) {
 
         if(cedula == null){
-        throw new RuntimeException("El cliente debe haberse creado previamente");}
+        throw new ApiRequestException("El cliente debe haberse creado previamente");}
 
        Optional<Cliente> cliente =  clienteRepository.findById(cedula);
 
@@ -66,31 +70,34 @@ public class ClienteService {
     public ClienteDTO actualizar(Integer cedula, ClienteDTO clienteActualizado) {
 
         if(cedula == null){
-            throw new RuntimeException("El cliente debe haberse creado previamente");}
+            throw new ApiRequestException("El cliente debe haberse creado previamente");}
 
         Optional<Cliente> clienteActual =  clienteRepository.findById(cedula);
 
-        Cliente cliente = clienteActual.get();
-        clienteActual.get().setNombre(clienteActualizado.getNombre());
-        clienteActual.get().setApellido(clienteActualizado.getApellido());
-        clienteActual.get().setCelular(clienteActualizado.getCelular());
-        clienteActual.get().setEmail(clienteActualizado.getEmail());
-        clienteActual.get().setDirResidencia(clienteActualizado.getDirResidencia());
-        clienteActual.get().setCiudad(clienteActualizado.getCiudad());
+        if(!clienteActual.isPresent()) {
+            Cliente cliente = clienteActual.get();
+            clienteActual.get().setNombre(clienteActualizado.getNombre());
+            clienteActual.get().setApellido(clienteActualizado.getApellido());
+            clienteActual.get().setCelular(clienteActualizado.getCelular());
+            clienteActual.get().setEmail(clienteActualizado.getEmail());
+            clienteActual.get().setDirResidencia(clienteActualizado.getDirResidencia());
+            clienteActual.get().setCiudad(clienteActualizado.getCiudad());
 
+            clienteRepository.save(cliente);
 
-        clienteRepository.save(cliente);
+            ClienteDTO clienteDTO = new ClienteDTO(
+                    clienteActual.get().getCedula(),
+                    clienteActual.get().getNombre(),
+                    clienteActual.get().getApellido(),
+                    clienteActual.get().getCelular(),
+                    clienteActual.get().getEmail(),
+                    clienteActual.get().getDirResidencia(),
+                    clienteActual.get().getCiudad());
 
-        ClienteDTO clienteDTO = new ClienteDTO(
-           clienteActual.get().getCedula(),
-           clienteActual.get().getNombre(),
-           clienteActual.get().getApellido(),
-           clienteActual.get().getCelular(),
-           clienteActual.get().getEmail(),
-           clienteActual.get().getDirResidencia(),
-           clienteActual.get().getCiudad());
-
-        return clienteDTO;
+            return clienteDTO;
+        }else{
+            throw new ApiRequestException("El cliente con cedula "+cedula+" no existe");
+        }
     }
 
     public String eliminar(Integer cedula) {
@@ -106,8 +113,6 @@ public class ClienteService {
             Cliente clienteEncontrado = cliente.get();
             clienteRepository.delete(clienteEncontrado);
               return "El cliente con cedula "+cliente.get().getCedula()+ " fue eliminado con exito";
-
-
 
     }
 }

@@ -71,6 +71,10 @@ public class EmpleadoService {
     {
         Optional<Empleado> empleadoActual = empleadoRepesitory.findById(cedula);
 
+        if(!empleadoActual.isPresent()){
+            throw new ApiRequestException("El empleado con cedula"+cedula+ "no existe ");
+        }
+
         Empleado empleado = empleadoActual.get();
         empleadoActual.get().setAntigueadad(empleadoActualizado.getAntiguedad());
         empleadoActual.get().setApellido(empleadoActualizado.getApellido());
