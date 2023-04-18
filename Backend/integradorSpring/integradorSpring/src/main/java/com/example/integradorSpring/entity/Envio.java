@@ -17,7 +17,6 @@ public class Envio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer numGuia;
 
-
     @Column(name = "ciudadOrigen")
     private String ciudadOrigen;
     @Column(name = "ciudadDestino")
@@ -41,14 +40,25 @@ public class Envio {
 
     @OneToOne
     @JoinColumn(name = "paquete")
-    private Cliente paquete;
+    private Paquete paquete;
 
 
+    @Transient
+    private String nombreCliente;
+
+    @Transient
+    private Integer cedulaCliente;
+
+    @Transient
+    private double valorDeclarado;
+
+    @Transient
+    private double peso;
 
     public Envio() {
     }
 
-    public Envio( String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio) {
+    public Envio( String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Cliente cliente, Paquete paquete) {
 
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
@@ -58,6 +68,14 @@ public class Envio {
         this.horaEntrega = horaEntrega;
         this.estado = estado;
         this.valorEnvio = valorEnvio;
+
+        this.cliente = cliente;
+        this.nombreCliente = cliente.getNombre();
+        this.cedulaCliente = cliente.getCedula();
+        this.paquete = paquete;
+        this.valorDeclarado = paquete.getValorDeclarado();
+        this.peso=paquete.getPeso();
+
     }
 
     public Integer getNumGuia() {
@@ -78,6 +96,22 @@ public class Envio {
 
     public String getNombreRecibe() {
         return nombreRecibe;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public Integer getCedulaCliente() {
+        return cedulaCliente;
+    }
+
+    public double getValorDeclarado() {
+        return valorDeclarado;
+    }
+
+    public double getPeso() {
+        return peso;
     }
 
     public String getCelularRecibe() {
@@ -101,5 +135,11 @@ public class Envio {
     }
 
 
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public Paquete getPaquete() {
+        return paquete;
+    }
 }

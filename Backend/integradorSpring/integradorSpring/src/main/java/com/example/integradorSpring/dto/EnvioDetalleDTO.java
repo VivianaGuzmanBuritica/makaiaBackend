@@ -13,21 +13,23 @@ public class EnvioDetalleDTO {
     private double peso;
     private double valorEnvio;
 
-    public EnvioDetalleDTO() {
-    }
 
-    public EnvioDetalleDTO(Integer  numGuia, Integer cedulaCliente, String nombreCliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double valorDeclarado, double peso, double valorEnvio) {
+
+    public EnvioDetalleDTO(Integer  numGuia,  String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, double valorEnvio,double valorDeclarado, double peso,  Integer cedulaCliente, String nombreCliente) {
         this.numGuia = numGuia;
-        this.cedulaCliente = cedulaCliente;
-        this.nombreCliente = nombreCliente;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
         this.dirDestino = dirDestino;
         this.nombreRecibe = nombreRecibe;
         this.celularRecibe = celularRecibe;
+        this.valorEnvio = valorEnvio;
+        this.cedulaCliente = cedulaCliente;
+        this.nombreCliente = nombreCliente;
         this.valorDeclarado = valorDeclarado;
         this.peso = peso;
-        this.valorEnvio = valorEnvio;
+    }
+
+    public EnvioDetalleDTO() {
     }
 
     public Integer getNumGuia() {

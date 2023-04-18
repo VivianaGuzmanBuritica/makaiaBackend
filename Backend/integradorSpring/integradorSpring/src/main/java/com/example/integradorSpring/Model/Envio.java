@@ -54,4 +54,20 @@ public class Envio {
                 ", paquete=" + paquete +
                 '}';
     }
+
+
+
+
+    public static double calcularValorEnvio(String tipo){
+        if(tipo.equals("LIVIANO")){
+            return 30000;
+        }else if(tipo.equals("MEDIANO")){
+            return  40000;
+
+        }else if(tipo.equals("GRANDE")){
+            return 50000;
+        }else {
+            throw new RuntimeException("el valor ingresado no pertenece a un tamaño de paquete");
+        }
+    }
 }

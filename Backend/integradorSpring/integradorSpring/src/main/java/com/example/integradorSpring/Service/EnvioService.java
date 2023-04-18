@@ -5,6 +5,7 @@ import com.example.integradorSpring.dto.*;
 import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.entity.Empleado;
 import com.example.integradorSpring.entity.Envio;
+
 import com.example.integradorSpring.entity.Paquete;
 import com.example.integradorSpring.repository.ClienteRepository;
 import com.example.integradorSpring.repository.EmpleadoRepesitory;
@@ -12,6 +13,7 @@ import com.example.integradorSpring.repository.EnvioRepository;
 import com.example.integradorSpring.repository.PaqueteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,16 +23,13 @@ import java.util.Optional;
 
 @Service
 public class EnvioService {
-
     private List<Envio> envios;
-
     private EnvioRepository envioRepository;
     private PaqueteRepository paqueteRepository;
     private ClienteRepository clienteRepository;
-
     private EmpleadoRepesitory empleadoRepesitory;
     private  PaqueteService paqueteService;
-    private Paquete paquete;
+
     private EnvioEstadoDTO envioEstadoDTO = new EnvioEstadoDTO();
 
 
@@ -45,8 +44,6 @@ public class EnvioService {
         this.clienteRepository = clienteRepository;
         this.envios = new ArrayList<>();
     }
-
-
 
     public EnvioCreadoDTO crear(EnvioDTO envioDTO){
 
@@ -69,10 +66,18 @@ public class EnvioService {
         else if(!cliente.isPresent()){
             throw new RuntimeException("El cliente debe haberse creado previamente");
         }
-      // String estado =  envioEstadoDTO.getEstadoInicial();
-        //System.out.println(estado);
+
         String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
-        double valor = calcularValorEnvio(tipo);
+       double valor = com.example.integradorSpring.Model.Envio.calcularValorEnvio(tipo);
+
+
+        Paquete paquete = new Paquete(
+                tipo,
+                envioDTO.getPeso(),
+                envioDTO.getValorDeclarado()
+        );
+
+        paqueteRepository.save(paquete);
 
         Envio envio = new Envio(
                 envioDTO.getCiudadOrigen(),
@@ -82,7 +87,11 @@ public class EnvioService {
                 envioDTO.getCelularRecibe(),
                 calcularHoraEntrega(),
                 estado,
-                valor
+                valor,
+                cliente.get(),
+                paquete
+
+
         );
         envioRepository.save(envio);
 
@@ -91,15 +100,8 @@ public class EnvioService {
                 envio.getEstado()
         );
 
-        Paquete paquete = new Paquete(
-               tipo,
-               envioDTO.getPeso(),
-               envioDTO.getValorDeclarado()
-        );
 
-
-
-        return respuestaDTO;
+      return respuestaDTO;
     }
 
     public String calcularHoraEntrega(){
@@ -113,21 +115,7 @@ public class EnvioService {
         return hora;
     }
 
-    public double calcularValorEnvio(String tipo){
-       if(tipo.equals("LIVIANO")){
-           return 30000;
-       }else if(tipo.equals("MEDIANO")){
-           return  40000;
-
-       }else if(tipo.equals("GRANDE")){
-           return 50000;
-       }else {
-           throw new RuntimeException("el valor ingresado no pertenece a un tamaño de paquete");
-       }
-    }
-
     public EnvioCreadoDTO cambiarEstado(EnvioCambiarEstadoDTO envioCambiarEstadoDTO){
-
 
         Optional<Envio> envioPorId = this.envioRepository.findById(envioCambiarEstadoDTO.getNumGuia());
         Optional<Empleado> empleadoPorId = this.empleadoRepesitory.findById(envioCambiarEstadoDTO.getCedulaEmpleado());
@@ -165,9 +153,26 @@ public class EnvioService {
             throw new RuntimeException("El cliente debe haberse creado previamente");}
 
     Optional<Envio> envio = envioRepository.findById(numGuia);
-        System.out.println(envio);
+        System.out.println("envio encontrado detalle"+ envio.toString());
 
-       EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO();
+      EnvioDetalleDTO envioDetalleDTO = new EnvioDetalleDTO(
+            envio.get().getNumGuia(),
+            envio.get().getCiudadOrigen(),
+            envio.get().getCiudadDestino(),
+            envio.get().getDirDestino(),
+            envio.get().getNombreRecibe(),
+            envio.get().getCelularRecibe(),
+            envio.get().getValorEnvio(),
+            envio.get().getValorDeclarado(),
+            envio.get().getPeso(),
+            envio.get().getCedulaCliente(),
+            envio.get().getNombreCliente()
+//            envio.get().getPaquete().getValorDeclarado(),
+//            envio.get().getPaquete().getPeso(),
+//            envio.get().getCliente().getCedula(),
+//            envio.get() .getCliente().getNombre()
+
+      );
 
         return  envioDetalleDTO;
     }
@@ -175,16 +180,3 @@ public class EnvioService {
     public List<Envio> filtar(String estado){ return null;}
 }
 
-//        EnvioDetalleDTO respuestaDTO = new EnvioDetalleDTO(
-//                envio.getNumGuia(),
-//                cliente.get().getCedula(),
-//                cliente.get().getNombre(),
-//                envio.getCiudadOrigen(),
-//                envio.getCiudadDestino(),
-//                envio.getDirDestino(),
-//                envio.getNombreRecibe(),
-//                envio.getCelularRecibe(),
-//                envioDTO.getValorDeclarado(),
-//                envioDTO.getPeso(),
-//                envio.getValorEnvio()
-//        );
