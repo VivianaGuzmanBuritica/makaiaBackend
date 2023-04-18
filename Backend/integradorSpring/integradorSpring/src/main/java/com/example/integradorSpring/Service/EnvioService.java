@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EnvioService {
@@ -168,6 +169,8 @@ public class EnvioService {
         return  envioDetalleDTO;
     }
 
-    public List<Envio> filtar(String estado){ return null;}
+    public List<Envio> filtar(String estado){
+    return envioRepository.filtrarPorEstado(estado).stream().collect(Collectors.toList());
+    }
 }
 
