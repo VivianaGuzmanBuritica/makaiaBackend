@@ -124,8 +124,11 @@ public class EnvioService {
         if(empleadoPorId.get().getTipo().equals("REPARTIDOR") || empleadoPorId.get().getTipo().equals("COORDINADOR")){
             String estadoActual = envioPorId.get().getEstado();
 
-            // persistencia de datos.... update a la entity ....envioRepository.findById(envioCambiarEstadoDTO.getNumGuia()).stream().
+           Envio  envio =  envioPorId.get();
+
             envioPorId.get().setEstado(envioEstadoDTO.cambiarEstado());
+
+            envioRepository.save(envio);
 
             EnvioCreadoDTO respuestaDTO = new EnvioCreadoDTO(
                envioPorId.get().getNumGuia(),
