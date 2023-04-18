@@ -37,7 +37,7 @@ public class EmpleadoController {
     }
 
     @DeleteMapping("/empleados/{cedula}")
-    public boolean eliminar(@PathVariable("cedula") Integer cedula){
+    public String eliminar(@PathVariable("cedula") Integer cedula){
         return service.eliminar(cedula);
     }
 }

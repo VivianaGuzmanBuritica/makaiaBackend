@@ -2,6 +2,7 @@ package com.example.integradorSpring.Service;
 import com.example.integradorSpring.dto.EmpleadoDTO;
 import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.entity.Empleado;
+import com.example.integradorSpring.exception.ApiRequestException;
 import com.example.integradorSpring.repository.EmpleadoRepesitory;
 import net.bytebuddy.dynamic.DynamicType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class EmpleadoService {
     public EmpleadoDTO crear(EmpleadoDTO empleadoDTO){
 
         if(empleadoDTO.getCedula() == null  || empleadoDTO.getApellido() == null || empleadoDTO.getNombre() == null){
-            throw new RuntimeException("la cedula, el apellido o el nombre son invalidos");
+            throw new ApiRequestException("la cedula, el apellido o el nombre son invalidos");
         }
         Empleado empleado = new Empleado(
                 empleadoDTO.getCedula(),
@@ -46,7 +47,7 @@ public class EmpleadoService {
     public EmpleadoDTO buscar(Integer cedula) {
 
         if(cedula == null){
-            throw new RuntimeException("El cliente debe haberse creado previamente");}
+            throw new ApiRequestException("El cliente debe haberse creado previamente");}
 
         Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
 
@@ -99,15 +100,20 @@ public class EmpleadoService {
 
     }
 
-    public boolean eliminar(Integer cedula) {
+    public String eliminar(Integer cedula) {
+
+        if(cedula == null)
+        throw new ApiRequestException("la cedula no debe ser nula");
 
         Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
 
-        if(empleado.isPresent()){
+        if(!empleado.isPresent()){
+            throw new ApiRequestException("Empleado con cedula "+empleado.get().getCedula()+ " no se encuentra en la base de datos");
+        }
         Empleado empleadoEncontrado = empleado.get();
         empleadoRepesitory.delete(empleadoEncontrado);
-        return true;
-        }
-        return false;
+
+        return "Empleado con cedula "+empleado.get().getCedula()+ " fue eliminado con exito";
+
     }
 }
