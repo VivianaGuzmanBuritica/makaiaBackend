@@ -102,13 +102,13 @@ public class EmpleadoService {
 
     public String eliminar(Integer cedula) {
 
-        if(cedula == null)
-        throw new ApiRequestException("la cedula no debe ser nula");
-
+        if(cedula == null) {
+            throw new ApiRequestException("la cedula no debe ser nula");
+        }
         Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
 
-        if(!empleado.isPresent()){
-            throw new ApiRequestException("Empleado con cedula "+empleado.get().getCedula()+ " no se encuentra en la base de datos");
+        if(!empleado.isEmpty()){
+           throw new ApiRequestException("Empleado con cedula "+ cedula + " no se encuentra en la base de datos");
         }
         Empleado empleadoEncontrado = empleado.get();
         empleadoRepesitory.delete(empleadoEncontrado);

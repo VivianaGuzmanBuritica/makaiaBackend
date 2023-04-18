@@ -3,6 +3,7 @@ package com.example.integradorSpring.Service;
 
 import com.example.integradorSpring.dto.ClienteDTO;
 import com.example.integradorSpring.entity.Cliente;
+import com.example.integradorSpring.exception.ApiRequestException;
 import com.example.integradorSpring.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,15 +93,21 @@ public class ClienteService {
         return clienteDTO;
     }
 
-    public boolean eliminar(Integer cedula) {
+    public String eliminar(Integer cedula) {
 
+        if(cedula == null) {
+            throw new ApiRequestException("la cedula no debe ser nula");
+        }
         Optional<Cliente> cliente =  clienteRepository.findById(cedula);
 
-        if(cliente.isPresent()){
+        if(!cliente.isPresent()){
+            throw new ApiRequestException("El cliente con la cedula" +cedula +" no existe");
+        }
             Cliente clienteEncontrado = cliente.get();
             clienteRepository.delete(clienteEncontrado);
-            return true;
-        }return false;
+              return "El cliente con cedula "+cliente.get().getCedula()+ " fue eliminado con exito";
+
+
 
     }
 }
