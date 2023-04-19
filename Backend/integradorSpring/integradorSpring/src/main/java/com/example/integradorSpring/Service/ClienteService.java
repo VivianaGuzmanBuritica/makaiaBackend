@@ -53,7 +53,11 @@ public class ClienteService {
         if(cedula == null){
         throw new ApiRequestException("El cliente debe haberse creado previamente");}
 
-       Optional<Cliente> cliente =  clienteRepository.findById(cedula);
+        Optional<Cliente> cliente =  clienteRepository.findById(cedula);
+
+        if(!cliente.isPresent()){
+            throw new ApiRequestException("El cliente con cedula" + cedula +"no existe en la base de datos");
+        }
 
         ClienteDTO clienteDTO = new ClienteDTO(
                 cliente.get().getCedula(),
@@ -74,7 +78,7 @@ public class ClienteService {
 
         Optional<Cliente> clienteActual =  clienteRepository.findById(cedula);
 
-        if(!clienteActual.isPresent()) {
+        if(clienteActual.isPresent()) {
             Cliente cliente = clienteActual.get();
             clienteActual.get().setNombre(clienteActualizado.getNombre());
             clienteActual.get().setApellido(clienteActualizado.getApellido());

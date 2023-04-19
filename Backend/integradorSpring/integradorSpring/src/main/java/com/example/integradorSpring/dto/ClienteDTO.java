@@ -52,4 +52,32 @@ public class ClienteDTO {
     public String getCiudad() {
         return ciudad;
     }
+
+    public void setCedula(Integer cedula) {
+        this.cedula = cedula;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDirResidencia(String dirResidencia) {
+        this.dirResidencia = dirResidencia;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
 }
