@@ -69,4 +69,44 @@ public class EmpleadoDTO {
     public String getCiudad() {
         return ciudad;
     }
+
+    public void setCedula(Integer cedula) {
+        this.cedula = cedula;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDirResidencia(String dirResidencia) {
+        this.dirResidencia = dirResidencia;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public void setAntiguedad(double antiguedad) {
+        this.antiguedad = antiguedad;
+    }
+
+    public void setRhSangre(String rhSangre) {
+        this.rhSangre = rhSangre;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

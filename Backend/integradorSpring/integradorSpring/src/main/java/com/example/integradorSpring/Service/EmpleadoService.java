@@ -51,6 +51,10 @@ public class EmpleadoService {
 
         Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
 
+        if(!empleado.isPresent()){
+            throw new ApiRequestException("El empleado con cedula "+cedula+" no existe");
+        }
+
         EmpleadoDTO empleadoDTO = new EmpleadoDTO(
                 empleado.get().getCedula(),
                 empleado.get().getNombre(),
@@ -67,8 +71,10 @@ public class EmpleadoService {
 
     }
 
-    public EmpleadoDTO actualizar(Integer cedula, EmpleadoDTO empleadoActualizado)
-    {
+    public EmpleadoDTO actualizar(Integer cedula, EmpleadoDTO empleadoActualizado){
+        if(cedula == null){
+            throw new ApiRequestException("El cliente debe haberse creado previamente");}
+
         Optional<Empleado> empleadoActual = empleadoRepesitory.findById(cedula);
 
         if(!empleadoActual.isPresent()){
@@ -98,8 +104,7 @@ public class EmpleadoService {
                 empleadoActual.get().getCiudad(),
                 empleadoActual.get().getAntigueadad(),
                 empleadoActual.get().getRhSangre(),
-                empleadoActual.get().getTipo()
-        );
+                empleadoActual.get().getTipo());
         return  empleadoDTO;
 
     }
@@ -111,13 +116,11 @@ public class EmpleadoService {
         }
         Optional<Empleado> empleado = empleadoRepesitory.findById(cedula);
 
-        if(!empleado.isEmpty()){
+        if(!empleado.isPresent()){
            throw new ApiRequestException("Empleado con cedula "+ cedula + " no se encuentra en la base de datos");
         }
         Empleado empleadoEncontrado = empleado.get();
         empleadoRepesitory.delete(empleadoEncontrado);
-
         return "Empleado con cedula "+empleado.get().getCedula()+ " fue eliminado con exito";
-
     }
 }

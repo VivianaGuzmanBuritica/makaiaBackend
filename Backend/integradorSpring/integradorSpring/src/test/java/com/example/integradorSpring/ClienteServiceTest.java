@@ -124,8 +124,6 @@ public class ClienteServiceTest {
         verify(clienteRepository, times(1)).findById(cedula);
 
     }
-
-
     @Test(expected = ApiRequestException.class)
     public void actualizarClienteCedulaNula(){
         //Arrange
@@ -193,9 +191,45 @@ public class ClienteServiceTest {
         assertTrue(clienteDTOActual.getEmail().equals(clienteDTOEsperado.getEmail()));
         assertTrue(clienteDTOActual.getDirResidencia().equals(clienteDTOEsperado.getDirResidencia()));
         assertTrue(clienteDTOActual.getCiudad().equals(clienteDTOEsperado.getCiudad()));
-
-
     }
 
+    @Test(expected = ApiRequestException.class)
+    public void eliminarClienteCedulaNula(){
+        //Arrange
+        Integer cedula = null;
+        Cliente cliente = new Cliente(1234, "Vivi", "Guzman", "12345", "vivi@mail.com", "calle123", "Cali");
+
+        //Act
+        when(clienteRepository.findById(any())).thenReturn(Optional.of(cliente));
+        String clienteActualizado= this.clienteService.eliminar(cedula);
+        //Assert
+        assertNotNull(clienteActualizado);
+    }
+    @Test(expected = ApiRequestException.class)
+    public void eliminarClienteNoExiste(){
+        //Arrange
+        Integer cedula = 1234;
+
+        //Act
+        when(clienteRepository.findById(any())).thenReturn(Optional.empty());
+     String clienteActualizado= this.clienteService.eliminar(cedula);
+        // Assert
+        assertNull(clienteActualizado);
+         fail("Se esperaba una excepción de tipo ApiRequestException");
+    }
+
+    @Test
+    public void eliminarCliente(){
+        //Arrange
+        Integer cedula = 1234;
+        Cliente cliente = new Cliente(1234, "Vivi", "Buritica", "12345", "vivi@mail.com", "calle123", "Cali");
+
+        //Act
+        when(clienteRepository.findById(any())).thenReturn(Optional.of(cliente));
+        String clienteActualizado= this.clienteService.eliminar(cedula);
+        // Assert
+        assertTrue(clienteActualizado.equals("El cliente con cedula "+cliente.getCedula()+ " fue eliminado con exito"));
+
+    }
 
 }
