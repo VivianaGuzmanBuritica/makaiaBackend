@@ -24,8 +24,9 @@ public class SwaggerConfig {
 
         private ApiInfo apiInfo() {
             return new ApiInfoBuilder()
-                    .title("API REST de Mensajeria de paquetes")
-                    .description("Esta API REST te permite gestionar el registro y seguimiento de Mensajeria de paquetes")
+                    .title("API REST de Mensajeria de paquetes \uD83C\uDFE3")
+                    .description("El proyecto es una REST API para un sistema de mensajería de paquetes \uD83D\uDCE6 que permite a los clientes enviar y hacer seguimiento de los paquetes a través de una interfaz web. "
+                     + "\n" +   " La API utiliza el protocolo HTTP para permitir que los usuarios interactúen con el sistema a través de una serie de endpoints de API \uD83D\uDD17 definidos. Los controladores principales del sistema son el Cliente, el Empleado y el Envío.")
                     .version("1.0.0")
                     .build();
         }
