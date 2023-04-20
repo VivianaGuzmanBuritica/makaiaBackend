@@ -61,6 +61,38 @@ public class EnvioDTO {
     }
 
 
+    public void setCedulaCliente(Integer cedulaCliente) {
+        this.cedulaCliente = cedulaCliente;
+    }
+
+    public void setCiudadOrigen(String ciudadOrigen) {
+        this.ciudadOrigen = ciudadOrigen;
+    }
+
+    public void setCiudadDestino(String ciudadDestino) {
+        this.ciudadDestino = ciudadDestino;
+    }
+
+    public void setDirDestino(String dirDestino) {
+        this.dirDestino = dirDestino;
+    }
+
+    public void setNombreRecibe(String nombreRecibe) {
+        this.nombreRecibe = nombreRecibe;
+    }
+
+    public void setCelularRecibe(String celularRecibe) {
+        this.celularRecibe = celularRecibe;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public void setValorDeclarado(double valorDeclarado) {
+        this.valorDeclarado = valorDeclarado;
+    }
+
     public double getValorDeclarado() {
         return valorDeclarado;
     }
