@@ -10,24 +10,24 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
+@Configuration
+@EnableSwagger2
 public class SwaggerConfig {
-    @Configuration
-    @EnableSwagger2
-    public class ConfiguracionSwagger {
 
         @Bean
         Docket api(){
             return new Docket(DocumentationType.SWAGGER_2).select()
-                    .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any()).build().apiInfo(apiInfo());
+                    .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+                    .paths(PathSelectors.any())
+                    .build().apiInfo(apiInfo());
         }
 
         private ApiInfo apiInfo() {
             return new ApiInfoBuilder()
-                    .title("API REST de reservas de habitación de hotel")
-                    .description("Esta API REST te permite gestionar reservas de habitaciones en un hotel.")
+                    .title("API REST de Mensajeria de paquetes")
+                    .description("Esta API REST te permite gestionar el registro y seguimiento de Mensajeria de paquetes")
                     .version("1.0.0")
                     .build();
         }
-    }
+
 }
