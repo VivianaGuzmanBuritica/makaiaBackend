@@ -110,4 +110,44 @@ public class Envio {
     public Paquete getPaquete() {
         return paquete;
     }
+
+    public void setNumGuia(Integer numGuia) {
+        this.numGuia = numGuia;
+    }
+
+    public void setCiudadOrigen(String ciudadOrigen) {
+        this.ciudadOrigen = ciudadOrigen;
+    }
+
+    public void setCiudadDestino(String ciudadDestino) {
+        this.ciudadDestino = ciudadDestino;
+    }
+
+    public void setDirDestino(String dirDestino) {
+        this.dirDestino = dirDestino;
+    }
+
+    public void setNombreRecibe(String nombreRecibe) {
+        this.nombreRecibe = nombreRecibe;
+    }
+
+    public void setCelularRecibe(String celularRecibe) {
+        this.celularRecibe = celularRecibe;
+    }
+
+    public void setHoraEntrega(String horaEntrega) {
+        this.horaEntrega = horaEntrega;
+    }
+
+    public void setValorEnvio(double valorEnvio) {
+        this.valorEnvio = valorEnvio;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setPaquete(Paquete paquete) {
+        this.paquete = paquete;
+    }
 }
