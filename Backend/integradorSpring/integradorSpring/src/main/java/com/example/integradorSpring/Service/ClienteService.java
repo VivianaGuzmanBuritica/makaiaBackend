@@ -109,14 +109,15 @@ public class ClienteService {
         if(cedula == null) {
             throw new ApiRequestException("la cedula no debe ser nula");
         }
-        Optional<Cliente> cliente =  clienteRepository.findById(cedula);
+        Optional<Cliente> cliente =  this.clienteRepository.findById(cedula);
 
         if(!cliente.isPresent()){
             throw new ApiRequestException("El cliente con la cedula" +cedula +" no existe");
         }
             Cliente clienteEncontrado = cliente.get();
-            clienteRepository.delete(clienteEncontrado);
-              return "El cliente con cedula "+cliente.get().getCedula()+ " fue eliminado con exito";
+            clienteRepository.delete(cliente.get());
+              return "El cliente con cedula  fue eliminado con exito";
 
     }
 }
+

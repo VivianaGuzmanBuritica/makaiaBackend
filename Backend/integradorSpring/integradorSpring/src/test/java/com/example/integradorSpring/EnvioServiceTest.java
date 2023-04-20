@@ -1,5 +1,6 @@
 package com.example.integradorSpring;
 
+import com.example.integradorSpring.Model.PaqueteModel;
 import com.example.integradorSpring.Service.*;
 import com.example.integradorSpring.Service.patronState.Estado;
 import com.example.integradorSpring.dto.*;
@@ -91,9 +92,9 @@ public class EnvioServiceTest {
         Paquete paquete = new Paquete();
         paquete.setTipo("LIVIANO");
         paquete.setPeso(2);
-        paquete.setValorDeclarado(50000);
+        paquete.setValorDeclarado(30000);
 
-        paqueteService.identificarTipoPaquete(envioDTO.getPeso());
+        //paqueteService.identificarTipoPaquete(envioDTO.getPeso());
         when(paqueteRepository.save(any(Paquete.class))).thenReturn(paquete);
 
         // Act

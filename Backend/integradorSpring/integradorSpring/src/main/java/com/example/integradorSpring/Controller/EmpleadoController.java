@@ -5,6 +5,8 @@ import com.example.integradorSpring.Service.ClienteService;
 import com.example.integradorSpring.Service.EmpleadoService;
 import com.example.integradorSpring.dto.EmpleadoDTO;
 import com.example.integradorSpring.entity.Empleado;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,12 @@ public class EmpleadoController {
     public EmpleadoController(EmpleadoService service) {
         this.service = service;
     }
+
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Su solicitud se ha procesado correctamente"),
+            @ApiResponse(code = 404, message = " El servidor no ha podido encontrar el recurso solicitado, intene nuevamente"),
+            @ApiResponse(code = 500, message = "Lo sentimos, ha habido un error interno en el servidor, no ha sido posible procesar la solicitud.")
+    })
 
     @PostMapping("/empleados")
     public EmpleadoDTO crear(@RequestBody EmpleadoDTO empleado){

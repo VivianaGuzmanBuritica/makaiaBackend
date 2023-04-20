@@ -1,6 +1,6 @@
 package com.example.integradorSpring.Model;
 
-public class Envio {
+public class EnvioModel {
     private String umGuia;
     private Cliente cliente;
     private String ciudadOrigen;
@@ -11,9 +11,9 @@ public class Envio {
     private String horaEntrega;
     private String estado;
     private double valorEnvio;
-    private Paquete paquete;
+    private PaqueteModel paquete;
 
-    public Envio(String umGuia, Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
+    public EnvioModel(String umGuia, Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, PaqueteModel paquete) {
         this.umGuia = umGuia;
         this.cliente = cliente;
         this.ciudadOrigen = ciudadOrigen;
@@ -27,7 +27,7 @@ public class Envio {
         this.paquete = paquete;
     }
 
-    public Envio( Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, Paquete paquete) {
+    public EnvioModel(Cliente cliente, String ciudadOrigen, String ciudadDestino, String dirDestino, String nombreRecibe, String celularRecibe, String horaEntrega, String estado, double valorEnvio, PaqueteModel paquete) {
         this.cliente = cliente;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
@@ -36,6 +36,9 @@ public class Envio {
         this.celularRecibe = celularRecibe;
         this.valorEnvio = valorEnvio;
         this.paquete = paquete;
+    }
+
+    public EnvioModel() {
     }
 
     @Override
@@ -56,9 +59,7 @@ public class Envio {
     }
 
 
-
-
-    public static double calcularValorEnvio(String tipo){
+    public double calcularValorEnvio(String tipo){
         if(tipo.equals("LIVIANO")){
             return 30000;
         }else if(tipo.equals("MEDIANO")){

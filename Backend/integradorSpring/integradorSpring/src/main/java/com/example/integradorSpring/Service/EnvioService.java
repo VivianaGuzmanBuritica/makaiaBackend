@@ -1,12 +1,14 @@
 package com.example.integradorSpring.Service;
 
 
+import com.example.integradorSpring.Model.EnvioModel;
 import com.example.integradorSpring.dto.*;
 import com.example.integradorSpring.entity.Cliente;
 import com.example.integradorSpring.entity.Empleado;
 import com.example.integradorSpring.entity.Envio;
 
 import com.example.integradorSpring.entity.Paquete;
+import com.example.integradorSpring.Model.PaqueteModel;
 import com.example.integradorSpring.exception.ApiRequestException;
 import com.example.integradorSpring.repository.ClienteRepository;
 import com.example.integradorSpring.repository.EmpleadoRepesitory;
@@ -32,6 +34,8 @@ public class EnvioService {
     private EmpleadoRepesitory empleadoRepesitory;
     private  PaqueteService paqueteService;
 
+
+
     private EnvioEstadoDTO envioEstadoDTO = new EnvioEstadoDTO();
 
 
@@ -49,7 +53,7 @@ public class EnvioService {
 
     public EnvioCreadoDTO crear(EnvioDTO envioDTO){
 
-        Optional<Cliente> cliente = this.clienteRepository.findById(envioDTO.getCedulaCliente());
+
         String estado =  envioEstadoDTO.getEstadoInicial();
 
         if(envioDTO.getCedulaCliente() == null
@@ -64,20 +68,27 @@ public class EnvioService {
            throw new ApiRequestException("Todos los campos deben ser diligenciados y diferente de nulo o 0");
         }
 
-        else if(!cliente.isPresent()){
+        Optional<Cliente> cliente = this.clienteRepository.findById(envioDTO.getCedulaCliente());
+
+        if(!cliente.isPresent()){
             throw new ApiRequestException("El cliente debe haberse creado previamente");
         }
 
-        String tipo = paqueteService.identificarTipoPaquete(envioDTO.getPeso());
-       double valor = com.example.integradorSpring.Model.Envio.calcularValorEnvio(tipo);
-
-        Paquete paquete = new Paquete(
-                tipo,
+        PaqueteModel paquete = new PaqueteModel(
                 envioDTO.getPeso(),
                 envioDTO.getValorDeclarado()
         );
 
-        paqueteRepository.save(paquete);
+        Paquete paqueteEntity = new Paquete(
+                paquete.getTipo(),
+                paquete.getPeso(),
+                paquete.getValorDeclarado()
+        );
+
+        paqueteRepository.save(paqueteEntity);
+
+        EnvioModel envioModel = new EnvioModel();
+        double valor = envioModel.calcularValorEnvio(paqueteEntity.getTipo());
 
         Envio envio = new Envio(
                 envioDTO.getCiudadOrigen(),
@@ -89,8 +100,7 @@ public class EnvioService {
                 estado,
                 valor,
                 cliente.get(),
-                paquete
-
+                paqueteEntity
 
         );
         envioRepository.save(envio);
