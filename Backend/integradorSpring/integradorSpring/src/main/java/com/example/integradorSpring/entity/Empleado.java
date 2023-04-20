@@ -62,10 +62,10 @@ public class Empleado {
     public Integer getCedula() {
         return cedula;
     }
-//
-//    public void setCedula(Integer cedula) {
-//        this.cedula = cedula;
-//    }
+
+    public void setCedula(Integer cedula) {
+        this.cedula = cedula;
+    }
 
     public String getNombre() {
         return nombre;

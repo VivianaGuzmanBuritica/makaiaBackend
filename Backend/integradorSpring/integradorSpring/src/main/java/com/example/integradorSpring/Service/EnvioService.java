@@ -183,13 +183,10 @@ public class EnvioService {
 
         String estadoToUpperCase = estado.toUpperCase();
 
-       if(estado == null){
-            throw new ApiRequestException("el estado no debe ser nulo");}
 
        if(!estadoToUpperCase.equals("RECIBIDO") && !estadoToUpperCase.equals("EN_RUTA") && !estadoToUpperCase.equals("ENTREGADO")){
             throw new ApiRequestException("el estado que esta consultando no existe, asegurese de haber colocado alguna de las siguientes opciones(RECIBIDO - EN_RUTA, ENTREGADO)");
         }
-
        List<Envio> resultado= envioRepository.filtrarPorEstado(estadoToUpperCase).stream().collect(Collectors.toList());
 
         if(resultado.isEmpty()){

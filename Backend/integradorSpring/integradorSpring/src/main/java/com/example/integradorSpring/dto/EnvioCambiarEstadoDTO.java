@@ -27,4 +27,16 @@ public class EnvioCambiarEstadoDTO {
     public Integer getCedulaEmpleado() {
         return cedulaEmpleado;
     }
+
+    public void setNumGuia(Integer numGuia) {
+        this.numGuia = numGuia;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setCedulaEmpleado(Integer cedulaEmpleado) {
+        this.cedulaEmpleado = cedulaEmpleado;
+    }
 }
